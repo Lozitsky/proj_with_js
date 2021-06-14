@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Lazy Loading</title>
+    <meta content="width=device-width" name="viewport">
+    <link href="css/style.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<!--.wrapper>main.page>.page__container>(section.page__section.page__section_1>h1.page__title{It is a header}+.page__text>p*6>lorem)+(section.page__section.page__section_2>h2.page__sub-title{It is a sub-title}+.page__images>(.page__image*2>img[src=img/0$@1.jpg,alt=Image])+(.page__image>picture>source[srcset=img/03.webp,type=image/webp]+img[src=img/03.jpg,alt=Image])+.page__image*3>img[src=img/0$@4.jpg,alt=Image])+(section.page__section.page__section_3>h2.page__sub-title{It is a sub-title}+.page__map.load-map>iframe)+section.page__section.page__section_1>h2.page__title{It is a sub-title}+.page__text.load-more>p*6>lorem-->
+<div class="wrapper">
+    <main class="page">
+        <div class="page__container">
+            <section class="page__section page__section_1">
+                <h1 class="page__title">It is a header</h1>
+                <div class="page__text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus dolore ducimus ea
+                        laudantium nam possimus sit. A accusamus aliquam fugiat itaque, minima modi mollitia, natus quo,
+                        similique tenetur ut!</p>
+                    <p>Adipisci aliquid aspernatur doloremque laboriosam nobis similique voluptas voluptate voluptates!
+                        At atque distinctio ea est, excepturi in inventore ipsum laboriosam, magni molestiae nemo omnis
+                        optio quisquam repellendus similique sit, temporibus?</p>
+                    <p>Ab accusantium autem blanditiis cum cumque dolore doloribus ducimus eaque expedita explicabo
+                        fugiat illum incidunt labore neque nostrum obcaecati odio omnis optio quaerat quam, quisquam
+                        quod saepe soluta, temporibus totam?</p>
+                    <p>Dicta eveniet in non unde voluptatum! Alias asperiores beatae blanditiis consectetur ducimus enim
+                        eum ex illum laudantium minima necessitatibus nobis officia placeat porro possimus quo rem,
+                        repellendus, rerum tempora voluptas.</p>
+                    <p>Animi aperiam aspernatur at dicta dolor dolore ea, earum enim ex exercitationem harum minima nam
+                        nihil numquam perferendis possimus quam quia reiciendis rerum voluptatibus. Assumenda ex in quam
+                        quasi veniam.</p>
+                    <p>Deserunt dolores excepturi fugiat, illum minima quia repellat suscipit unde ut veniam. Amet
+                        delectus, facere molestias nemo nulla quidem similique tempora ut veniam voluptas? Assumenda
+                        atque blanditiis quod rem sed?</p>
+                </div>
+            </section>
+            <section class="page__section page__section_2">
+                <h2 class="page__sub-title">It is a sub-title</h2>
+                <div class="page__images">
+                    <div class="page__image"><img data-src="img/01.jpg" src="img/1x1.png" alt="Image"></div>
+                    <div class="page__image"><img data-src="img/02.jpg" src="img/1x1.png" alt="Image"></div>
+                    <div class="page__image">
+                        <picture>
+                            <source data-srcset="img/03.webp" srcset="img/1x1.png" type="image/webp">
+                            <img data-src="img/03.jpg" src="img/1x1.png" alt="Image"></picture>
+                    </div>
+                    <div class="page__image"><img data-src="img/04.jpg" src="img/1x1.png" alt="Image"></div>
+                    <div class="page__image"><img data-src="img/05.jpg" src="img/1x1.png" alt="Image"></div>
+                    <div class="page__image"><img data-src="img/06.jpg" src="img/1x1.png" alt="Image"></div>
+                </div>
+            </section>
+            <section class="page__section page__section_3">
+                <h2 class="page__sub-title">It is a sub-title</h2>
+                <div class="page__map load-map" data-map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5080.638294366925!2d30.512369707388245!3d50.45378142468062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce88e35e395f%3A0xc63774cf5da5a434!2z0KHQvtGE0ZbQudGB0YzQutC40Lkg0YHQvtCx0L7RgA!5e0!3m2!1suk!2sua!4v1623576442753!5m2!1suk!2sua">
+<!--                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5080.638294366925!2d30.512369707388245!3d50.45378142468062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce88e35e395f%3A0xc63774cf5da5a434!2z0KHQvtGE0ZbQudGB0YzQutC40Lkg0YHQvtCx0L7RgA!5e0!3m2!1suk!2sua!4v1623576442753!5m2!1suk!2sua" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>-->
+                </div>
+            </section>
+            <section class="page__section page__section_1">
+                <h2 class="page__title">It is a sub-title</h2>
+                <div class="page__text load-more">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A debitis deserunt distinctio
+                        exercitationem laudantium libero officia, qui quos. Aliquid dolores doloribus ea eum ex
+                        laudantium officia perspiciatis sequi totam vitae.</p>
+                    <p>Consectetur corporis culpa delectus distinctio dolores ducimus eligendi, et ex in ipsa iste
+                        itaque laboriosam, magni nisi numquam perspiciatis placeat possimus quo recusandae reiciendis
+                        repudiandae sint sit vero voluptate voluptatibus.</p>
+                    <p>A accusantium assumenda commodi consequuntur delectus ea eaque eius eveniet id impedit molestias
+                        nesciunt optio perspiciatis, praesentium quibusdam quisquam quos repellat, sapiente unde ut
+                        veniam voluptas voluptatum! Animi, distinctio, voluptatum.</p>
+                    <p>A animi beatae, cupiditate deleniti earum est expedita hic, in maxime nisi quos repellendus,
+                        tempore vel. Aliquid asperiores commodi dolores iusto omnis optio reprehenderit repudiandae
+                        unde, ut. Delectus, eligendi praesentium?</p>
+                    <p>Alias amet architecto consequatur corporis doloremque eius eum in, iure modi optio placeat
+                        quaerat quas quia quo rem rerum sint tempora, totam vel veniam? Commodi eaque ipsum modi quia
+                        sapiente.</p>
+                    <p>A, ab autem, dolor doloremque ea earum, enim ex excepturi hic inventore laboriosam magni maxime
+                        modi mollitia nam nihil numquam quasi quidem repellendus sapiente sed sit suscipit vel vero
+                        voluptatum!</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
