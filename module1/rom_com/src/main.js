@@ -130,13 +130,13 @@ function toggleFormView() {
 
 function toggleSaveView() {
     if (!homeView.classList.contains("hidden")) {
+        appendSavedCovers();
         toggleView();
         savedView.classList.toggle("hidden");
-        appendSavedCovers();
     } else if (!formView.classList.contains("hidden")) {
+        appendSavedCovers();
         savedView.classList.toggle("hidden");
         formView.classList.toggle("hidden");
-        appendSavedCovers();
     }
 }
 
@@ -170,12 +170,14 @@ function saveCover() {
 function deleteCover(event) {
     let id = event.target.parentElement.id;
 
-    // savedCovers = savedCovers.filter(book => book.id !== Number(id));
-    for (let i = 0; i < savedCovers.length; i++) {
+    savedCovers = savedCovers.filter(book => book.id !== Number(id));
+
+//    in this case the data on the page does not refresh
+/*    for (let i = 0; i < savedCovers.length; i++) {
         if (savedCovers[i].id === Number(id)) {
             savedCovers.splice(i, 1);
             return;
         }
-    }
+    }*/
     appendSavedCovers();
 }
