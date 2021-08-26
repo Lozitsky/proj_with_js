@@ -1,0 +1,113 @@
+/* font-family: 'Roboto', sans-serif;
+
+COLORS
+teal - #0fb9b1;
+frosted white - rgba(225, 225, 225, .9);
+grey - #95a5a6;
+red - #ee5253
+
+*/
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: auto;
+}
+
+article {
+    display: block;
+    height: 55vw;
+    width: 100vw;
+    background: #fff url(../assets/burger-friends.jpg) 0 0 no-repeat;
+    background-size: cover;
+    /*overflow: hidden;*/
+}
+
+h1 {
+    font-size: 1.8vw;
+}
+
+h4 {
+    font-size: 2vw;
+    margin: 1vw 0;
+    font-weight: 600;
+    line-height: 2.5vw;
+    position: relative;
+}
+
+h4  > span {
+    position: absolute;
+    color: #ee5253;
+    top:-.7vw;
+    right: -1.45vw;
+}
+
+header {
+    height: 8.38%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0fb9b1;
+    padding: 0 1.5%;
+}
+
+main {
+    padding: 3.6vw 2.1vw;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+
+section {
+    display: flex;
+    padding: 3%;
+    height: 59.5%;
+    width: 36.9%;
+    background: rgba(225, 225, 225, .9);
+}
+
+section label {
+    font-size: 1.5vw;
+    line-height: 220%;
+}
+
+section input[type=radio] {
+    border: 0;
+    width: 8%;
+    height: .95vw;
+}
+
+section:first-child {
+    align-items: center;
+}
+
+section:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section > img {
+    height: auto;
+    width: 29%;
+}
+
+button {
+    font-size: 1.0558vw;
+    border: none;
+    border-radius: 0.4vw;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    line-height: 2.345vw;
+
+}
+
+button[type=submit] {
+    margin-top: 2%;
+    background: #0fb9b1;
+    width: 60%;
+
+}
