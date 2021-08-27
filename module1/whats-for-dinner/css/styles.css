@@ -83,9 +83,30 @@ section:first-child {
 }
 
 section:last-child {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+section:last-child > em {
+    font-size: 1.7vw;
+}
+
+section:last-child > span {
+    font-size: 3.11vw;
+    font-weight: 600;
+    color: #161616;
+}
+
+section:last-child > button{
+    position: absolute;
+    bottom: 2vw;
+    right: 2vw;
+    background: #95a5a6;
+    color: white;
 }
 
 section > img {
@@ -109,5 +130,10 @@ button[type=submit] {
     margin-top: 2%;
     background: #0fb9b1;
     width: 60%;
+}
 
+button:focus, button:active {
+    /*outline: 1px solid #3f7cce;*/
+    /*box-shadow: 0 0 3pt 2pt cornflowerblue;*/
+    box-shadow: 0 0 2pt 1pt #3f7cce;
 }
