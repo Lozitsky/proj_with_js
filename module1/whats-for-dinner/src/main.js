@@ -1,13 +1,18 @@
 // Create variables targetting the relevant DOM elements here 👇
-const cookBtn = document.querySelector("[type='submit']");
-const clearBtn = document.querySelector("[type='reset']");
-const form = document.querySelector("form");
 const main = document.querySelector("main");
-const mealSection = main.lastElementChild;
+let mealForm = main.children[0].querySelector("form");
+const showSection = main.children[1];
+const recipeBar = main.children[2];
+const cookBtn = mealForm.querySelector("[type='submit']");
+const clearBtn = showSection.querySelector("[type='reset']");
+const addRecipeBtn = document.querySelector("header button");
+const addNewBtn = recipeBar.querySelector("[type='submit']");
 
 // Add your event listeners here 👇
 cookBtn.addEventListener('click', makeMeal);
 clearBtn.addEventListener('click', clearMeal);
+addRecipeBtn.addEventListener('click', addRecipeBar);
+addNewBtn.addEventListener('click', addNewRecipe);
 
 // Create your event handlers and other functions here 👇
 
@@ -16,7 +21,7 @@ function getRandomIndex(array) {
 }
 
 function getSelectedId() {
-    let list = form.querySelectorAll("[name='meal']");
+    let list = mealForm.querySelectorAll("[name='meal']");
     for (let meal of list) {
         if (meal.checked) {
             return meal.id;
@@ -26,18 +31,23 @@ function getSelectedId() {
 }
 
 function getRandomMeal(meal_id) {
-    switch (meal_id) {
-        case 'meal1':
-            return sides[getRandomIndex(sides)];
-        case 'meal2':
-            return mains[getRandomIndex(mains)];
-        case 'meal3':
-            return desserts[getRandomIndex(desserts)];
-        case 'meal4':
-            return [sides[getRandomIndex(sides)], mains[getRandomIndex(mains)], desserts[getRandomIndex(desserts)]];
-        default:
-            return undefined;
+    if (meal_id === "Entire Meal") {
+        return [sides[getRandomIndex(sides)], mains[getRandomIndex(mains)], desserts[getRandomIndex(desserts)]];
+    } else {
+        return meal_id || allMeals[meal_id] ? allMeals[meal_id][getRandomIndex(allMeals[meal_id])] : undefined;
     }
+}
+
+function showInfoBox() {
+    showSection.children[0].hidden = true;
+    for (let i = 1; i < showSection.children.length; i++) {
+        showSection.children[i].hidden = false;
+    }
+}
+
+function showMealInfo(meal) {
+    clearP();
+    showSection.children[2].textContent = `${meal}!`;
 }
 
 function makeMeal(event) {
@@ -46,29 +56,23 @@ function makeMeal(event) {
     if (!randomMeal) {
         return undefined;
     }
-
-    mealSection.children[0].hidden = true;
-    for (let i = 1; i < mealSection.children.length; i++) {
-        mealSection.children[i].hidden = false;
-    }
-    // toggleVisibility();
+    showInfoBox();
 
     if (typeof randomMeal === "string") {
-        clearP();
-        mealSection.children[2].textContent = `${randomMeal}!`;
+        showMealInfo(randomMeal);
     } else {
         clearSpan();
-        // mealSection.children[3].textContent = `${mains[7]} with a side of ${sides[0]} and ${desserts[1]} for desert!`;
-        mealSection.children[3].textContent = `${randomMeal[1]} with a side of ${randomMeal[0]} and ${randomMeal[2]} for desert!`;
+        // showSection.children[3].textContent = `${mains[7]} with a side of ${sides[0]} and ${desserts[1]} for desert!`;
+        showSection.children[3].textContent = `${randomMeal[1]} with a side of ${randomMeal[0]} and ${randomMeal[2]} for desert!`;
     }
     return randomMeal;
 }
 
 function toggleVisibility() {
-    let isImgHidden = mealSection.children[0].hidden;
-    mealSection.children[0].hidden = !isImgHidden;
-    for (let i = 1; i < mealSection.children.length; i++) {
-        mealSection.children[i].hidden = isImgHidden;
+    let isImgHidden = showSection.children[0].hidden;
+    showSection.children[0].hidden = !isImgHidden;
+    for (let i = 1; i < showSection.children.length; i++) {
+        showSection.children[i].hidden = isImgHidden;
     }
 }
 
@@ -79,9 +83,43 @@ function clearMeal() {
 }
 
 function clearSpan() {
-    mealSection.children[2].textContent = '';
+    showSection.children[2].textContent = '';
 }
 
 function clearP() {
-    mealSection.children[3].textContent = '';
+    showSection.children[3].textContent = '';
+}
+
+function addRecipeBar() {
+    recipeBar.hidden = false;
+}
+
+function putNewRecipe(type, name) {
+    if (allMeals.hasOwnProperty(type)) {
+        if (!allMeals[type].includes(name)) {
+            allMeals[type].push(name);
+            return true;
+        }
+    }
+    alert(`The "${type}" type is incorrect!`);
+    return false;
+}
+
+function getRecipeType() {
+    let type = recipeBar.querySelector("[name='type']");
+    return type.value;
+}
+
+function getRecipeName() {
+    return recipeBar.querySelector("[name='name']").value;
+}
+
+function addNewRecipe(event) {
+    event.preventDefault();
+    let recipeType = getRecipeType();
+    let recipeName = getRecipeName();
+    if (recipeType && recipeName && putNewRecipe(recipeType, recipeName)) {
+        showInfoBox();
+        showMealInfo(recipeName);
+    }
 }

@@ -47,3 +47,9 @@ let desserts = [
     'Croissants',
     'Eclairs'
 ];
+
+let allMeals = {
+    Side: sides,
+    "Main Dish": mains,
+    Dessert: desserts
+}

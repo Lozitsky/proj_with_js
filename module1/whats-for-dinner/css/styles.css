@@ -15,11 +15,11 @@ html, body {
 
 article {
     display: block;
-    height: 55vw;
+    height: 54.4vw;
     width: 100vw;
     background: #fff url(../assets/burger-friends.jpg) 0 0 no-repeat;
     background-size: cover;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 h1 {
@@ -42,32 +42,42 @@ h4  > span {
 }
 
 header {
-    height: 8.38%;
+    height: 8.3%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #0fb9b1;
-    padding: 0 1.5%;
+    padding: 0 1.3%;
+}
+
+button {
+    font-size: 1.2vw;
+    border: none;
+    border-radius: 0.4vw;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    line-height: 2.345vw;
 }
 
 main {
-    padding: 3.6vw 2.1vw;
-    height: 100%;
+    padding: 3.5% 2%;
+    height: 91.7%;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    position: relative;
 }
-
 
 section {
     display: flex;
     padding: 3%;
-    height: 59.5%;
+    height: 66.5%;
     width: 36.9%;
     background: rgba(225, 225, 225, .9);
 }
 
-section label {
+section label, aside label {
     font-size: 1.5vw;
     line-height: 220%;
 }
@@ -82,7 +92,7 @@ section:first-child {
     align-items: center;
 }
 
-section:last-child {
+section:nth-child(2) {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -91,22 +101,21 @@ section:last-child {
     text-align: center;
 }
 
-section:last-child > em {
+section:nth-child(2) > em {
     font-weight: 600;
     font-size: 1.35vw;
 }
 
-section:last-child > span {
+section:nth-child(2) > span {
     font-size: 3.11vw;
     font-weight: 600;
     color: #161616;
 }
 
-section:last-child > p {
+section:nth-child(2) > p {
     font-size: 1.8vw;
     font-weight: 600;
     color: #161616;
-    /*letter-spacing: 0.01vw;*/
 }
 
 section > img {
@@ -114,19 +123,7 @@ section > img {
     width: 29%;
 }
 
-button {
-    font-size: 1.0558vw;
-    border: none;
-    border-radius: 0.4vw;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    /*align-items: center;*/
-    line-height: 2.345vw;
-}
-
-section:last-child > button{
-    /*visibility: hidden;*/
+section:nth-child(2) > button{
     width: 5.9vw;
     position: absolute;
     bottom: 1.7vw;
@@ -135,14 +132,52 @@ section:last-child > button{
     color: rgba(255, 255, 255, 0.9);
 }
 
-button[type=submit] {
+section > form > button[type=submit] {
     margin-top: 2%;
-    background: #0fb9b1;
     width: 60%;
 }
 
+button[type=submit] {
+    background: #0fb9b1;
+}
+
 button:focus, button:active {
-    /*outline: 1px solid #3f7cce;*/
     /*box-shadow: 0 0 3pt 2pt cornflowerblue;*/
     box-shadow: 0 0 2pt 1pt #3f7cce;
+}
+
+aside {
+    height: 11.5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: rgba(225, 225, 225, .9);
+}
+
+aside > form {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+aside label {
+    margin-right: .6vw;
+    font-size: 1.39vw;
+    font-weight: 500;
+}
+
+aside > form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside > form > button {
+    margin-right: 46%;
+}
+
+aside input[type=text] {
+    height: 2.8vw;
+    width: 11.9vw;
 }

@@ -19,11 +19,11 @@
 			<section>
 				<form action="">
 					<h4>What are you looking for?<span>&#65121;</span></h4>
-					<div class=""><input id="meal1" name="meal" type="radio"><label for="meal1">Side</label></div>
+					<div class=""><input id="Side" name="meal" type="radio"><label for="Side">Side</label></div>
 <!--					<div class=""><input id="meal2" name="meal" type="radio" checked><label for="meal2">Main Dish</label></div>-->
-					<div class=""><input id="meal2" name="meal" type="radio"><label for="meal2">Main Dish</label></div>
-					<div class=""><input id="meal3" name="meal" type="radio"><label for="meal3">Dessert</label></div>
-					<div class=""><input id="meal4" name="meal" type="radio"><label for="meal4">Entire Meal</label></div>
+					<div class=""><input id="Main Dish" name="meal" type="radio"><label for="Main Dish">Main Dish</label></div>
+					<div class=""><input id="Dessert" name="meal" type="radio"><label for="Dessert">Dessert</label></div>
+					<div class=""><input id="Entire Meal" name="meal" type="radio"><label for="Entire Meal">Entire Meal</label></div>
 					<button type="submit">LETS COOK!</button>
 				</form>
 			</section>
@@ -33,6 +33,14 @@
 				<p hidden></p>
 				<button type="reset" hidden>CLEAR</button>
 			</section>
+			<!--			section>form>.>label[for=rtype]{Recipe Type:}+input:t#rtype[name=type]^.>label[for=rname]{Recipe Name:}+input:t#rname[name=name]^btn:s{ADD NEW}-->
+			<aside hidden>
+				<form action="">
+					<div class=""><label for="rtype">Recipe Type:</label><input type="text" name="type" id="rtype" size="8"></div>
+					<div class=""><label for="rname">Recipe Name:</label><input type="text" name="name" id="rname" size="8"></div>
+					<button type="submit">ADD NEW</button>
+				</form>
+			</aside>
 		</main>
 	</article>
 </body>
