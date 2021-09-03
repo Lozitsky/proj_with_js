@@ -9,6 +9,54 @@
 	<meta charset="UTF-8">
 </head>
 <body>
+<!--	header.front-style>h1{INTENTION TIMER}^main>h2.main__h2{New Activity}+form.form.front-style>(section.form__category>h3{Select a category}+.form__panel>.input-box.form__study>input:r#study[name=category]+img.form__category-img+label.form__category-label[for=study]{Study}^.input-box.form__meditate>input:r#meditate[name=category]+img.form__category-img+label.form__category-label[for=meditate]{Meditate}^.input-box.form__exercise>input:r#exercise[name=category]+img.form__category-img+label.form__category-label[for=exercise]{Exercise})+(section.form__questions>.form__goal>label.form__questions-label[for=goal]{What would you like to accomplish during this time?}+input:t.form__input#goal[name=goal]^.minutes>label[for=minutes].form__questions-label{Minutes}+input:number.form__input#minutes[name=minutes min=0 max=59]^.seconds>label[for=seconds].form__questions-label{Seconds}+input:number.form__input#seconds[name=seconds min=0 max=59]^button:s.form__buttons{START ACTIVITY})^^aside.aside>h2.aside_title{Past Activities}+p>{You haven't logged any activities yet.}+br+{Complete the form to the left to get started!}	-->
+	<header class="front-style">
+		<h1>INTENTION TIMER</h1>
+	</header>
+	<main>
+		<h2 class="main__h2">New Activity</h2>
+		<form action="" class="form front-style">
+			<section class="form__category">
+				<h3>Select a category</h3>
+				<div class="form__panel">
+					<div class="input-box form__study"><input type="radio" name="category" id="study"><img src="" alt=""
+																																																 class="form__category-img"><label
+						for="study" class="form__category-label">Study</label></div>
+					<div class="input-box form__meditate"><input type="radio" name="category" id="meditate"><img src="" alt=""
+																																																			 class="form__category-img"><label
+						for="meditate" class="form__category-label">Meditate</label></div>
+					<div class="input-box form__exercise"><input type="radio" name="category" id="exercise"><img src="" alt=""
+																																																			 class="form__category-img"><label
+						for="exercise" class="form__category-label">Exercise</label></div>
+				</div>
+			</section>
+			<section class="form__questions">
+				<div class="form__goal"><label for="goal" class="form__questions-label">What would you like to accomplish during
+																																								this time?</label><input type="text"
+																																																				 name="goal"
+																																																				 id="goal"
+																																																				 class="form__input">
+				</div>
+				<div class="minutes"><label for="minutes" class="form__questions-label">Minutes</label><input type="number"
+																																																			name="minutes"
+																																																			id="minutes"
+																																																			class="form__input"
+																																																			min="0" max="59">
+				</div>
+				<div class="seconds"><label for="seconds" class="form__questions-label">Seconds</label><input type="number"
+																																																			name="seconds"
+																																																			id="seconds"
+																																																			class="form__input"
+																																																			min="0" max="59">
+				</div>
+				<button type="submit" class="form__buttons">START ACTIVITY</button>
+			</section>
+		</form>
+	</main>
+	<aside class="aside">
+		<h2 class="aside_title">Past Activities</h2>
+		<p>You haven't logged any activities yet.<br>Complete the form to the left to get started!</p>
+	</aside>	
 	<script src="src/main.js" type="text/javascript"></script>
 	<script src="src/Activity.js" type="text/javascript"></script>
 </body>
