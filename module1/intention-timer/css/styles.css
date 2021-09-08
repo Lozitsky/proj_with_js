@@ -11,3 +11,186 @@ Colors
     Exercise: #FD8078
     Error: #EFB7EC
 */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #cbc9cf;
+    width: 100vw;
+    height: 53.9vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.front-style {
+    background: #46424D;
+    color: #ffffff;
+}
+
+header {
+    width: 100%;
+    height: 8.5%;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    margin: 0 auto;
+    font-size: 1.6vw;
+    font-weight: 400;
+}
+
+.title {
+    font-size: 1.8vw;
+    line-height: 1.82vw;
+    font-weight: 400;
+}
+
+main, aside {
+    height: 91.5%;
+    padding: 2.3% 2.05% 2.5% 1.84%;
+    letter-spacing: -0.1vw;
+    background: #2B2733;
+    font-weight: 500;
+}
+
+main {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form__category {
+    width: 100%;
+    height: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form__category > h3 {
+    font-size: 1.3vw;
+    line-height: 1.7vw;
+}
+
+.form {
+    height: 93.6%;
+    border-radius: 0.4vw;
+    box-shadow: 0.1vw 0.1vw 1vw 0.1vw rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6% 13% 6.9%;
+    letter-spacing: -0.1vw;
+}
+
+.form__panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form__panel input {
+    display: none;
+}
+
+.input-box {
+    height: 5.1vw;
+    border: 2px solid #ffffff;
+    border-radius: 0.3vw;
+    width: 24.9%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3vw;
+}
+
+label {
+    padding: 0.62vw;
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+}
+
+.form__category-img {
+    width: 1.7vw;
+    height: 1.83vw;
+}
+
+#study {
+    display: none;
+}
+
+#study:checked ~ .form__study {
+    color: #B3FD78;
+    border-color: #B3FD78;
+}
+
+#meditate:checked ~ .form__meditate {
+    color: #C278FD;
+    border-color: #C278FD;
+}
+
+#exercise:checked ~ .form__exercise {
+    color: #FD8078;
+    border-color: #FD8078;
+}
+
+.form__questions {
+    height: 62.75%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.question {
+    height: 22.93%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form__goal {
+    width: 100%;
+}
+
+.form__minutes, .form__seconds {
+    width: 42.6%;
+}
+
+.form__buttons {
+    width: 32.4%;
+    height: 13.7%;
+    margin-left: 66.9%;
+    border-radius: .35vw;
+    font-size: 1.25vw;
+}
+
+.form__questions-label {
+    padding: 0;
+    align-self: flex-start;
+    font-size: 1.465vw;
+}
+
+.form__input {
+    border-bottom: 2px solid currentColor;
+    background: none;
+}
+
+aside {
+    width: 35%;
+    border-left: 3px solid #46424D;
+}
+
+.aside {
+}
+
+.aside__text {
+    margin-top: 2.25vw;
+    text-align: center;
+    font-size: 1.25vw;
+    line-height: 2.1vw;
+}
