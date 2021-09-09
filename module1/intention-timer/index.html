@@ -20,15 +20,12 @@
 				<h3>Select a category:</h3>
 				<div class="form__panel">
 					<input id="study" name="category" type="radio">
-					<!--					<div class="input-box form__study">-->
 					<label class="input-box form__study" for="study">
 						<svg class="form__category-img">
 							<use xlink:href="assets/study.svg#study-img"></use>
 						</svg>
-						<!--						<img src="assets/study.svg" alt="" class="form__category-img">-->
 						Study
 					</label>
-					<!--					</div>-->
 					<input id="meditate" name="category" type="radio">
 					<label class="input-box form__meditate" for="meditate">
 						<svg class="form__category-img">
@@ -36,7 +33,6 @@
 						</svg>
 						Meditate
 					</label>
-					
 					<input id="exercise" name="category" type="radio">
 					<label class="input-box form__exercise" for="exercise">
 						<svg class="form__category-img">
@@ -44,15 +40,29 @@
 						</svg>
 						Exercise
 					</label>
+					<div class="form__panel-warning warning" hidden>
+						<svg class="form__warning-img">
+							<use xlink:href="assets/warning.svg#warning"></use>
+						</svg>
+						Choose a category.
+					</div>
 				</div>
 			</section>
 			<section class="form__questions">
-				<div class="question form__goal"><label class="form__questions-label" for="goal">What would you like to accomplish during
-																																								this time?</label><input
-					class="front-style form__input"
-					id="goal"
-					name="goal"
-					type="text">
+				<div class="question form__goal">
+					<label class="form__questions-label" for="goal">What would you like to accomplish during
+																													this time?</label>
+					<input
+						class="front-style form__input"
+						id="goal"
+						name="goal"
+						type="text">
+					<div class="form__goal-warning warning" hidden>
+						<svg class="form__warning-img">
+							<use xlink:href="assets/warning.svg#warning"></use>
+						</svg>
+						A description is required.
+					</div>
 				</div>
 				<div class="question form__minutes"><label class="form__questions-label" for="minutes">Minutes</label><input
 					class="front-style form__input"
@@ -60,6 +70,12 @@
 					max="59"
 					min="0"
 					name="minutes" type="number">
+					<div class="form__minutes-warning warning" hidden>
+						<svg class="form__warning-img">
+							<use xlink:href="assets/warning.svg#warning"></use>
+						</svg>
+						Type a number from 0 to 59.
+					</div>
 				</div>
 				<div class="question form__seconds"><label class="form__questions-label" for="seconds">Seconds</label><input
 					class="front-style form__input"
@@ -67,8 +83,14 @@
 					max="59"
 					min="0"
 					name="seconds" type="number">
+					<div class="form__seconds-warning warning" hidden>
+						<svg class="form__warning-img">
+							<use xlink:href="assets/warning.svg#warning"></use>
+						</svg>
+						Type a number from 0 to 59.
+					</div>
 				</div>
-				<button class="form__buttons" type="submit">START ACTIVITY</button>
+				<button class="submit form__buttons" type="submit">START ACTIVITY</button>
 			</section>
 		</form>
 	</main>
@@ -76,7 +98,7 @@
 		<h2 class="title aside__title">Past Activities</h2>
 		<p class="aside__text">You haven't logged any activities yet.<br>Complete the form to the left to get started!</p>
 	</aside>
-	<script src="src/main.js" type="text/javascript"></script>
 	<script src="src/Activity.js" type="text/javascript"></script>
+	<script src="src/main.js" type="text/javascript"></script>
 </body>
 </html>
