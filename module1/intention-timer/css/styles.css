@@ -99,7 +99,6 @@ main {
 
 .input-box {
     height: 5.2vw;
-    /*border: 2px solid #ffffff;*/
     border: 2px solid currentColor;
     border-radius: 0.3vw;
     width: 24.9%;
@@ -198,6 +197,55 @@ label {
 .form__input {
     border-bottom: 1px solid currentColor;
     background: none;
+}
+
+.form__timer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__description {
+    font-size: 1.9vw;
+}
+
+.form__time {
+    letter-spacing: 0;
+    font-size: 6.05vw;
+    margin: -0.2vw 0 2.74vw;
+}
+
+.form__time > span {
+    display: inline-block;
+    width: 2vw;
+    height: 4.5vw;
+    position: relative;
+}
+
+
+.form__time > span::after, .form__time > span::before {
+    font-size: 1.24vw;
+    content: '■';
+    position: absolute;
+    right: .3vw;
+    border-radius: inherit;
+}
+
+.form__time > span::before {
+    top: .9vw;
+}
+
+.form__time > span::after {
+    bottom: 0;
+}
+
+.form__circle-btn {
+    width: 17.7vw;
+    height: 17.7vw;
+    border: .3vw solid;
+    border-radius: 100%;
+    font-size: 2vw;
 }
 
 aside {
