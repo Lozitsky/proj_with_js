@@ -2,19 +2,20 @@
 const goalEl = document.querySelector("#goal");
 const minutesEl = document.querySelector("#minutes");
 const secondsEl = document.querySelector("#seconds");
+const main_title = document.querySelector(".main__title");
 const formEl = document.querySelector(".form");
 const categoryEl = formEl.querySelector(".form__category");
 const questionEl = formEl.querySelector(".form__questions");
 const timerEl = formEl.querySelector(".form__timer");
 const descriptionEl = timerEl.querySelector(".form__description");
 const timeEl = timerEl.querySelector(".form__time");
-const circleBtn = timerEl.querySelector(".form__circle-btn");
 const form_panel = formEl.querySelector(".form__panel");
-const submitBtn = formEl.querySelector(".submit");
 const panel_warning = formEl.querySelector(".form__panel-warning");
 const goal_warning = formEl.querySelector(".form__goal-warning");
 const minutes_warning = formEl.querySelector(".form__minutes-warning");
 const seconds_warning = formEl.querySelector(".form__seconds-warning");
+const circleBtn = timerEl.querySelector(".form__circle-btn");
+const submitBtn = formEl.querySelector(".submit");
 let activity;
 
 // Add your event listeners here 👇
@@ -23,6 +24,7 @@ goalEl.addEventListener('input', () => toggleWarning(goalEl, goal_warning));
 minutesEl.addEventListener('input', () => toggleWarning(minutesEl, minutes_warning));
 secondsEl.addEventListener('input', () => toggleWarning(secondsEl, seconds_warning));
 form_panel.addEventListener('click', listenRadio);
+circleBtn.addEventListener("click", startActivity);
 
 // Create your event handlers and other functions here 👇
 
@@ -55,7 +57,7 @@ function makeActivity(ev) {
                 seconds = toggleWarning(secondsEl, seconds_warning);
                 if (seconds) {
                     activity = new Activity(category, description, minutes, seconds, Date.now());
-                    toggleForm();
+                    showCurrentActivity();
                 }
             }
         }
@@ -66,13 +68,15 @@ function getTimeFormat(number) {
     return ("0" + number).slice(-2);
 }
 
-function toggleForm() {
+function showCurrentActivity() {
     categoryEl.hidden = true;
     questionEl.hidden = true;
     timerEl.hidden = false;
+    main_title.textContent = "Current Activity";
     descriptionEl.textContent = activity.description;
     timeEl.children[0].textContent = getTimeFormat(activity.minutes);
     timeEl.children[2].textContent = getTimeFormat(activity.seconds);
+    // activity.countdown(timeEl.children[0], timeEl.children[2]);
     let color;
     switch (activity.category) {
         case 'study' :
@@ -86,6 +90,11 @@ function toggleForm() {
             break;
     }
     circleBtn.style.borderColor = color;
+}
+
+function startActivity(ev) {
+    ev.preventDefault();
+    activity.countdown(timeEl.children[0], timeEl.children[2]);
 }
 
 
