@@ -16,6 +16,7 @@ const minutes_warning = formEl.querySelector(".form__minutes-warning");
 const seconds_warning = formEl.querySelector(".form__seconds-warning");
 const circleBtn = timerEl.querySelector(".form__circle-btn");
 const submitBtn = formEl.querySelector(".submit");
+const logBtn = formEl.querySelector(".log-btn");
 let activity;
 
 // Add your event listeners here 👇
@@ -25,6 +26,7 @@ minutesEl.addEventListener('input', () => toggleWarning(minutesEl, minutes_warni
 secondsEl.addEventListener('input', () => toggleWarning(secondsEl, seconds_warning));
 form_panel.addEventListener('click', listenRadio);
 circleBtn.addEventListener("click", startActivity);
+logBtn.addEventListener('click', savePast);
 
 // Create your event handlers and other functions here 👇
 
@@ -76,7 +78,6 @@ function showCurrentActivity() {
     descriptionEl.textContent = activity.description;
     timeEl.children[0].textContent = getTimeFormat(activity.minutes);
     timeEl.children[2].textContent = getTimeFormat(activity.seconds);
-    // activity.countdown(timeEl.children[0], timeEl.children[2]);
     let color;
     switch (activity.category) {
         case 'study' :
@@ -94,7 +95,15 @@ function showCurrentActivity() {
 
 function startActivity(ev) {
     ev.preventDefault();
-    activity.countdown(timeEl.children[0], timeEl.children[2]);
+    if (!activity.completed) {
+        activity.countdown(timeEl.children[0], timeEl.children[2]);
+        setTimeout(showCompleteForm, (activity.minutes * 60 + (activity.seconds | 0)) * 1000, "COMPLETE!");
+    }
+}
+
+function showCompleteForm(mes) {
+    circleBtn.textContent = mes;
+    logBtn.classList.remove('hidden');
 }
 
 
@@ -122,4 +131,8 @@ function checkCategory() {
     panel_warning.hidden = false;
     form_panel.classList.add("warning");
     return undefined;
+}
+
+function savePast(ev) {
+    ev.preventDefault();
 }

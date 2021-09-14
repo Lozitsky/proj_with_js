@@ -16,9 +16,10 @@ body {
     font-weight: 300;
     color: #cbc9cf;
     width: 100vw;
-    height: 53.9vw;
+    height: 53.8vw;
     display: flex;
     flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 .front-style {
@@ -75,14 +76,14 @@ main {
 }
 
 .form {
-    height: 93.6%;
+    height: 93.7%;
     border-radius: 0.4vw;
     box-shadow: 0.1vw 0.1vw 1vw 0.1vw rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 6% 13% 5.1%;
+    padding: 6% 13% 6%;
     letter-spacing: -0.1vw;
 }
 
@@ -181,11 +182,24 @@ label {
 }
 
 .form__buttons {
-    width: 32.4%;
-    height: 12.9%;
-    margin-left: 66.9%;
+    height: 2.5vw;
     border-radius: .35vw;
     font-size: 1.25vw;
+}
+
+.submit {
+    margin-left: 66.9%;
+    width: 32.4%;
+}
+
+.log-btn {
+    height: 2.8vw;
+    font-size: 1.3vw;
+    width: 17.7vw;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 .form__questions-label {
@@ -204,16 +218,29 @@ label {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.form__time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form__description {
     font-size: 1.9vw;
+    line-height: 2.35vw;
 }
 
 .form__time {
-    letter-spacing: 0;
-    font-size: 6.05vw;
-    margin: -0.2vw 0 2.74vw;
+    letter-spacing: -0.2vw;
+    font-size: 6vw;
+    line-height: 6.1vw;
+    margin: 0 0 .4vw;
+}
+
+.form__time > b {
+    font-weight: 600;
 }
 
 .form__time > span {
@@ -223,26 +250,31 @@ label {
     position: relative;
 }
 
+.form__time > span {
+    padding: 0;
+    margin: 0;
+}
+
 
 .form__time > span::after, .form__time > span::before {
-    font-size: 1.24vw;
+    font-size: 1.17vw;
     content: '■';
     position: absolute;
-    right: .3vw;
+    right: .5vw;
     border-radius: inherit;
 }
 
-.form__time > span::before {
-    top: .9vw;
+.form__time > span::after {
+    bottom: -0.3vw;
 }
 
-.form__time > span::after {
-    bottom: 0;
+.form__time > span::before {
+    top: .8vw;
 }
 
 .form__circle-btn {
-    width: 17.7vw;
-    height: 17.7vw;
+    width: 17.1vw;
+    height: 17.1vw;
     border: .3vw solid;
     border-radius: 100%;
     font-size: 2vw;

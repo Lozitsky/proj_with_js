@@ -90,14 +90,18 @@
 						Type a number from 0 to 59.
 					</div>
 				</div>
-				<button class="submit form__buttons" type="submit">START ACTIVITY</button>
+				<button class="form__buttons submit" type="submit">START ACTIVITY</button>
 			</section>
 <!--			section.form__timer[hidden]-->
 			<section class="form__timer" hidden>
 <!--				p.form__description+p.form__time>span+{:}+span^button.form__circle-btn{START}-->
-				<p class="form__description"></p>
-				<p class="form__time"><b></b><span></span><b></b></p>
+				<div class="form__time-box">
+					<div class="form__description">Deep Breathing</div>
+					<div class="form__time"><b>00</b><span></span><b>00</b></div>
+				</div>
+
 				<button class="form__circle-btn front-style">START</button>
+				<button class="form__buttons log-btn hidden">LOG ACTIVITY</button>
 			</section>
 		</form>
 	</main>
