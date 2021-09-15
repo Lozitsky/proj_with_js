@@ -68,3 +68,9 @@ function startTimer(duration, display_min, display_sec) {
     interval = setInterval(timer, 1000);
     // setTimeout(alert, duration * 1000+1000, "Time completed!");
 }
+
+const categories = {
+    study: "Study",
+    meditate: "Meditate",
+    exercise: "Exercise"
+}

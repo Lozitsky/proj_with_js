@@ -92,22 +92,40 @@
 				</div>
 				<button class="form__buttons submit" type="submit">START ACTIVITY</button>
 			</section>
-<!--			section.form__timer[hidden]-->
+			<!--			section.form__timer[hidden]-->
 			<section class="form__timer" hidden>
-<!--				p.form__description+p.form__time>span+{:}+span^button.form__circle-btn{START}-->
+				<!--				p.form__description+p.form__time>span+{:}+span^button.form__circle-btn{START}-->
 				<div class="form__time-box">
 					<div class="form__description">Deep Breathing</div>
 					<div class="form__time"><b>00</b><span></span><b>00</b></div>
 				</div>
-
+				
 				<button class="form__circle-btn front-style">START</button>
 				<button class="form__buttons log-btn hidden">LOG ACTIVITY</button>
+			</section>
+<!--			section.form__activity-new>button.form__buttons.create{CREATE NEW ACTIVITY}-->
+			<section class="form__activity-new" hidden>
+				<button class="form__buttons create">CREATE NEW ACTIVITY</button>
 			</section>
 		</form>
 	</main>
 	<aside class="aside">
 		<h2 class="title aside__title">Past Activities</h2>
-		<p class="aside__text">You haven't logged any activities yet.<br>Complete the form to the left to get started!</p>
+		<p class="aside__text">You haven't logged any activities yet.<br>Complete the form to the left to get
+																	started!</p>
+		<article class="aside__card-box">
+			<!--<section class="aside__card front-style">
+				<div class="aside__main">
+					&lt;!&ndash;				.aside__category+.aside__time>&ndash;&gt;
+					<div class="aside__main-text">
+						<div class="aside__category">Meditate</div>
+						<div class="aside__time text-grey">5 MIN 0 SECONDS</div>
+					</div>
+					<div class="aside__description text-grey">Deep Breathing</div>
+				</div>
+				<div class="color-line"></div>
+			</section>-->
+		</article>
 	</aside>
 	<script src="src/Activity.js" type="text/javascript"></script>
 	<script src="src/main.js" type="text/javascript"></script>

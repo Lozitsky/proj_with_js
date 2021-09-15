@@ -22,6 +22,10 @@ body {
     overflow-x: hidden;
 }
 
+.text-grey {
+    color: #cbc9cf;
+}
+
 .front-style {
     background: #46424D;
     color: #ffffff;
@@ -42,13 +46,13 @@ h1 {
 
 .title {
     font-size: 1.8vw;
-    line-height: 1.82vw;
+    line-height: 3.92vw;
     font-weight: 400;
 }
 
 main, aside {
     height: 91.5%;
-    padding: 2.3% 2.05% 2.5% 1.84%;
+    padding: 1.15% 2.05% 2.5% 1.84%;
     letter-spacing: -0.1vw;
     background: #2B2733;
     font-weight: 500;
@@ -75,11 +79,14 @@ main {
     line-height: 1.7vw;
 }
 
+.form, .aside__card {
+    border-radius: 0.4vw;
+    display: flex;
+}
+
 .form {
     height: 93.7%;
-    border-radius: 0.4vw;
     box-shadow: 0.1vw 0.1vw 1vw 0.1vw rgba(0, 0, 0, 0.5);
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -285,9 +292,59 @@ aside {
     border-left: 2px solid #46424D;
 }
 
-.aside__text {
-    margin-top: 2.25vw;
+.aside__text{
+    margin-top: 1.4vw;
     text-align: center;
     font-size: 1.25vw;
     line-height: 2.1vw;
+}
+
+.aside__main-text{
+}
+
+.aside__card {
+    margin-bottom: 1.73vw;
+    letter-spacing: 0;
+    padding: 0.8vw 0.87vw 0.8vw;
+    height: 6.3vw;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.color-line {
+    border-radius: .1vw;
+    border: .2vw solid;
+    height: 45%;
+}
+
+.aside__main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aside__category, .aside__description {
+    font-size: 1.18vw; font-kerning: normal;
+}
+
+.aside__category {
+    font-weight: 800;
+}
+
+.aside__description {
+    letter-spacing: -0.1vw;
+}
+
+.aside__card-box {
+}
+
+.aside {
+    overflow-y: auto;
+}
+
+.create {
+    height: 2.9vw;
+    margin-top: 2.65vw;
+    width: 24.9vw;
 }
