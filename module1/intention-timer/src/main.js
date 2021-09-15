@@ -33,11 +33,23 @@ form_panel.addEventListener('click', listenRadio);
 circleBtn.addEventListener("click", startActivity);
 logBtn.addEventListener('click', savePast);
 createBtn.addEventListener('click', getFormActivity);
+document.addEventListener('DOMContentLoaded', loadCards);
 
 // Create your event handlers and other functions here 👇
 
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
+}
+
+function loadCards() {
+    if (!loggedCards.length) {
+        return;
+    }
+    aside_textEl.hidden = true;
+    loggedCards.forEach(card => {
+        console.log(card);
+        injectCard(card, card_boxEl);
+    });
 }
 
 function toggleWarning(target, target_warning) {
@@ -76,7 +88,7 @@ function getTimeFormat(number) {
     return ("0" + number).slice(-2);
 }
 
-function getActivityColor() {
+function getActivityColor(activity) {
     let color;
     switch (activity.category) {
         case 'Study' :
@@ -103,7 +115,7 @@ function showCurrentActivity() {
         activity.seconds = 1;
     }
     timeEl.children[2].textContent = getTimeFormat(activity.seconds);
-    circleBtn.style.borderColor = getActivityColor();
+    circleBtn.style.borderColor = getActivityColor(activity);
 }
 
 function startActivity(ev) {
@@ -148,12 +160,7 @@ function checkCategory() {
     return undefined;
 }
 
-function savePast(ev) {
-    ev.preventDefault();
-    toggleCompleteForm();
-    aside_textEl.hidden = true;
-    timerEl.hidden = true;
-    activity_newEl.hidden = false;
+function injectCard(card, target) {
     let section = document.createElement("section");
     section.classList.add("aside__card", "front-style");
     let main = document.createElement("div");
@@ -162,23 +169,34 @@ function savePast(ev) {
     text.classList.add("aside__main-text");
     let category = document.createElement("div");
     category.classList.add("aside__category");
-    category.textContent = activity.category;
+    category.textContent = card.category;
     let time = document.createElement("div");
     time.classList.add("aside__time", "text-grey");
-    time.textContent = `${activity.minutes} MIN ${activity.seconds} SECONDS`;
+    time.textContent = `${card.minutes} MIN ${card.seconds} SECONDS`;
     let description = document.createElement("div");
     description.classList.add("aside__description", "text-grey");
-    description.textContent = activity.description;
+    description.textContent = card.description;
     let line = document.createElement("div");
     line.classList.add("color-line");
-    line.style.borderColor = getActivityColor();
+    line.style.borderColor = getActivityColor(card);
+    line.style.background = getActivityColor(card);
     text.appendChild(category);
     text.appendChild(time);
     main.appendChild(text);
     main.appendChild(description);
     section.appendChild(main);
     section.appendChild(line);
-    card_boxEl.appendChild(section);
+    target.appendChild(section);
+}
+
+function savePast(ev) {
+    ev.preventDefault();
+    toggleCompleteForm();
+    aside_textEl.hidden = true;
+    timerEl.hidden = true;
+    activity_newEl.hidden = false;
+    activity.saveToStorage();
+    injectCard(activity, card_boxEl);
 }
 
 function getFormActivity(ev) {

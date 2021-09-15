@@ -30,7 +30,8 @@ class Activity {
     }
 
     saveToStorage() {
-
+        loggedCards.push(this);
+        localStorage.setItem("loggedCards", JSON.stringify(loggedCards));
     }
 
 }
