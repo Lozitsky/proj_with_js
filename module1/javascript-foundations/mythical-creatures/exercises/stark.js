@@ -1,4 +1,4 @@
-const Direwolf = require('../exercises/direwolf');
+const Direwolf = require('./direwolf');
 
 class Stark {
     constructor(obj) {
