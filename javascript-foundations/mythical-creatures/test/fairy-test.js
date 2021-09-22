@@ -15,10 +15,12 @@ describe('Fairy', () => {
   it('should have a name', () => {
     // instantiate a Fairy object with your name as an argument
     // instantiate another Fairy object with someone else's name as an argument
-
+    let fairy1 = new Fairy("Some name");
+    let fairy2 = new Fairy("Another name");
     // assert that the first fairy's name is your name
     // assert that the second fairy's name is the other name
-
+    assert.equal(fairy1.name, "Some name");
+    assert.equal(fairy2.name, "Another name");
     //NOTE: We will not ask you to write your own tests in a mod 1 assessment, but it is good practice to prepare for mod 2!
   });
 
