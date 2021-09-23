@@ -10,4 +10,4 @@ Before you can work on or run any of these tests, you need to make sure you inst
 
 You can run the tests from the root of this repository. When you type `pwd` in the console, the last path location should be `javascript-foundations`.
 
-Run the command `npm test golf-course/golf-course-test.js`.
+Run the command `npm test golf-course/golf-course-test.js`. ✅
