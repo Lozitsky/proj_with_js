@@ -14,5 +14,5 @@ Run the command `npm test ski-lift/test/Skier-test.js`. To run other tests, just
 
 ### Make the tests pass in the following sequence:
 
-* test/Skier-test.js  
-* test/Lift-test.js  
+* test/Skier-test.js  ✅
+* test/Lift-test.js  ✅
