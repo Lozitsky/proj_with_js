@@ -13,5 +13,5 @@ Run the command `npm test lunchbox/snack-test.js`. To run other tests, just repl
 
 ### Make the tests pass in the following sequence:
 
-* test/snack-test.js  
-* test/lunchbox-test.js  
+* test/snack-test.js    ✅
+* test/lunchbox-test.js ✅ 
