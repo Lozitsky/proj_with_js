@@ -16,8 +16,8 @@ Notice, some of the syntax with the tests and files are using newer javascript f
 
 ### Make the tests pass in the following sequence:
 
-* `test/pet-test.js`
-* `test/wand-test.js`
-* `test/wizard-test.js`
+* `test/pet-test.js`    ✅
+* `test/wand-test.js`   ✅
+* `test/wizard-test.js` ✅
 
 _Adapted from Ruby [Objects and Methods](https://github.com/turingschool/ruby-exercises/tree/master/objects-and-methods)_
