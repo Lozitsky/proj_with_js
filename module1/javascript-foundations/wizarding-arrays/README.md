@@ -16,6 +16,6 @@ Notice, some of the syntax with the tests and files are using newer javascript f
 
 ### Make the tests pass in the following sequence:
 
-* `test/spell-test.js`
-* `test/robe-test.js`
-* `test/potion-test.js`
+* `test/spell-test.js`  ✅
+* `test/robe-test.js`   ✅
+* `test/potion-test.js` ✅
