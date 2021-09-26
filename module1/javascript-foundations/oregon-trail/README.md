@@ -13,7 +13,7 @@ Run the command `npm test oregon-trail/test/gear-test.js`. To run other tests, j
 
 ### Make the tests pass in the following sequence:
 
-* test/gear-test.js  
-* test/part-test.js  
-* test/settler-test.js  
-* test/wagon-test.js
+* test/gear-test.js    ✅
+* test/part-test.js    ✅
+* test/settler-test.js ✅
+* test/wagon-test.js   ✅
