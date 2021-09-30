@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 </head>
 <body>
+<!--	<img src="assets/idea.png" alt="No image" class="idea-comp">-->
 	<!--.wrapper>aside.filter+main.content>section.section-form+section.section-articles-->
 	<div class="wrapper">
 		<aside class="filter">
@@ -17,25 +18,25 @@
 			</header>
 			<section class="filter__section">
 				<h2 class="filter__subtitle">Filter Starred Ideas</h2>
-				<button class="filter__show-starred">Show Starred Ideas</button>
+				<button class="btn-text filter__show-starred"><span>Show Starred Ideas</span></button>
 			</section>
 		</aside>
 		<main class="content">
 			<section class="section-form">
 				<!--				form.idea-form>section.idea-form__title-box+section.idea-form__body-box+button:s.idea-form__save{Save}+section.idea-form__search-box-->
 				<form action="" class="idea-form">
-					<section class="idea-form__title-box">
+					<section class="form-box idea-form__title-box">
 						<!--						label[for=idea_title].idea-form__title{Title}+input:t[name=title]#idea_title.idea-form__title-field-->
-						<label class="idea-form__title" for="idea_title">Title</label>
-						<input class="idea-form__title-field" id="idea_title" name="title" type="text">
+						<label class="form-label idea-form__title" for="idea_title">Title</label>
+						<input class="box-shadow idea-form__title-field" id="idea_title" name="title" type="text">
 					</section>
-					<section class="idea-form__body-box">
+					<section class="form-box idea-form__body-box">
 						<!--						label[for=idea_body].idea-form__body{Body}+tarea[name=body]#idea_body.idea-form__area-->
-						<label class="idea-form__body" for="idea_body">Body</label>
-						<textarea class="idea-form__area" cols="30" id="idea_body" name="body" rows="10"></textarea>
+						<label class="form-label idea-form__body" for="idea_body">Body</label>
+						<textarea class="box-shadow idea-form__area" cols="30" id="idea_body" name="body" rows="10"></textarea>
 					</section>
-					<button class="idea-form__save" type="submit">Save</button>
-					<section class="idea-form__search-box">
+					<button class="btn-text box-shadow idea-form__save" type="submit"><span>Save</span></button>
+					<section class="box-shadow idea-form__search-box">
 <!--						svg.idea-form__search-img>use[xlink:href]^input:search.idea-form__search-field[placeholder='Search ideas' name=search]#search-->
 						<label for="search" class="idea-form__search-label">
 							<svg class="svg idea-form__search-img">
@@ -47,136 +48,114 @@
 				</form>
 			</section>
 			<section class="section-articles">
-				<article class="card">
-					<header class="card__header">
-						<button class="card__star">
-							<svg class="svg card__star-img">
-								<use xlink:href="assets/star.svg#background"></use>
+<!--				article.card*5>header.card__header>svg.card__img.card__star>use[xlink:href="assets/star.svg#background"]^svg.card__img.card__delete>use[xlink:href="assets/delete.svg#background"]^^section.card__body>h3.card__title{Idea title}+p.card__text{Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.}^footer.card__comment>svg.card__img>use[xlink:href="assets/comment.svg#background"]^.card__add{Comment}-->
+				<div class="grid-container">
+					<article class="card">
+						<header class="card__header">
+							<svg class="card__img card__star">
+								<use xlink:href="assets/star.svg#star"></use>
 							</svg>
-						</button>
-						<button class="card__delete">
-							<svg class="svg card__delete-img">
-								<use xlink:href="assets/delete.svg#background"></use>
+							<svg class="card__img card__delete">
+								<use xlink:href="assets/delete.svg#delete"></use>
 							</svg>
-						</button>
+						</header>
 						<section class="card__body">
 							<h3 class="card__title">Idea title</h3>
 							<p class="card__text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion!
 																		Cloth talk.</p>
 						</section>
 						<footer class="card__comment">
-							<button class="card__add">Comment
-								<svg class="svg card__add-img">
-									<use xlink:href="assets/comment.svg#background"></use>
-								</svg>
-							</button>
+							<svg class="card__img">
+								<use xlink:href="assets/comment.svg#add"></use>
+							</svg>
+							<div class="card__add">Comment</div>
 						</footer>
-					</header>
-				</article>
-				<article class="card">
-					<header class="card__header">
-						<button class="card__star">
-							<svg class="svg card__star-img">
-								<use xlink:href="assets/star.svg#background"></use>
+					</article>
+					<article class="card">
+						<header class="card__header">
+							<svg class="card__img card__star">
+								<use xlink:href="assets/star.svg#star"></use>
 							</svg>
-						</button>
-						<button class="card__delete">
-							<svg class="svg card__delete-img">
-								<use xlink:href="assets/delete.svg#background"></use>
+							<svg class="card__img card__delete">
+								<use xlink:href="assets/delete.svg#delete"></use>
 							</svg>
-						</button>
+						</header>
 						<section class="card__body">
 							<h3 class="card__title">Idea title</h3>
 							<p class="card__text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion!
 																		Cloth talk.</p>
 						</section>
 						<footer class="card__comment">
-							<button class="card__add">Comment
-								<svg class="svg card__add-img">
-									<use xlink:href="assets/comment.svg#background"></use>
-								</svg>
-							</button>
+							<svg class="card__img">
+								<use xlink:href="assets/comment.svg#add"></use>
+							</svg>
+							<div class="card__add">Comment</div>
 						</footer>
-					</header>
-				</article>
-				<article class="card">
-					<header class="card__header">
-						<button class="card__star">
-							<svg class="svg card__star-img">
-								<use xlink:href="assets/star.svg#background"></use>
+					</article>
+					<article class="card">
+						<header class="card__header">
+							<svg class="card__img card__star">
+								<use xlink:href="assets/star.svg#star"></use>
 							</svg>
-						</button>
-						<button class="card__delete">
-							<svg class="svg card__delete-img">
-								<use xlink:href="assets/delete.svg#background"></use>
+							<svg class="card__img card__delete">
+								<use xlink:href="assets/delete.svg#delete"></use>
 							</svg>
-						</button>
+						</header>
 						<section class="card__body">
 							<h3 class="card__title">Idea title</h3>
 							<p class="card__text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion!
 																		Cloth talk.</p>
 						</section>
 						<footer class="card__comment">
-							<button class="card__add">Comment
-								<svg class="svg card__add-img">
-									<use xlink:href="assets/comment.svg#background"></use>
-								</svg>
-							</button>
+							<svg class="card__img">
+								<use xlink:href="assets/comment.svg#add"></use>
+							</svg>
+							<div class="card__add">Comment</div>
 						</footer>
-					</header>
-				</article>
-				<article class="card">
-					<header class="card__header">
-						<button class="card__star">
-							<svg class="svg card__star-img">
-								<use xlink:href="assets/star.svg#background"></use>
+					</article>
+					<article class="card">
+						<header class="card__header">
+							<svg class="card__img card__star">
+								<use xlink:href="assets/star.svg#star"></use>
 							</svg>
-						</button>
-						<button class="card__delete">
-							<svg class="svg card__delete-img">
-								<use xlink:href="assets/delete.svg#background"></use>
+							<svg class="card__img card__delete">
+								<use xlink:href="assets/delete.svg#delete"></use>
 							</svg>
-						</button>
+						</header>
 						<section class="card__body">
 							<h3 class="card__title">Idea title</h3>
 							<p class="card__text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion!
 																		Cloth talk.</p>
 						</section>
 						<footer class="card__comment">
-							<button class="card__add">Comment
-								<svg class="svg card__add-img">
-									<use xlink:href="assets/comment.svg#background"></use>
-								</svg>
-							</button>
+							<svg class="card__img">
+								<use xlink:href="assets/comment.svg#add"></use>
+							</svg>
+							<div class="card__add">Comment</div>
 						</footer>
-					</header>
-				</article>
-				<article class="card">
-					<header class="card__header">
-						<button class="card__star">
-							<svg class="svg card__star-img">
-								<use xlink:href="assets/star.svg#background"></use>
+					</article>
+					<article class="card">
+						<header class="card__header">
+							<svg class="card__img card__star">
+								<use xlink:href="assets/star.svg#star"></use>
 							</svg>
-						</button>
-						<button class="card__delete">
-							<svg class="svg card__delete-img">
-								<use xlink:href="assets/delete.svg#background"></use>
+							<svg class="card__img card__delete">
+								<use xlink:href="assets/delete.svg#delete"></use>
 							</svg>
-						</button>
+						</header>
 						<section class="card__body">
 							<h3 class="card__title">Idea title</h3>
 							<p class="card__text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion!
 																		Cloth talk.</p>
 						</section>
 						<footer class="card__comment">
-							<button class="card__add">Comment
-								<svg class="svg card__add-img">
-									<use xlink:href="assets/comment.svg#background"></use>
-								</svg>
-							</button>
+							<svg class="card__img">
+								<use xlink:href="assets/comment.svg#add"></use>
+							</svg>
+							<div class="card__add">Comment</div>
 						</footer>
-					</header>
-				</article>
+					</article>
+				</div>
 			</section>
 		</main>
 	</div>
