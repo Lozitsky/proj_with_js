@@ -18,7 +18,6 @@ class Idea {
     updateIdea(star) {
         let idea = ideas.find((idea, id) => {
             if ((idea.id === this.id)) {
-                // index = id;
                 this.star = star;
                 ideas[id] = idea;
             }
