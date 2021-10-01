@@ -28,10 +28,12 @@ body {
     height: 62.344vw;
     display: flex;
     background: #1f1f3d;
+    margin: 0 auto;
 }
 
 .filter {
-    width: 25.3%;
+    /*width: 25.3%;*/
+    width: 16.7875vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -102,7 +104,8 @@ body {
 }
 
 .content {
-    width: 74.7%;
+    /*width: 74.7%;*/
+    width: 49.5664vw;
     display: flex;
     flex-direction: column;
 }
@@ -198,13 +201,18 @@ body {
 }
 
 .section-articles {
-    padding: 1.25vw 1.3vw 1.25vw 1.25vw;
+    /*padding: 1.25vw 1.3vw 1.25vw 1.25vw;*/
     height: 37.865vw;
     background: #eaeaf4;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*position: relative;*/
 }
 
 .grid-container {
-    height: auto;
+    width: 49.5664vw;
+    padding: 1.25vw 1.3vw 1.25vw 1.25vw;
+    /*height: auto;*/
     display: grid;
     grid-template-columns: repeat(3, 14.9vw);
     grid-column-gap: 1fr;
