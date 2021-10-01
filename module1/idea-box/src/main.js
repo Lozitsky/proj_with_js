@@ -1,6 +1,7 @@
 const ideas = [];
 
 // Create variables targetting the relevant DOM elements here 👇
+let isOff = true;
 let idea_form = document.querySelector(".idea-form");
 let btnSave = document.querySelector(".idea-form__save");
 let inputFormTitle = document.querySelector(".idea-form__title-field");
@@ -9,6 +10,7 @@ let cardsContainer = document.querySelector(".grid-container");
 
 // Add your event listeners here 👇
 btnSave.addEventListener('click', createIdea);
+idea_form.addEventListener('input', checkForm);
 document.addEventListener('DOMContentLoaded', loadCards);
 
 // Create your event handlers and other functions here 👇
@@ -17,16 +19,52 @@ function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }
 
+function checkForm(ev) {
+    // let target = ev.target;
+    if (ev.target.id === "idea_title" || ev.target.id === "idea_body") {
+        if (inputFormTitle.value && areaFormBody.value) {
+            switchOnSaveBtn();
+        } else {
+            switchOffSaveBtn();
+        }
+    }
+}
+
+function resetSaveForm() {
+    inputFormTitle.value = "";
+    areaFormBody.value = "";
+    switchOffSaveBtn();
+}
+
 function createIdea(ev) {
     ev.preventDefault();
     let title = inputFormTitle.value;
     let body = areaFormBody.value;
-    if (title && body) {
+    if (!isOff && title && body) {
         let idea = new Idea(title, body);
         idea.saveToStorage();
         console.log(ideas);
         injectCard(idea, cardsContainer);
+        resetSaveForm();
     }
+}
+
+function switchOffSaveBtn() {
+    if (isOff) {
+        return;
+    }
+    btnSave.classList.remove("idea-form__save_on");
+    btnSave.classList.add("idea-form__save_off");
+    isOff = true;
+}
+
+function switchOnSaveBtn() {
+    if (!isOff) {
+        return;
+    }
+    btnSave.classList.remove("idea-form__save_off");
+    btnSave.classList.add("idea-form__save_on");
+    isOff = false;
 }
 
 function loadCards() {
@@ -34,7 +72,6 @@ function loadCards() {
         return;
     }
     ideas.forEach(idea => {
-        // console.log(idea);
         injectCard(idea, cardsContainer);
     });
 }
@@ -48,12 +85,12 @@ function injectCard(card, target) {
     let star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     star.classList.add("card__img", "card__star");
     let useStar = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    useStar.setAttributeNS(null,"href", "assets/star.svg#star");
+    useStar.setAttributeNS(null, "href", "assets/star.svg#star");
     star.appendChild(useStar);
     let del = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     del.classList.add("card__img", "card__delete");
     let useDel = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    useDel.setAttributeNS(null,"href", "assets/delete.svg#delete");
+    useDel.setAttributeNS(null, "href", "assets/delete.svg#delete");
     del.appendChild(useDel);
     header.appendChild(star);
     header.appendChild(del);

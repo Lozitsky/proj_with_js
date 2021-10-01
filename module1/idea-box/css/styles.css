@@ -161,13 +161,26 @@ body {
     padding-left: .1vw;
     width: 100%;
     height: 2.85vw;
-    background: #353567;
+    /*background: #353567;*/
     color: #e9e9f3;
     font-weight: bold;
     font-size: 1.25vw;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.idea-form__save_on {
+    background: rgba(53, 53, 103, 1);
+    color: #e9e9f3;
+    cursor: pointer;
+}
+
+.idea-form__save_off {
+    background: rgba(53, 53, 103, 0.3);
+    color: rgba(233, 233, 243, 0.3);
+
+    cursor: default;
 }
 
 .idea-form__search-box {
