@@ -219,13 +219,11 @@ body {
     background: #eaeaf4;
     overflow-y: auto;
     overflow-x: hidden;
-    /*position: relative;*/
 }
 
 .grid-container {
     width: 49.5664vw;
     padding: 1.25vw 1.3vw 1.25vw 1.25vw;
-    /*height: auto;*/
     display: grid;
     grid-template-columns: repeat(3, 14.9vw);
     grid-column-gap: 1fr;
@@ -257,11 +255,22 @@ body {
 .card__star {
     color: #ffffff;
     width: 1.6vw;
+    height: 1.6vw;
+}
+
+.card__star .cls-1 {
+    width: 1.6vw;
+    height: 1.6vw;
+}
+
+.card__star_full {
+    color: #f16139;
 }
 
 .card__delete {
     color: #ffffff;
     width: 1.8vw;
+    height: 1.8vw;
     margin-bottom: 0.2vw;
 }
 

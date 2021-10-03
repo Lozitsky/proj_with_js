@@ -12,16 +12,17 @@ class Idea {
     }
 
     deleteFromStorage() {
+        ideas.splice(getId(this.id), 1);
         localStorage.removeItem("idea");
     }
 
-    updateIdea(star) {
-        let idea = ideas.find((idea, id) => {
+    updateIdea() {
+        ideas.find(idea => {
             if ((idea.id === this.id)) {
-                this.star = star;
-                ideas[id] = idea;
+                this.star = !this.star;
+                return true;
             }
         });
-        this.saveToStorage();
+        localStorage.setItem("idea", JSON.stringify(this));
     }
 }
