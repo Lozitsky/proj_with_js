@@ -1,20 +1,23 @@
 const ideas = [];
+JSON.parse(localStorage.getItem("ideas") || "[]").forEach(obj => ideas.push(new Idea(obj)));
 
 // Create variables targetting the relevant DOM elements here 👇
 let isOff = true;
 let idea_form = document.querySelector(".idea-form");
 let saveBtn = document.querySelector(".idea-form__save");
-let delBtn = document.querySelector(".card__delete");
+let showStarredBtn = document.querySelector(".filter__show-starred");
+let searchField = document.querySelector(".idea-form__search-field");
 let inputFormTitle = document.querySelector(".idea-form__title-field");
 let areaFormBody = document.querySelector(".idea-form__area");
 let cardsContainer = document.querySelector(".grid-container");
 
 // Add your event listeners here 👇
+document.addEventListener('DOMContentLoaded', loadCards);
 saveBtn.addEventListener('click', createIdea);
 idea_form.addEventListener('input', checkForm);
-document.addEventListener('DOMContentLoaded', loadCards);
-
 cardsContainer.addEventListener('click', listenCard);
+showStarredBtn.addEventListener('click', toggleShowStarred);
+searchField.addEventListener("input", findByText);
 
 // Create your event handlers and other functions here 👇
 
@@ -46,8 +49,7 @@ function createIdea(ev) {
     if (!isOff && title && body) {
         let idea = new Idea(title, body);
         idea.saveToStorage();
-        console.log(ideas);
-        injectCard(idea, cardsContainer);
+        loadCards();
         resetSaveForm();
     }
 }
@@ -74,6 +76,8 @@ function loadCards() {
     if (!ideas.length) {
         return;
     }
+    cardsContainer.innerHTML = "";
+    showStarredBtn.innerText = "Show Starred Ideas";
     ideas.forEach(idea => {
         injectCard(idea, cardsContainer);
     });
@@ -154,19 +158,23 @@ function getId(ideaId) {
     return index;
 }
 
+function refreshCards() {
+    if (showStarredBtn.innerText === "Show All Ideas") {
+        loadFavoriteCards();
+    } else {
+        loadCards();
+    }
+}
+
 function listenCard(ev) {
     for (let article of ev.currentTarget.children) {
         if (inBounds(article, getSvg(ev, "card__delete"))) {
-            let idea = getIdea(article.id);
-            idea.deleteFromStorage();
-            ev.currentTarget.innerHTML = "";
-            loadCards();
+            getIdea(article.id).deleteFromStorage();
+            refreshCards();
             return;
         } else if (inBounds(article, getSvg(ev, "card__star"))) {
-            let idea = getIdea(article.id);
-            idea.updateIdea();
-            ev.currentTarget.innerHTML = "";
-            loadCards();
+            getIdea(article.id).updateIdea();
+            refreshCards();
             return;
         }
     }
@@ -178,9 +186,46 @@ function inBounds(container, target) {
     }
 
     let rect = container.getBoundingClientRect();
-    console.log(target);
     let rectTarget = target.getBoundingClientRect();
 
     return rectTarget.left >= rect.left && rectTarget.right <= rect.right &&
         rectTarget.top >= rect.top && rectTarget.bottom <= rect.bottom;
+}
+
+function loadFavoriteCards() {
+    if (!ideas.length) {
+        return;
+    }
+    cardsContainer.innerHTML = "";
+    showStarredBtn.innerText = "Show All Ideas";
+    ideas.forEach(idea => {
+        if (idea.star) {
+            injectCard(idea, cardsContainer);
+        }
+    });
+}
+
+function toggleShowStarred() {
+    if (showStarredBtn.innerText === "Show All Ideas") {
+        loadCards();
+    } else {
+        loadFavoriteCards();
+    }
+}
+
+function findByText() {
+    cardsContainer.innerHTML = "";
+    if (!ideas.length) {
+        return;
+    }
+    if (searchField.value) {
+        ideas.forEach(idea => {
+            if (idea.title.includes(searchField.value || idea.body.includes(searchField.value))) {
+                injectCard(idea, cardsContainer);
+            }
+        });
+    } else {
+        loadCards();
+    }
+
 }
