@@ -1,0 +1,12 @@
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100vw;
+}
+
+video {
+    top: -5.92vw;
+    height: 56.3vw;
+    position: absolute;
+    opacity: 0.5;
+}
