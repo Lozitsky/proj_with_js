@@ -1,8 +1,14 @@
 class Player {
-    constructor(id, token) {
-        this.id = id;
-        this.token = token;
-        this.wins = [];
+    constructor(player, token, wins = []) {
+        if (typeof player === "object") {
+            this.id = player.id;
+            this.token = player.token;
+            this.wins = player.wins;
+        } else {
+            this.id = player;
+            this.token = token;
+            this.wins = wins;
+        }
     }
 
     saveWinsToStorage(win) {

@@ -66,6 +66,8 @@ video {
 }
 
 .main__header {
+    font-size: 3.5vw;
+    line-height: 3.5vw;
     width: 100%;
     padding-left: .18vw;
     justify-content: center;
@@ -73,15 +75,17 @@ video {
 }
 
 .main__token {
+    margin-left: 1vw;
     width: 3.3vw;
 }
 
-.main__text {
-    font-size: 3.5vw;
-    line-height: 3.5vw;
-    margin-left: .9vw;
+.text {
+
 }
 
+.main__text {
+    margin-left: .9vw;
+}
 
 .token-large {
     width: 6vw;
