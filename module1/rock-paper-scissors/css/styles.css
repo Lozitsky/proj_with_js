@@ -1,0 +1,195 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans Regular 400.eot');
+    src: url('../fonts/Open Sans Regular 400.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Open Sans Regular 400.woff') format('woff'),
+    url('../fonts/Open Sans Regular 400.woff2') format('woff2'),
+    url('../fonts/Open Sans Regular 400.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans SemiBold 600.eot');
+    src: url('../fonts/Open Sans SemiBold 600.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Open Sans SemiBold 600.woff') format('woff'),
+    url('../fonts/Open Sans SemiBold 600.woff2') format('woff2'),
+    url('../fonts/Open Sans SemiBold 600.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans ExtraBold 800.eot');
+    src: url('../fonts/Open Sans ExtraBold 800.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Open Sans ExtraBold 800.woff') format('woff'),
+    url('../fonts/Open Sans ExtraBold 800.woff2') format('woff2'),
+    url('../fonts/Open Sans ExtraBold 800.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fonts/helvetica_bold.eot');
+    src: url('../fonts/helvetica_bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/helvetica_bold.woff') format('woff'),
+    url('../fonts/helvetica_bold.woff2') format('woff2'),
+    url('../fonts/helvetica_bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+video {
+    position: absolute;
+    /*opacity: 0.5;*/
+    /*opacity: 1;*/
+    opacity: 0;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 54.75vw;
+    display: flex;
+}
+
+.text-white {
+    font-family: "Open Sans", serif;
+    color: #ffffff;
+}
+
+.main {
+    background: #be5fe8;
+    width: 69.35%;
+    height: 100%;
+}
+
+.main__header {
+    padding: .75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 25%;
+}
+
+.main__title {
+    font-size: 5.225vw;
+    line-height: 5.225vw;
+    font-weight: 800;
+}
+
+.main__text {
+    margin-top: -2.33vw;
+    font-size: 2.1vw;
+    font-weight: 400;
+}
+
+.aside {
+    padding-top: 4vw;
+    background: #c677e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aside_left {
+    width: 14.15%;
+}
+
+.aside_right {
+    width: 16.5%;
+}
+
+.player-info {
+    height: 10.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.player-info__logo {
+    width: 3vw;
+    height: 3vw;
+}
+
+.player-info__img {
+    width: 100%;
+}
+
+.player-info__name {
+    font-size: 2.029vw;
+    font-weight: 600;
+    margin-bottom: 1.3vw;
+}
+
+.player-info__text {
+    font-size: 1.67vw;
+    font-weight: 400;
+}
+
+.main__game-field {
+    padding: 6.2vw 0 2.6vw;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75%;
+    justify-content: space-between;
+}
+
+.game-article {
+    width: 18.7vw;
+    background: #a040cd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-article__header {
+    font-size: 1.69vw;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 1.44vw;
+    height: 3.9vw;
+}
+
+.rotate-img180 {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.flip-horizontally {
+    transform: rotateY(180deg) rotateZ(-90deg);
+}
+
+.game-article__title {
+    margin: 0 .6vw;
+}
+
+.game-article__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.29vw;
+    line-height: 1.6vw;
+    padding: 0 0 3vw;
+}
+
+.game-article__img {
+    width: 1.6vw;
+    margin-bottom: .3vw;
+}
