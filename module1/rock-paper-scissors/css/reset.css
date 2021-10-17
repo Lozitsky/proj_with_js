@@ -346,7 +346,7 @@ template {
  */
 
 [hidden] {
-    display: none;
+    display: none !important;
 }
 
 /* Style for layout challenges project */

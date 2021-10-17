@@ -9,7 +9,9 @@
 </head>
 <body>
 	
-	<video src="reference/Rock_Paper_Scissors.mp4#t=1"></video>
+<!--		<video src="reference/Rock_Paper_Scissors.mp4#t=21.2"></video>-->
+<!--	<video src="reference/Rock_Paper_Scissors.mp4#t=116"></video>-->
+<!--		<video src="reference/Rock_Paper_Scissors.mp4#t=126"></video>-->
 	
 	<!--	.wrapper>aside.aside.aside_left+main.main+aside.aside.aside_right-->
 	<div class="wrapper text-white">
@@ -22,6 +24,8 @@
 				<h2 class="player-info__name">Human</h2>
 				<p class="player-info__text">Wins: 0</p>
 			</article>
+			<!--			button.aside__button{CHANGE GAME?}-->
+			<button class="aside__button" hidden>CHANGE GAME?</button>
 		</aside>
 		<main class="main">
 			<!--			section.main__header>h1.main__title{Rock, Paper, Scissors}+h2.main__text{Choose your game!}^section.main__game-field-->
@@ -47,18 +51,27 @@
 				</article>
 				<article class="game-article game-article_difficult">
 					<header class="game-article__header">
-<!--						img.game-article__img+span.game-article__title{DIFFICULT}+img.game-article__img-->
-						<img src="assets/flat-lizard.png" alt="" class="game-article__img flip-horizontally">
+						<!--						img.game-article__img+span.game-article__title{DIFFICULT}+img.game-article__img-->
+						<img alt="" class="game-article__img flip-horizontally" src="assets/flat-lizard.png">
 						<span class="game-article__title">DIFFICULT</span>
-						<img src="assets/flat-alien.png" alt="" class="game-article__img">
+						<img alt="" class="game-article__img" src="assets/flat-alien.png">
 					</header>
 					<section class="game-article__body">
-<!--												span.game-article__rule*5-->
+						<!--												span.game-article__rule*5-->
 						<span class="game-article__rule">rock > scissors & lizard</span>
 						<span class="game-article__rule">paper > rock & alien</span>
 						<span class="game-article__rule">scissors > paper & lizard</span>
 						<span class="game-article__rule">lizard > paper & alien</span>
 						<span class="game-article__rule">alien > scissors & rock</span>
+					</section>
+				</article>
+				<!--				article.fighters>section.fighter.fighter_$*5>img.fighter__img-->
+				<article class="fighters" hidden>
+					<section class="fighter fighter_1"><img alt="" class="fighter__img" src="assets/happy-rocks.png"></section>
+					<section class="fighter fighter_2"><img alt="" class="fighter__img" src="assets/happy-paper.png"></section>
+					<section class="fighter fighter_3"><img alt="" class="fighter__img" src="assets/happy-scissors.png"></section>
+					<section class="fighter fighter_4"><img alt="" class="fighter__img" src="assets/lizard.png"></section>
+					<section class="fighter fighter_5"><img alt="" class="fighter__img" src="assets/happy-alien.png">
 					</section>
 				</article>
 			</section>

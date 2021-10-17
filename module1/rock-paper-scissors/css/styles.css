@@ -42,6 +42,17 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'IRZeytoon';
+    src: url('../fonts/IRZeytoon.eot');
+    src: url('../fonts/IRZeytoon.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/IRZeytoon.woff') format('woff'),
+    url('../fonts/IRZeytoon.woff2') format('woff2'),
+    url('../fonts/IRZeytoon.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+}
+
 body {
     overflow-x: hidden;
     overflow-y: hidden;
@@ -49,9 +60,9 @@ body {
 
 video {
     position: absolute;
-    /*opacity: 0.5;*/
+    opacity: 0.5;
     /*opacity: 1;*/
-    opacity: 0;
+    /*opacity: 0;*/
 }
 
 .wrapper {
@@ -136,7 +147,6 @@ video {
 }
 
 .main__game-field {
-    padding: 6.2vw 0 2.6vw;
     font-family: 'Helvetica', sans-serif;
     font-weight: bold;
     display: flex;
@@ -144,6 +154,7 @@ video {
     align-items: center;
     height: 75%;
     justify-content: space-between;
+    padding: 3.39vw 0;
 }
 
 .game-article {
@@ -152,6 +163,14 @@ video {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 1s;
+    margin-top: 2.765vw;
+}
+
+.game-article:hover {
+    background: #ffffff;
+    color: #a040cd;
+    cursor: pointer;
 }
 
 .game-article__header {
@@ -165,7 +184,7 @@ video {
 }
 
 .rotate-img180 {
-    -webkit-transform:rotate(180deg);
+    -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
@@ -192,4 +211,37 @@ video {
 .game-article__img {
     width: 1.6vw;
     margin-bottom: .3vw;
+}
+
+.fighters {
+    height: 100%;
+    padding: 0 11vw;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.fighter {
+    width: 15.45vw;
+    padding: .7vw .73vw .8vw;
+}
+
+.fighter__img {
+    width: 100%;
+    /*border: 1px solid #000;*/
+}
+
+.aside__button {
+    font-family: 'IRZeytoon', serif;
+    /*font-weight: 800;*/
+    font-size: 1.4vw;
+    width: 11vw;
+    height: 3.3vw;
+    background: #a040cd;
+    color: #ffffff;
+    margin-top: 5.4vw;
+    /*border: 1px solid #000;*/
 }
