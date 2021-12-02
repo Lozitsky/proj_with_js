@@ -1,0 +1,14 @@
+{
+  "name": "intro-to-the-backend",
+  "version": "1.0.0",
+  "description": "A minimal express server for learning about how the backend works",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wvmitchell@gmail.com <Will Mitchell>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
