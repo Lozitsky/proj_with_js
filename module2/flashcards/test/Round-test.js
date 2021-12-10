@@ -12,16 +12,16 @@ const deck = new Deck([card1, card2, card3]);
 
 describe('Round', function () {
     describe('instance', function () {
-        it.skip('should be a function', function () {
+        it('should be a function', function () {
             expect(Round).to.be.a('function');
         });
 
-        it.skip('should be an instance of Round', function () {
+        it('should be an instance of Round', function () {
             const round = new Round();
             expect(round).to.be.an.instanceOf(Round);
         });
 
-        it.skip('should be initialized with deck', function () {
+        it('should be initialized with deck', function () {
             const round = new Round(deck);
 
             expect(round.deck).to.deep.equal([card1, card2, card3]);
@@ -29,7 +29,7 @@ describe('Round', function () {
     });
 
     describe('returnCurrentCard', function () {
-        it.skip('should be the first Card in the Deck', function () {
+        it('should be the first Card in the Deck', function () {
             const round = new Round(deck);
 
             expect(round.currentCard).to.deep.equal({
@@ -49,14 +49,14 @@ describe('Round', function () {
     });
 
     describe('takeTurn', function () {
-        it.skip('should be evaluate guesses and give feedback', function () {
+        it('should be evaluate guesses and give feedback', function () {
             const round = new Round(deck);
 
             expect(round.takeTurn('sea otter')).to.equal('correct!');
             expect(round.takeTurn('spleen')).to.equal('incorrect!');
         });
 
-        it.skip('should be update turns count', function () {
+        it('should be update turns count', function () {
             const round = new Round(deck);
             expect(round.turns).to.equal(0);
 
@@ -66,16 +66,16 @@ describe('Round', function () {
             expect(round.turns).to.equal(2);
         });
 
-        it.skip('should be store ids of incorrect guesses', function () {
+        it('should be store ids of incorrect guesses', function () {
             const round = new Round(deck);
-            expect(round.incorrectGuesses).to.equal([]);
+            expect(round.incorrectGuesses).to.deep.equal([]);
 
             round.takeTurn('sea otter');
             round.takeTurn('spleen');
-            expect(round.incorrectGuesses).to.equal([14]);
+            expect(round.incorrectGuesses).to.deep.equal([14]);
         });
 
-        it.skip('should change the current card from the next', function () {
+        it('should change the current card from the next', function () {
             const round = new Round(deck);
             expect(round.returnCurrentCard()).to.deep.equal({
                 id: 1,
@@ -97,7 +97,7 @@ describe('Round', function () {
     });
 
     describe('calculatePercentCorrect', function () {
-        it.skip('should calculate and return the percentage of correct guesses', function () {
+        it('should calculate and return the percentage of correct guesses', function () {
             const round = new Round(deck);
             // expect(round.calculatePercentCorrect()).to.equal(0);
             round.takeTurn('sea otter');
@@ -107,7 +107,7 @@ describe('Round', function () {
     });
 
     describe('endRound', function () {
-        it.skip('should be print ‘** Round over! ** You answered <>% of the questions correctly!’', function () {
+        it('should be print ‘** Round over! ** You answered <>% of the questions correctly!’', function () {
             const round = new Round(deck);
             // expect(round.calculatePercentCorrect()).to.equal(0);
             round.takeTurn('sea otter');
