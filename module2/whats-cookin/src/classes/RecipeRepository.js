@@ -2,8 +2,6 @@
 // import recipe from "./Recipe";
 const { ingredientsData } = require('../data/ingredients');
 
-
-
 class RecipeRepository {
   constructor(recipes) {
     this.recipes = recipes;

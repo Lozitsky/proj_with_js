@@ -1,6 +1,5 @@
 import {expect} from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
-// import Recipe from "../src/classes/Recipe";
 
 const recipe1 = {
   "id": 595736,
@@ -617,7 +616,7 @@ const recipe5 = {
   "tags": []
 }
 
-describe('Recipe', () => {
+describe('RecipeRepository', () => {
   it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
@@ -633,15 +632,15 @@ describe('Recipe', () => {
     const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
     expect(recipe.recipes).to.deep.equal([recipe1, recipe2, recipe3, recipe4, recipe5]);
   });
-  it('must contain method getRecipeByName', () => {
+  it('must contain getRecipeByName method', () => {
     const repository = new RecipeRepository();
     expect(repository).to.have.property("getRecipeByName");
   });
-  it('must contain method getRecipesByIngredients', () => {
+  it('must contain getRecipesByIngredients method', () => {
     const repository = new RecipeRepository();
     expect(repository).to.have.property("getRecipesByIngredients");
   });
-  it('must contain method getRecipesByTags', () => {
+  it('must contain getRecipesByTags method', () => {
     const repository = new RecipeRepository();
     expect(repository).to.have.property("getRecipesByTags");
   });
@@ -659,12 +658,10 @@ describe('Recipe', () => {
   });
   it('should be able to filter based on a single ingredient', () => {
     const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    console.log(recipe.getRecipesByIngredients('dijon style mustard'))
     expect(recipe.getRecipesByIngredients('dijon style mustard')).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
     const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    console.log(recipe.getRecipesByIngredients('dijon style mustard'))
     expect(recipe.getRecipesByIngredients('wheat flour', 'buck wheat flour', 'butter')).to.deep.equal([recipe4]);
   });
 
