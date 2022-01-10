@@ -21,6 +21,10 @@ class RecipeRepository {
       ingred.id === ingredientsData.find(ing => ing.name === name).id)));
   }
 
+  getAllRecipes() {
+    return this.recipes;
+  }
+
 }
 
 export default RecipeRepository;

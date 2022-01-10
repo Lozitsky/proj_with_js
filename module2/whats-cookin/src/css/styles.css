@@ -1,0 +1,28 @@
+body {
+  background-color: blueviolet;
+}
+
+/*region------------------------media-------------------------------------*/
+
+/* Extra small devices (phones, 599px and down) */
+@media only screen and (max-width: 599px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 900px and up) */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/float */
+@media only screen and (min-width: 900px) {
+}
+
+/* Large devices (laptops/desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+
+/* Extra large devices (large desktops, 1800px and up) */
+@media only screen and (min-width: 1800px) {
+}
+
+/*endregion-------------------------------media----------------------------------------------*/

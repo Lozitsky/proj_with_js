@@ -6481,5 +6481,5 @@ const usersData = [
 ]
 
 module.exports = {
-    usersData
+  usersData
 }
