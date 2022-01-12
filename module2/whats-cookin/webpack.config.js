@@ -5,7 +5,9 @@ module.exports = {
   entry: './src/scripts.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.bundle.js'
+    // path: __dirname + '/dist',
+    filename: 'bundle.js',
+    sourceMapFilename: "bundle.js.map"
   },
   devtool: 'inline-source-map',
   mode: 'development',
@@ -14,20 +16,20 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpe?g|gif|webp)$/i,
         use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]',
-                  outputPath: 'images/',
-                  publicPath: 'images/'
-                }
-              }
-            ]
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/'
+            }
+          }
+        ]
       }
     ],
   },
@@ -38,6 +40,6 @@ module.exports = {
     })
   ],
   devServer: {
-         contentBase: './dist'
+    contentBase: './dist'
   }
 };
