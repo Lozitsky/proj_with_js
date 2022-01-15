@@ -15,9 +15,11 @@ body > img {
 }
 
 .wrapper {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     background-color: greenyellow;
+    z-index: 50;
 }
 
 .container {
@@ -34,6 +36,7 @@ body > img {
     min-height: 3vw;
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 
 .header:before {
@@ -140,6 +143,7 @@ body > img {
 
 /*region------------------------main--------------------------------*/
 .main-footer-wrapper {
+    /*position: relative;*/
     /*min-height: 100vh;*/
     /*height: 100%;*/
     width: 100%;
@@ -156,7 +160,6 @@ body > img {
     padding: 1vw 0;
     display: flex;
     justify-content: space-between;
-    /*height: 2500px;*/
 }
 
 .main__container {
@@ -170,7 +173,6 @@ body > img {
 
 .aside {
     min-height: 10vw;
-    /*height: 10vw;*/
     min-width: 14%;
     background-color: red;
     padding: 2vw 1vw;
@@ -194,7 +196,6 @@ body > img {
 
 .sec-search {
     background-color: lightcyan;
-    /*min-height: 16.5vh;*/
     min-height: 11.5vh;
 }
 
@@ -209,18 +210,21 @@ body > img {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 1.2vw;
     grid-row-gap: 1.2vw;
-    /*grid-auto-rows: 19vw;*/
     grid-auto-rows: 1fr;
     align-content: space-between;
     justify-content: space-between;
     background-color: #fff;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
 }
 
 .card {
+    /*position: relative;*/
     height: 100%;
-    border: .15vw solid #1e1f3b;
-    /*overflow: hidden;*/
+    border: .15vw solid #01021c;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    border-radius: 5%;
+    overflow: hidden;
     text-align: center;
 }
 
@@ -235,14 +239,25 @@ body > img {
     height: 100%;
     width: 100%;
     display: block;
+    opacity: .7;
+}
+.card__img:hover {
+    opacity: 1;
 }
 
 .card__name {
-    color: #3bd9bc;
+    width: 100%;
+    padding: 0 3%;
+    color: #000913;
     font-size: calc((100vw - 320px) / ((1920 - 320) / (22 - 20)) + 20px);
     position: absolute;
     bottom: 0;
     left: 0;
+    background: rgba(250, 247, 247, 0.1);
+}
+
+.card__name:hover {
+    background: rgba(250, 247, 247, 0.7);
 }
 
 /*endregion------------------------main----------------------*/
