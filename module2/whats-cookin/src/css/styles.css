@@ -156,7 +156,7 @@ body > img {
     padding: 1vw 0;
     display: flex;
     justify-content: space-between;
-    height: 2500px;
+    /*height: 2500px;*/
 }
 
 .main__container {
@@ -209,7 +209,8 @@ body > img {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 1.2vw;
     grid-row-gap: 1.2vw;
-    grid-auto-rows: 19vw;
+    /*grid-auto-rows: 19vw;*/
+    grid-auto-rows: 1fr;
     align-content: space-between;
     justify-content: space-between;
     background-color: #fff;
@@ -217,7 +218,31 @@ body > img {
 }
 
 .card {
+    height: 100%;
     border: .15vw solid #1e1f3b;
+    /*overflow: hidden;*/
+    text-align: center;
+}
+
+.card__label {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card__img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.card__name {
+    color: #3bd9bc;
+    font-size: calc((100vw - 320px) / ((1920 - 320) / (22 - 20)) + 20px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 /*endregion------------------------main----------------------*/
