@@ -1,4 +1,6 @@
 // import allIngredients from '../data/ingredients';
+import Ingredient from "./Ingredient";
+
 const {ingredientsData} = require('../data/ingredients');
 
 class Recipe {
@@ -31,6 +33,13 @@ class Recipe {
 
   getInstructions() {
     return this.instructions.sort((a, b) => a.number - b.number).map(instruct => instruct.instruction);
+  }
+
+  getIngredients() {
+    return this.ingredients.map(ingredient => {
+      let name = ingredientsData.find(ingred => ingred.id === ingredient.id).name;
+      return new Ingredient(name, ingredient.quantity.amount, ingredient.quantity.unit);
+    });
   }
   
 
