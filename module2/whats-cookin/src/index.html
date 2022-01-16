@@ -5,7 +5,7 @@
     <link href="./css/reset.css" rel="stylesheet" type="text/css">
     <link href="./css/styles.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <meta content="width=device-width" name="viewport, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta charset="UTF-8">
 </head>
 <body>
@@ -40,101 +40,25 @@
             <div class="container main__container">
                 <aside class="aside aside-tags"></aside>
                 <section class="section-main">
-                    <section class="sec-search"></section>
+                    <form class="sec-search">
+                        <!--                        h3.sec-search__title{Find by name}+section.sec-search__search-field-->
+                        <h3 class="sec-search__title">Find by name</h3>
+                        <section class="sec-search__search-box">
+                            <!--                            label.sec-search__label[#search]>svg.sec-search__search-img>use[xlink:href]^^input:search.sec-search__search-field[placeholder='Search Recipe' name=search]#search-->
+
+                            <input type="search" name="search" id="search" class="sec-search__search-field"
+                                   placeholder="Search Recipe">
+                            <label for="search" class="sec-search__label">
+                                <svg class="sec-search__search-img">
+                                    <use xlink:href="images/search.svg#text_and_icons"></use>
+                                </svg>
+                            </label>
+                        </section>
+                    </form>
                     <section class="sec-recipes">
 
                         <!--                        .grid-container>article.card*12>section.card__label>img.card__img[src='https://spoonacular.com/recipeImages/412309-556x370.jpeg' alt='no image available']+p.card__name{Maple Dijon Apple Cider Grilled Pork Chops}-->
                         <div class="grid-container">
-                            <!--<div class="grid-container">
-&lt;!&ndash;                                a.popup-link[#detail]&ndash;&gt;
-                                <a href="#details" class="popup-link">
-                                    <article class="card">
-                                        <section class="card__label"><img
-                                                src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                                alt="no image available" class="card__img">
-                                            <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                        </section>
-                                    </article>
-                                </a>
-
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                                <article class="card">
-                                    <section class="card__label"><img
-                                            src="https://spoonacular.com/recipeImages/412309-556x370.jpe"
-                                            alt="no image available" class="card__img">
-                                        <p class="card__name">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                                    </section>
-                                </article>
-                            </div>-->
                         </div>
 
                     </section>
@@ -158,39 +82,6 @@
 </div>
 
 <!--.popup#details>a[#].popup__area+.popup__body>.popup__content>a[#].popup__close{X}+.popup__title{This is №2 modal window}+.popup__text>lorem300-->
-<!--<div class="popup" id="details">
-    <a href="#" class="popup__area"></a>
-    <div class="popup__body">
-        <div class="popup__content">
-            <a href="#" class="popup__close">X</a>
-            <div class="popup__title">This is №2 modal window</div>
-            <div class="popup__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, cumque deleniti
-                doloribus eveniet hic magni nisi obcaecati odio quas quisquam, recusandae repudiandae totam! Alias amet
-                architecto consequatur culpa deleniti ea earum ex fugiat fugit hic, id incidunt inventore iusto
-                laudantium minima natus necessitatibus neque numquam odit praesentium quod sunt tempore, vel, veniam
-                voluptate? Aliquam aliquid amet asperiores atque beatae consequuntur distinctio doloribus dolorum
-                ducimus eveniet in laboriosam laborum libero maxime nam pariatur, possimus provident qui quis unde. Ab
-                accusamus amet animi aut delectus dicta dignissimos distinctio dolore dolorum ducimus eius error est
-                fugit itaque labore minima molestiae nobis non numquam odio odit officiis quae, quam quia quod quos
-                ratione repellat, sint suscipit tenetur ullam ut veniam veritatis, vero voluptas voluptate voluptates.
-                Alias cum dolorum est in inventore laboriosam libero modi perferendis perspiciatis placeat porro, quidem
-                reprehenderit repudiandae, similique, voluptatem! Ad aliquam architecto, eveniet ipsum nemo nobis
-                numquam pariatur placeat, recusandae reiciendis sunt tempora voluptates voluptatum. Architecto
-                aspernatur dolor, ducimus esse excepturi explicabo ipsam ipsum iure magnam magni officia porro
-                repellendus tempore totam veniam voluptas voluptatem. Accusamus accusantium ad alias aliquid, aperiam
-                autem beatae cupiditate deleniti dicta doloremque dolorum eligendi error et ex excepturi exercitationem
-                fuga fugiat fugit in inventore ipsa laborum molestiae nisi odit officia officiis pariatur porro quaerat
-                quidem reiciendis rem sed sequi soluta, temporibus unde vel voluptate. Consequatur earum reiciendis
-                temporibus velit veritatis. A alias aliquam aperiam architecto, autem blanditiis culpa dolorum ducimus
-                ea eligendi error est expedita harum in inventore labore laboriosam laborum laudantium minima mollitia
-                necessitatibus nesciunt, nulla numquam odio omnis quaerat rem reprehenderit, rerum tempora tempore vel
-                vero voluptas voluptatibus! Ab accusamus accusantium assumenda at dolore dolorem doloremque dolores,
-                eligendi est ex explicabo fugiat hic impedit incidunt itaque laborum laudantium minima mollitia non
-                numquam odio perspiciatis quasi quidem quisquam recusandae rerum tempora, ut? Nemo, soluta!
-            </div>
-        </div>
-    </div>
-</div>-->
 
 <section id="details"></section>
 

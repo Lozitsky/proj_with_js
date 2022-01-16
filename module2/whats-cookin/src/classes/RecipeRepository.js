@@ -1,5 +1,6 @@
 // import ingredients from '../data/ingredients';
 // import recipe from "./Recipe";
+
 const { ingredientsData } = require('../data/ingredients');
 
 class RecipeRepository {
@@ -14,6 +15,10 @@ class RecipeRepository {
 
   getRecipeByName(name) {
     return this.recipes.find(recipe => recipe.name === name);
+  }
+
+  getRecipesByName(name) {
+    return this.recipes.filter(recipe => recipe.name.includes(name));
   }
 
   getRecipesByIngredients(...ingreds) {

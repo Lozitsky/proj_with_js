@@ -2,6 +2,7 @@ import './css/styles.css';
 import './css/reset.css';
 import './images/prototype.webp';
 import './images/bender.webp';
+import './images/search.svg';
 import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
@@ -15,14 +16,25 @@ const recipeRepository = new RecipeRepository(recipeData);
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
 const details = document.querySelector('#details');
+const input = document.querySelector('#search');
+
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', showAllCards);
+input.addEventListener('input', findByText);
 
 // Create your event handlers and other functions here 👇
 /*function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }*/
+
+
+function findByText() {
+  clearSecRecipes();
+  recipeRepository.getRecipesByName(input.value).forEach(recipe => {
+    injectRecipe(recipe, recipesContainer);
+  });
+}
 
 function createDetails(data) {
   let recipe = new Recipe(data);

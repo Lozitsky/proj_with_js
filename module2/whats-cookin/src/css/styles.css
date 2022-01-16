@@ -9,7 +9,7 @@ body > img {
     opacity: 0.5;
     /*opacity: 0;*/
     /*opacity: 1;*/
-    /*z-index: 1;*/
+    z-index: 1;
     top: 0;
     left: 0;
 }
@@ -150,7 +150,6 @@ body > img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /*height: 1000px;*/
 }
 
 .main {
@@ -185,25 +184,66 @@ body > img {
 }
 
 .section-main {
+    padding: .8vw;
     min-height: 40%;
     background-color: yellow;
     min-width: 72%;
     display: flex;
     flex-direction: column;
 }
-
+/*region----------------------------------- Section Search ------------------------------*/
 .sec-search {
     background-color: lightcyan;
     min-height: 11.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .8vw .4vw;
 }
 
+.sec-search__title {
+
+}
+
+.sec-search__search-box {
+    background: #ffffff;
+    width: 100%;
+    height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);
+    display: flex;
+    font-size: calc((100vw - 320px) / ((1920 - 320) / (16 - 18)) + 18px);
+    border: 1px solid #000;
+    -webkit-border-radius: .4em;
+    -moz-border-radius: .4em;
+    border-radius: .4em;
+    padding: 0 0 0 1vw;
+}
+
+.sec-search__label {
+    display: flex;
+    padding: 0 .2vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec-search__search-img {
+    color: #353567;
+    width: calc((100vw - 320px) / ((1920 - 320) / (25 - 27)) + 27px);
+    height: calc((100vw - 320px) / ((1920 - 320) / (25 - 27)) + 27px);
+}
+
+.sec-search__search-field {
+    padding-left: .5vw;
+    width: 100%;
+}
+/*endregion----------------------------------- Section Search ------------------------------*/
+
+/*region------------------------ Section Recipes ------------------*/
 .sec-recipes {
     background-color: tomato;
 }
 
 .grid-container {
     min-width: 45vw;
-    padding: .8vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 1.2vw;
@@ -256,8 +296,65 @@ body > img {
 .card__name:hover {
     background: rgba(250, 247, 247, 0.7);
 }
+/*endregion--------------------- Section Recipes ---------------*/
 
 /*endregion------------------------main----------------------*/
+
+/*region-------------------------burger-image-------------------------*/
+.header__burger:before, .header__burger:after {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    height: .4vw;
+    left: 0;
+    transition: all .3s ease 0s;
+}
+
+.header__burger:before {
+    top: 0;
+}
+
+.header__burger:after {
+    bottom: 0;
+}
+
+.header__burger > span {
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    width: 100%;
+    height: .4vw;
+    top: 1.8vw;
+    transition: all .3s ease 0s;
+}
+
+/*endregion-------------------------burger-image-------------------------*/
+/*region-------------------burger-label-checked-----------------------*/
+input[type=checkbox]:checked ~ .header .header__burger > span {
+    /*input[type=checkbox]:checked ~ .header__burger > span {*/
+    transform: scale(0);
+}
+
+input[type=checkbox]:checked ~ .header .header__burger:before {
+    /*input[type=checkbox]:checked ~ .header__burger:before {*/
+    transform: rotate(45deg);
+    top: 1.8vw;
+}
+
+input[type=checkbox]:checked ~ .header .header__burger:after {
+    /*input[type=checkbox]:checked ~ .header__burger:after {*/
+    transform: rotate(-45deg);
+    bottom: 1.8vw;
+}
+
+input[type=checkbox]:checked ~ .header .header__menu {
+    /*input[type=checkbox]:checked ~ .header__menu {*/
+    top: 0;
+    overflow: auto;
+}
+
+/*endregion-------------------burger-label-checked---------------------*/
 
 /*region------------------------------popup----------------------*/
 .popup {
@@ -352,7 +449,7 @@ body > img {
 /*endregion------------------------------popup----------------------*/
 
 /*region------------------------media----------------------------------*/
-/* Extra small devices (phones, 599px and down) */
+/*region Extra small devices (phones, 599px and down) */
 @media only screen and (max-width: 599px) {
     .main-footer-wrapper {
         min-height: 100%;
@@ -394,7 +491,6 @@ body > img {
     }
 
     .sec-recipes {
-        /*height: 500px;*/
     }
 
     /*region-----------------------start-menu-position-as-hidden----------------------*/
@@ -410,79 +506,28 @@ body > img {
     }
 
     /*endregion-----------------------start-menu-position-----------------------*/
-    /*region-------------------------burger-image-------------------------*/
-    .header__burger:before, .header__burger:after {
-        content: '';
-        background-color: #fff;
-        position: absolute;
-        width: 100%;
-        height: .4vw;
-        left: 0;
-        transition: all .3s ease 0s;
-    }
-
-    .header__burger:before {
-        top: 0;
-    }
-
-    .header__burger:after {
-        bottom: 0;
-    }
-
-    .header__burger > span {
-        position: absolute;
-        background-color: #fff;
-        left: 0;
-        width: 100%;
-        height: .4vw;
-        top: 1.8vw;
-        transition: all .3s ease 0s;
-    }
-
-    /*endregion-------------------------burger-image-------------------------*/
-    /*region-------------------burger-label-checked-----------------------*/
-    input[type=checkbox]:checked ~ .header .header__burger > span {
-        /*input[type=checkbox]:checked ~ .header__burger > span {*/
-        transform: scale(0);
-    }
-
-    input[type=checkbox]:checked ~ .header .header__burger:before {
-        /*input[type=checkbox]:checked ~ .header__burger:before {*/
-        transform: rotate(45deg);
-        top: 1.8vw;
-    }
-
-    input[type=checkbox]:checked ~ .header .header__burger:after {
-        /*input[type=checkbox]:checked ~ .header__burger:after {*/
-        transform: rotate(-45deg);
-        bottom: 1.8vw;
-    }
-
-    input[type=checkbox]:checked ~ .header .header__menu {
-        /*input[type=checkbox]:checked ~ .header__menu {*/
-        top: 0;
-        overflow: auto;
-    }
-
-    /*endregion-------------------burger-label-checked---------------------*/
     .main__container {
         flex-direction: column;
     }
 
     input[type=checkbox]:checked ~ .main-footer-wrapper {
-        /*width: 100%;*/
         max-width: 100%;
-        /*overflow: auto;*/
-        /*overflow-y: hidden;*/
-        /*padding: 0 3.4vw 0 0;*/
-        /*margin: 0 -3.4vw 0 0;*/
-        /*box-sizing: content-box;*/
         box-sizing: border-box;
     }
 
-}
+    .sec-search {
+        padding: 2vw 0;
+    }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+    .sec-search__search-field {
+    }
+
+    .sec-search__search-box {
+    }
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .container {
         max-width: 95vw;
@@ -496,13 +541,42 @@ body > img {
     .sec-recipes {
         min-height: 60vh;
     }
-}
 
-/* Medium devices (landscape tablets, 900px and up) */
+    .main-footer-wrapper {
+        padding: 4vw 0 0 0;
+    }
+
+    .sec-search__search-field {
+    }
+
+    .sec-search__search-box {
+        max-width: 90%;
+    }
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
 @media only screen and (min-width: 900px) {
-}
+    .header__logo {
+        height: 3.5vw;
+        width: 3.5vw;
+    }
 
-/* Large devices (laptops/desktops, 1200px and up) */
+    .main-footer-wrapper {
+        padding: 3.5vw 0 0 0;
+    }
+
+    .sec-search__search-field {
+        min-height: 3vw;
+    }
+
+    .sec-search__search-box {
+        max-width: 70%;
+    }
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .header__logo {
         height: 3vw;
@@ -512,11 +586,27 @@ body > img {
     .main-footer-wrapper {
         padding: 3vw 0 0 0;
     }
-}
 
-/* Extra large devices (large desktops, 1800px and up) */
+    .sec-search__search-field {
+        min-height: 2vw;
+    }
+
+    .sec-search__search-box {
+        max-width: 55%;
+    }
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
 @media only screen and (min-width: 1800px) {
+    .sec-search__search-field {
+        min-height: 1.8vw;
+    }
 
+    .sec-search__search-box {
+        max-width: 40%;
+    }
 }
+/*endregion Extra large devices (large desktops, 1800px and up) */
 
 /*endregion-------------------------------media----------------------------------------------*/
