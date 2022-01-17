@@ -17,21 +17,36 @@ const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
 const details = document.querySelector('#details');
 const input = document.querySelector('#search');
+const name = document.querySelector('#name');
+const ingredients = document.querySelector('#ingredients');
+const searchTitle = document.querySelector('.sec-search__title');
 
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', showAllCards);
 input.addEventListener('input', findByText);
+ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
+name.addEventListener('click', () => (changeTitleTo('name')));
 
 // Create your event handlers and other functions here 👇
 /*function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }*/
 
+function changeTitleTo(str) {
+  searchTitle.textContent = `Find by ${str}`;
+  input.focus();
+}
 
 function findByText() {
   clearSecRecipes();
-  recipeRepository.getRecipesByName(input.value).forEach(recipe => {
+  let recipeList;
+  if (searchTitle.textContent.includes('name')) {
+    recipeList = recipeRepository.getRecipesByName(input.value);
+  } else {
+    recipeList = recipeRepository.getRecipesByIngredients(...input.value.split(' '));
+  }
+  recipeList.forEach(recipe => {
     injectRecipe(recipe, recipesContainer);
   });
 }

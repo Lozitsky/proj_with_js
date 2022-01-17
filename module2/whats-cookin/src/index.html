@@ -48,12 +48,21 @@
 
                             <input type="search" name="search" id="search" class="sec-search__search-field"
                                    placeholder="Search Recipe">
-                            <label for="search" class="sec-search__label">
-                                <svg class="sec-search__search-img">
-                                    <use xlink:href="images/search.svg#text_and_icons"></use>
-                                </svg>
-                            </label>
+                            <!--                            <label for="search" class="sec-search__label">
+                                                            <svg class="sec-search__search-img">
+                                                                <use xlink:href="images/search.svg#text_and_icons"></use>
+                                                            </svg>
+                                                        </label>-->
+                            <div class="icon-holder">
+                                <div class="icon" id="name">
+                                    name
+                                </div>
+                                <div class="icon" id="ingredients">
+                                    ingredients
+                                </div>
+                            </div>
                         </section>
+
                     </form>
                     <section class="sec-recipes">
 
@@ -87,5 +96,4 @@
 
 </body>
 <script src="./scripts.js" type="text/javascript"></script>
-<!--<script src="src/data.js"></script>-->
 </html>

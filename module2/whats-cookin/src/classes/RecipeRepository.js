@@ -22,8 +22,9 @@ class RecipeRepository {
   }
 
   getRecipesByIngredients(...ingreds) {
-    return this.recipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred => 
-      ingred.id === ingredientsData.find(ing => ing.name === name).id)));
+    return this.recipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
+      ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
+    )));
   }
 
   getAllRecipes() {
