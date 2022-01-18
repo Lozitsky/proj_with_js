@@ -20,18 +20,30 @@ const input = document.querySelector('#search');
 const name = document.querySelector('#name');
 const ingredients = document.querySelector('#ingredients');
 const searchTitle = document.querySelector('.sec-search__title');
-
+const sectionCheckboxes = document.querySelector('.aside-tags__checkboxes');
+const searchTagsButton = document.querySelector('.aside-tags__button');
 
 // Add your event listeners here 👇
-document.addEventListener('DOMContentLoaded', showAllCards);
+document.addEventListener('DOMContentLoaded', loadContent);
 input.addEventListener('input', findByText);
 ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
 name.addEventListener('click', () => (changeTitleTo('name')));
-
+searchTagsButton.addEventListener('click', findByTags);
+// asideTags.addEventListener('')
 // Create your event handlers and other functions here 👇
 /*function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }*/
+
+function findByTags(ev) {
+  ev.preventDefault();
+  clearSecRecipes();
+
+  let checkboxes = sectionCheckboxes.querySelectorAll('input[type=checkbox]');
+  let filter = Array.prototype.slice.call(checkboxes).filter(checkbox => checkbox.checked).map(input => input.name);
+  recipeRepository.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
+
+}
 
 function changeTitleTo(str) {
   searchTitle.textContent = `Find by ${str}`;
@@ -120,6 +132,37 @@ function injectRecipe(recipe, target) {
   a.appendChild(article);
   a.addEventListener('click', () => createDetails(recipe));
   target.appendChild(a);
+}
+
+function injectTag(tag, target) {
+  let section = document.createElement('section');
+  section.classList.add('block-form__input');
+  let label = document.createElement('label');
+  label.classList.add('checkbox');
+  let input = document.createElement('input');
+  input.setAttribute('name', tag);
+  input.setAttribute('type', 'checkbox');
+  let span = document.createElement('span');
+  span.classList.add('checkmark');
+  span.textContent = tag;
+  label.appendChild(input);
+  label.appendChild(span);
+  section.appendChild(label);
+  target.appendChild(section);
+}
+
+function loadContent() {
+  showTags();
+  showAllCards();
+}
+
+function showTags() {
+  sectionCheckboxes.innerHTML = '';
+  let tags = recipeRepository.getAllTags();
+  console.log(tags);
+  tags.forEach(tag => {
+    injectTag(tag, sectionCheckboxes);
+  });
 }
 
 function showAllCards() {

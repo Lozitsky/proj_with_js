@@ -1,7 +1,7 @@
 // import ingredients from '../data/ingredients';
 // import recipe from "./Recipe";
 
-const { ingredientsData } = require('../data/ingredients');
+const {ingredientsData} = require('../data/ingredients');
 
 class RecipeRepository {
   constructor(recipes) {
@@ -9,7 +9,7 @@ class RecipeRepository {
   }
 
   getRecipesByTags(...tags) {
-    return this.recipes.filter(recipe => tags.some(el => 
+    return this.recipes.filter(recipe => tags.some(el =>
       el === '' ? !recipe.tags.length : recipe.tags.includes(el)));
   }
 
@@ -31,6 +31,16 @@ class RecipeRepository {
     return this.recipes;
   }
 
+  getAllTags() {
+    return this.recipes.reduce((arr, recipe) => {
+      recipe.tags.forEach(tag => {
+        if (!arr.includes(tag)) {
+          arr.push(tag);
+        }
+      });
+      return arr;
+    }, []);
+  }
 }
 
 export default RecipeRepository;

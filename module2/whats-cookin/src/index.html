@@ -38,21 +38,33 @@
     <div class="main-footer-wrapper">
         <main class="main">
             <div class="container main__container">
-                <aside class="aside aside-tags"></aside>
+                <aside class="aside aside-tags">
+<!--                    form.aside-tags__form>section.aside-tags__checkboxes+button.aside-tags__button[type=submit]{Search}-->
+                    <form action="" class="aside-tags__form">
+                        <section class="aside-tags__checkboxes"></section>
+                        <button class="aside-tags__button" type="submit">Search</button>
+                    </form>
+<!--                    <section class="block-form__input">
+                        <label class="checkbox">
+                            <input checked name="namecheckbox_1" type="checkbox">
+                            <span class="checkmark">Switch off №1</span>
+                        </label>
+                    </section>
+                    <section class="block-form__input">
+                        <label class="checkbox">
+                            <input name="namecheckbox_2" type="checkbox">
+                            <span class="checkmark">Switch off №2</span>
+                        </label>
+                    </section>-->
+                </aside>
                 <section class="section-main">
                     <form class="sec-search">
                         <!--                        h3.sec-search__title{Find by name}+section.sec-search__search-field-->
                         <h3 class="sec-search__title">Find by name</h3>
                         <section class="sec-search__search-box">
                             <!--                            label.sec-search__label[#search]>svg.sec-search__search-img>use[xlink:href]^^input:search.sec-search__search-field[placeholder='Search Recipe' name=search]#search-->
-
                             <input type="search" name="search" id="search" class="sec-search__search-field"
                                    placeholder="Search Recipe">
-                            <!--                            <label for="search" class="sec-search__label">
-                                                            <svg class="sec-search__search-img">
-                                                                <use xlink:href="images/search.svg#text_and_icons"></use>
-                                                            </svg>
-                                                        </label>-->
                             <div class="icon-holder">
                                 <div class="icon" id="name">
                                     name

@@ -146,7 +146,6 @@ body > img {
 /*region------------------------main--------------------------------*/
 .main-footer-wrapper {
     min-height: 100vh;
-    /*height: 100%;*/
     width: 100%;
     background-color: lightgoldenrodyellow;
     display: flex;
@@ -162,8 +161,6 @@ body > img {
 }
 
 .main__container {
-    /*height: 100%;*/
-    /*min-height: 100vh;*/
     min-height: 70%;
     width: 100%;
     display: flex;
@@ -171,28 +168,104 @@ body > img {
 }
 
 .aside {
-    min-height: 10vw;
-    min-width: 14%;
+    min-width: 10%;
     background-color: red;
     padding: 2vw 1vw;
 }
 
-.aside-tags {
+/*region------------------------------ #checkboxes ---------------------------------*/
+.aside-tags__checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.block-form__input {
+    margin-bottom: 1em;
+}
+
+.checkbox input:checked ~ .checkmark {
+    color: #000;
+}
+
+.checkbox input:checked ~ .checkmark:before {
+    /*background-color: #4fbb65;*/
+}
+
+.checkbox input:checked ~ .checkmark:after {
+    background-color: #4fbb65;
+    /*left: 25px;*/
+    left: 1.2em;
+}
+
+.checkbox input {
+    display: none;
+}
+
+.checkmark {
+    font-size: 1em;
+    line-height: 1.2em;
+    padding: 0 0 0 4em;
+    position: relative;
+    cursor: pointer;
+    color: #b2b2b2;
+    /*trs*/
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.checkmark:before {
+    content: '';
+    width: 3em;
+    height: 1.2em;
+    -webkit-border-radius: 1.2em;
+    -moz-border-radius: 1.2em;
+    border-radius: 1.2em;
+
+    background-color: #bfc0c4;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*bxsh:ra*/
+    -webkit-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+}
+
+.checkmark:after {
+    content: '#';
+    position: absolute;
+    display: inline;
+    width: 1.8em;
+    height: 1.8em;
+    left: 0;
+    top: -0.3em;
+    padding: .3em 0 0 .5em;
+    background-color: #bfc0c4;
+    /*bdrs*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.33em rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 0.33em rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0.33em rgba(0, 0, 0, 0.3);
 }
 
 .aside-advertisement {
-
 }
+/*endregion------------------------------ checkboxes ---------------------------------*/
 
 .section-main {
     padding: .8vw;
     min-height: 40%;
     background-color: yellow;
-    min-width: 72%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
+
 /*region----------------------------------- Section Search ------------------------------*/
 .sec-search {
     background-color: lightcyan;
@@ -235,7 +308,7 @@ body > img {
     -moz-border-radius: .4em;
     border-radius: .4em;
 
-    background-image:  url(/src/images/search.svg);
+    background-image: url(/src/images/search.svg);
     background-repeat: no-repeat;
     padding: 0 calc(1.5em + .75rem) 0 calc(.5em + .5rem);
     background-position: center right calc(.375em + .1875rem);
@@ -365,6 +438,7 @@ input:focus ~ .icon-holder > .icon {
 .card__name:hover {
     background: rgba(250, 247, 247, 0.7);
 }
+
 /*endregion--------------------- Section Recipes ---------------*/
 
 /*endregion------------------------main----------------------*/
@@ -559,6 +633,10 @@ input[type=checkbox]:checked ~ .header .header__menu {
         display: block;
     }
 
+    .aside-tags {
+
+    }
+
     .sec-recipes {
     }
 
@@ -594,12 +672,14 @@ input[type=checkbox]:checked ~ .header .header__menu {
     .sec-search__search-box {
     }
 }
+
 /*endregion Extra small devices (phones, 599px and down) */
 
 /*region Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .container {
         max-width: 95vw;
+        background: #625465;
     }
 
     .header__logo {
@@ -615,13 +695,34 @@ input[type=checkbox]:checked ~ .header .header__menu {
         padding: 4vw 0 0 0;
     }
 
+    .main__container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
     .sec-search__search-field {
     }
 
     .sec-search__search-box {
         max-width: 90%;
     }
+
+    .aside-tags {
+        max-width: 25%;
+        min-width: 20%;
+    }
+
+    .section-main {
+        max-width: 75%;
+        min-width: 70%;
+        background: #000;
+    }
+
+    .aside-advertisement {
+        width: 100%;
+    }
 }
+
 /*endregion Small devices (portrait tablets and large phones, 600px and up) */
 
 /*region Medium devices (landscape tablets, 900px and up) */
@@ -642,7 +743,27 @@ input[type=checkbox]:checked ~ .header .header__menu {
     .sec-search__search-box {
         max-width: 70%;
     }
+
+    .main__container {
+        flex-wrap: nowrap;
+    }
+
+    .aside-tags {
+        max-width: 25%;
+        min-width: 20%;
+    }
+
+    .aside-advertisement {
+        max-width: 10%;
+        min-width: 5%;
+    }
+
+    .section-main {
+        background: #222;
+        max-width: 70%;
+    }
 }
+
 /*endregion Medium devices (landscape tablets, 900px and up) */
 
 /*region Large devices (laptops/desktops, 1200px and up) */
@@ -663,7 +784,23 @@ input[type=checkbox]:checked ~ .header .header__menu {
     .sec-search__search-box {
         max-width: 55%;
     }
+
+    .aside-tags {
+        max-width: 20%;
+        min-width: 18%;
+    }
+
+    .aside-advertisement {
+        max-width: 7%;
+        min-width: 5%;
+    }
+
+    .section-main {
+        background: #8ad0f1;
+        max-width: 75%;
+    }
 }
+
 /*endregion Large devices (laptops/desktops, 1200px and up) */
 
 /*region Extra large devices (large desktops, 1800px and up) */
@@ -675,7 +812,18 @@ input[type=checkbox]:checked ~ .header .header__menu {
     .sec-search__search-box {
         max-width: 40%;
     }
+
+    .aside-advertisement, .aside-tags {
+        max-width: 15%;
+        min-width: 13%;
+    }
+
+    .section-main {
+        background: #ffffff;
+        max-width: 80%;
+    }
 }
+
 /*endregion Extra large devices (large desktops, 1800px and up) */
 
 /*endregion-------------------------------media----------------------------------------------*/
