@@ -20,7 +20,6 @@ body > img {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: greenyellow;
     /*z-index: 1;*/
 }
 
@@ -34,8 +33,9 @@ body > img {
 
 .header {
     position: fixed;
+    padding: .1em 0;
     width: 100%;
-    min-height: 3vw;
+    /*min-height: 3vw;*/
     display: flex;
     align-items: center;
     z-index: 1;
@@ -44,7 +44,7 @@ body > img {
 .header:before {
     background-color: #625465;
     width: 100%;
-    min-height: 3vw;
+    /*min-height: 3vw;*/
     content: '';
     position: absolute;
     top: 0;
@@ -65,10 +65,12 @@ body > img {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 3vw;
-    max-height: 6vw;
-    min-width: 3vw;
-    max-width: 6vw;
+    /*min-height: 3vw;*/
+    /*max-height: 6vw;*/
+    height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);
+    width: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);
+    /*min-width: 3vw;*/
+    /*max-width: 6vw;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -119,7 +121,9 @@ body > img {
 /*region------------------------footer-----------------------------*/
 .footer {
     background-color: #112233;
-    min-height: 3vw;
+    /*min-height: 3vw;*/
+    height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);
+
     display: flex;
     align-items: center;
 }
@@ -138,6 +142,7 @@ body > img {
 }
 
 .footer__container {
+    /*height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);*/
     width: 100%;
 }
 
@@ -147,14 +152,16 @@ body > img {
 .main-footer-wrapper {
     min-height: 100vh;
     width: 100%;
-    background-color: lightgoldenrodyellow;
+    /*background-color: lightgoldenrodyellow;*/
+    background-color: lavender;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .main {
-    background-color: lavender;
+    /*background-color: lavender;*/
     padding: 1vw 0;
     display: flex;
     justify-content: space-between;
@@ -169,7 +176,7 @@ body > img {
 
 .aside {
     min-width: 10%;
-    background-color: red;
+    /*background-color: red;*/
     padding: 2vw 1vw;
 }
 
@@ -183,18 +190,23 @@ body > img {
     margin-bottom: 1em;
 }
 
+input[type=checkbox] {
+}
+
+.checkbox {
+}
+
 .checkbox input:checked ~ .checkmark {
     color: #000;
 }
 
 .checkbox input:checked ~ .checkmark:before {
-    /*background-color: #4fbb65;*/
+    background-color: #4fbb65;
 }
 
 .checkbox input:checked ~ .checkmark:after {
     background-color: #4fbb65;
-    /*left: 25px;*/
-    left: 1.2em;
+    left: 1em;
 }
 
 .checkbox input {
@@ -202,9 +214,11 @@ body > img {
 }
 
 .checkmark {
-    font-size: 1em;
+    margin-right: .5em;
+    font-size: calc((100vw - 320px) / ((1920 - 320) / (18 - 16)) + 16px);
+
     line-height: 1.2em;
-    padding: 0 0 0 4em;
+    padding: 0 0 0 2.2em;
     position: relative;
     cursor: pointer;
     color: #b2b2b2;
@@ -216,18 +230,26 @@ body > img {
     transition: all 0.3s ease 0s;
 }
 
+/* https://stackoverflow.com/a/14524161/9586230 */
 .checkmark:before {
     content: '';
-    width: 3em;
-    height: 1.2em;
-    -webkit-border-radius: 1.2em;
-    -moz-border-radius: 1.2em;
-    border-radius: 1.2em;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 0;
+
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    width: 2em;
+    height: .6em;
+    -webkit-border-radius: .6em;
+    -moz-border-radius: .6em;
+    border-radius: .6em;
 
     background-color: #bfc0c4;
-    position: absolute;
-    left: 0;
-    top: 0;
     /*bxsh:ra*/
     -webkit-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
@@ -237,12 +259,19 @@ body > img {
 .checkmark:after {
     content: '#';
     position: absolute;
-    display: inline;
-    width: 1.8em;
-    height: 1.8em;
+    display: inline-block;
+
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    width: 1em;
+    height: 1em;
+
     left: 0;
-    top: -0.3em;
-    padding: .3em 0 0 .5em;
+    padding: 0 0 0 .15em;
     background-color: #bfc0c4;
     /*bdrs*/
     -webkit-border-radius: 50%;
@@ -255,12 +284,34 @@ body > img {
 
 .aside-advertisement {
 }
+
+.aside-tags__button {
+    display: block;
+    margin: 0 auto;
+    padding: .1em .2em;
+    -webkit-border-radius: .6em;
+    -moz-border-radius: .6em;
+    border-radius: .6em;
+
+    background-color: #bfc0c4;
+    /*bxsh:ra*/
+    -webkit-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+}
+
+.aside-tags__button:hover {
+    background-color: #4fbb65;
+}
+
 /*endregion------------------------------ checkboxes ---------------------------------*/
 
 .section-main {
+    background-color: #eeeefc;
+
     padding: .8vw;
     min-height: 40%;
-    background-color: yellow;
+    /*background-color: yellow;*/
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -268,7 +319,7 @@ body > img {
 
 /*region----------------------------------- Section Search ------------------------------*/
 .sec-search {
-    background-color: lightcyan;
+    /*background-color: lightcyan;*/
     min-height: 11.5vh;
     display: flex;
     flex-direction: column;
@@ -381,7 +432,7 @@ input:focus ~ .icon-holder > .icon {
 
 /*region------------------------ Section Recipes ------------------*/
 .sec-recipes {
-    background-color: tomato;
+    /*background-color: tomato;*/
 }
 
 .grid-container {
@@ -393,7 +444,6 @@ input:focus ~ .icon-holder > .icon {
     grid-auto-rows: 1fr;
     align-content: space-between;
     justify-content: space-between;
-    background-color: #fff;
 }
 
 .card {
@@ -596,7 +646,8 @@ input[type=checkbox]:checked ~ .header .header__menu {
 @media only screen and (max-width: 599px) {
     .main-footer-wrapper {
         min-height: 100%;
-        padding: 6vw 0 0 0;
+        /*padding: 6vw 0 0 0;*/
+        padding: 3em 0 0 0;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -617,8 +668,8 @@ input[type=checkbox]:checked ~ .header .header__menu {
     }
 
     .header__logo {
-        height: 6vw;
-        width: 6vw;
+        /*height: 6vw;*/
+        /*width: 6vw;*/
     }
 
     .header__burger {
@@ -679,12 +730,11 @@ input[type=checkbox]:checked ~ .header .header__menu {
 @media only screen and (min-width: 600px) {
     .container {
         max-width: 95vw;
-        background: #625465;
     }
 
     .header__logo {
-        height: 4vw;
-        width: 4vw;
+        /*height: 4vw;*/
+        /*width: 4vw;*/
     }
 
     .sec-recipes {
@@ -715,7 +765,6 @@ input[type=checkbox]:checked ~ .header .header__menu {
     .section-main {
         max-width: 75%;
         min-width: 70%;
-        background: #000;
     }
 
     .aside-advertisement {
@@ -728,8 +777,8 @@ input[type=checkbox]:checked ~ .header .header__menu {
 /*region Medium devices (landscape tablets, 900px and up) */
 @media only screen and (min-width: 900px) {
     .header__logo {
-        height: 3.5vw;
-        width: 3.5vw;
+        /*height: 3.5vw;*/
+        /*width: 3.5vw;*/
     }
 
     .main-footer-wrapper {
@@ -759,7 +808,7 @@ input[type=checkbox]:checked ~ .header .header__menu {
     }
 
     .section-main {
-        background: #222;
+        /*background: #222;*/
         max-width: 70%;
     }
 }
@@ -769,8 +818,8 @@ input[type=checkbox]:checked ~ .header .header__menu {
 /*region Large devices (laptops/desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .header__logo {
-        height: 3vw;
-        width: 3vw;
+        /*height: 3vw;*/
+        /*width: 3vw;*/
     }
 
     .main-footer-wrapper {
@@ -796,7 +845,6 @@ input[type=checkbox]:checked ~ .header .header__menu {
     }
 
     .section-main {
-        background: #8ad0f1;
         max-width: 75%;
     }
 }
@@ -819,7 +867,6 @@ input[type=checkbox]:checked ~ .header .header__menu {
     }
 
     .section-main {
-        background: #ffffff;
         max-width: 80%;
     }
 }
