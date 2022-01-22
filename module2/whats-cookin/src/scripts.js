@@ -3,16 +3,22 @@ import './css/reset.css';
 import './images/prototype.webp';
 import './images/bender.webp';
 import './images/search.svg';
+import './images/star.svg';
 import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
+import User from "./classes/User";
+import {usersData} from "./data/users";
+import RecipeRepoFactory from "./classes/RecipeRepoFactory";
 // import apiCalls from './apiCalls';
 
 
 // Create variables targetting the relevant DOM elements here 👇
 // let variables = JSON.parse(localStorage.getItem("variable") || '[]');
+let recipeRepoFactoryInstance;
+let user;
+let recipeRepository;
 const {recipeData} = require('../src/data/recipes');
-const recipeRepository = new RecipeRepository(recipeData);
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
 const details = document.querySelector('#details');
@@ -31,9 +37,9 @@ name.addEventListener('click', () => (changeTitleTo('name')));
 searchTagsButton.addEventListener('click', findByTags);
 // asideTags.addEventListener('')
 // Create your event handlers and other functions here 👇
-/*function getRandomIndex(array) {
-    return Math.floor(Math.random() * array.length);
-}*/
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
 
 function findByTags(ev) {
   ev.preventDefault();
@@ -111,6 +117,13 @@ function createDetails(data) {
   details.appendChild(body);
 }
 
+function switchFavorite(recipe, svg) {
+  svg.classList.contains('card__star-full') ? svg.classList.remove("card__star-full") : svg.classList.add('card__star-full');
+
+  recipeRepoFactoryInstance.isInFavoriteContained(recipe) ? recipeRepoFactoryInstance.removeFromFavorite(recipe) :
+    recipeRepoFactoryInstance.addToFavorite(recipe);
+}
+
 function injectRecipe(recipe, target) {
   let a = document.createElement('a');
   a.classList.add('popup-link');
@@ -123,15 +136,24 @@ function injectRecipe(recipe, target) {
   img.classList.add('card__img');
   img.setAttribute('src', recipe.image);
   img.setAttribute('alt', 'no image available');
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add('card__star');
+  recipeRepoFactoryInstance.isInFavoriteContained(recipe) ? svg.classList.add('card__star-full') : '';
+
+  svg.addEventListener('click', () => switchFavorite(recipe, svg));
+  let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttributeNS(null, 'href', 'images/star.svg#star');
   let p = document.createElement('p');
   p.classList.add('card__name');
   p.textContent = recipe.name;
   section.appendChild(img);
+  svg.appendChild(use);
   section.appendChild(p);
-  article.appendChild(section);
-  a.appendChild(article);
+  a.appendChild(section);
   a.addEventListener('click', () => createDetails(recipe));
-  target.appendChild(a);
+  article.appendChild(a);
+  article.appendChild(svg)
+  target.appendChild(article);
 }
 
 function injectTag(tag, target) {
@@ -152,6 +174,10 @@ function injectTag(tag, target) {
 }
 
 function loadContent() {
+  user = new User(usersData.find(user => user.id === getRandomIndex(usersData)));
+  recipeRepoFactoryInstance = new RecipeRepoFactory();
+  Object.freeze(recipeRepoFactoryInstance);
+  recipeRepository = new RecipeRepository(recipeData);
   showTags();
   showAllCards();
 }
@@ -159,7 +185,6 @@ function loadContent() {
 function showTags() {
   sectionCheckboxes.innerHTML = '';
   let tags = recipeRepository.getAllTags();
-  console.log(tags);
   tags.forEach(tag => {
     injectTag(tag, sectionCheckboxes);
   });
