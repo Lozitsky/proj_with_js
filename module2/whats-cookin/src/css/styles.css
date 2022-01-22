@@ -111,9 +111,20 @@ body > img {
 }
 
 .header__link {
+    padding: 0 .1em;
+    border: .1em solid #000;
     color: #fff;
     text-transform: uppercase;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+    opacity: .5;
 }
+
+.header__link:hover {
+    opacity: 1;
+}
+
 
 /*endregion------------------------------------header------------------*/
 
@@ -224,6 +235,10 @@ input[type=checkbox] {
     -ms-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+}
+
+.checkmark:hover {
+    color: #000913;
 }
 
 /* https://stackoverflow.com/a/14524161/9586230 */

@@ -9,15 +9,16 @@ import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
 import User from "./classes/User";
 import {usersData} from "./data/users";
-import RecipeRepoFactory from "./classes/RecipeRepoFactory";
+import FavoriteRecipeRepo from "./classes/FavoriteRecipeRepo";
 // import apiCalls from './apiCalls';
 
 
 // Create variables targetting the relevant DOM elements here 👇
 // let variables = JSON.parse(localStorage.getItem("variable") || '[]');
-let recipeRepoFactoryInstance;
+let favoriteRecipeRepoInstance;
 let user;
 let recipeRepository;
+let currentRepo;
 const {recipeData} = require('../src/data/recipes');
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
@@ -28,6 +29,7 @@ const ingredients = document.querySelector('#ingredients');
 const searchTitle = document.querySelector('.sec-search__title');
 const sectionCheckboxes = document.querySelector('.aside-tags__checkboxes');
 const searchTagsButton = document.querySelector('.aside-tags__button');
+const favBtn = document.querySelector('.fav-link');
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', loadContent);
@@ -35,10 +37,19 @@ input.addEventListener('input', findByText);
 ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
 name.addEventListener('click', () => (changeTitleTo('name')));
 searchTagsButton.addEventListener('click', findByTags);
+favBtn.addEventListener('click', toggleFavorite);
 // asideTags.addEventListener('')
 // Create your event handlers and other functions here 👇
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
+}
+
+function toggleFavorite() {
+  if (favBtn.innerText === 'show all recipes'.toUpperCase()) {
+    showAllRecipes();
+  } else {
+    showFavorites();
+  }
 }
 
 function findByTags(ev) {
@@ -47,8 +58,8 @@ function findByTags(ev) {
 
   let checkboxes = sectionCheckboxes.querySelectorAll('input[type=checkbox]');
   let filter = Array.prototype.slice.call(checkboxes).filter(checkbox => checkbox.checked).map(input => input.name);
-  recipeRepository.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
-
+  // recipeRepository.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
+  currentRepo.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
 }
 
 function changeTitleTo(str) {
@@ -60,9 +71,11 @@ function findByText() {
   clearSecRecipes();
   let recipeList;
   if (searchTitle.textContent.includes('name')) {
-    recipeList = recipeRepository.getRecipesByName(input.value);
+    // recipeList = recipeRepository.getRecipesByName(input.value);
+    recipeList = currentRepo.getRecipesByName(input.value);
   } else {
-    recipeList = recipeRepository.getRecipesByIngredients(...input.value.split(' '));
+    // recipeList = recipeRepository.getRecipesByIngredients(...input.value.split(' '));
+    recipeList = currentRepo.getRecipesByIngredients(...input.value.split(' '));
   }
   recipeList.forEach(recipe => {
     injectRecipe(recipe, recipesContainer);
@@ -120,8 +133,8 @@ function createDetails(data) {
 function switchFavorite(recipe, svg) {
   svg.classList.contains('card__star-full') ? svg.classList.remove("card__star-full") : svg.classList.add('card__star-full');
 
-  recipeRepoFactoryInstance.isInFavoriteContained(recipe) ? recipeRepoFactoryInstance.removeFromFavorite(recipe) :
-    recipeRepoFactoryInstance.addToFavorite(recipe);
+  favoriteRecipeRepoInstance.isInFavoriteContained(recipe) ? favoriteRecipeRepoInstance.remove(recipe) :
+    favoriteRecipeRepoInstance.add(recipe);
 }
 
 function injectRecipe(recipe, target) {
@@ -138,7 +151,7 @@ function injectRecipe(recipe, target) {
   img.setAttribute('alt', 'no image available');
   let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.classList.add('card__star');
-  recipeRepoFactoryInstance.isInFavoriteContained(recipe) ? svg.classList.add('card__star-full') : '';
+  favoriteRecipeRepoInstance.isInFavoriteContained(recipe) ? svg.classList.add('card__star-full') : '';
 
   svg.addEventListener('click', () => switchFavorite(recipe, svg));
   let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
@@ -175,11 +188,11 @@ function injectTag(tag, target) {
 
 function loadContent() {
   user = new User(usersData.find(user => user.id === getRandomIndex(usersData)));
-  recipeRepoFactoryInstance = new RecipeRepoFactory();
-  Object.freeze(recipeRepoFactoryInstance);
+  favoriteRecipeRepoInstance = new FavoriteRecipeRepo();
+  Object.freeze(favoriteRecipeRepoInstance);
   recipeRepository = new RecipeRepository(recipeData);
   showTags();
-  showAllCards();
+  showAllRecipes();
 }
 
 function showTags() {
@@ -190,10 +203,22 @@ function showTags() {
   });
 }
 
-function showAllCards() {
+function showAllRecipes() {
+  favBtn.innerText = 'show favorite recipes'.toUpperCase();
+  currentRepo = recipeRepository;
+  showRecipes();
+}
+
+function showFavorites() {
+  favBtn.innerText = 'show all recipes'.toUpperCase();
+  currentRepo = favoriteRecipeRepoInstance;
+  showRecipes();
+}
+
+function showRecipes() {
   clearSecRecipes();
-  recipeRepository.getAllRecipes().forEach(recipe => {
-    injectRecipe(recipe, recipesContainer);
+  currentRepo.getAllRecipes().forEach(recipe => {
+    injectRecipe(recipe, recipesContainer)
   });
 }
 

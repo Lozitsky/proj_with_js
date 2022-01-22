@@ -1,6 +1,7 @@
 import {expect} from "chai";
-import RecipeRepoFactory from "../src/classes/RecipeRepoFactory";
+import FavoriteRecipeRepo from "../src/classes/FavoriteRecipeRepo";
 import Recipe from "../src/classes/Recipe";
+import ToCookRecipeRepo from "../src/classes/ToCookRecipeRepo";
 
 const recipe1 = {
   "id": 595736,
@@ -619,81 +620,92 @@ const recipe5 = {
 
 describe('RecipeRepoFactory', () => {
   it('should be an object', () => {
-    expect(RecipeRepoFactory).to.be.an('object');
+    expect(FavoriteRecipeRepo).to.be.an('object');
   });
   it('should be the same', function () {
-    expect(RecipeRepoFactory.favoriteRecipes).to.deep.equal(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
   });
   it('should be add to favoriteRecipes', function () {
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
     let recipe = new Recipe(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe);
-    expect(RecipeRepoFactory.favoriteRecipes).to.deep.equal([recipe]);
+    favoriteRecipeRepo.add(recipe);
+    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal([recipe]);
   });
   it('should be add to recipesToCook', function () {
+    let toCookRecipeRepo = new ToCookRecipeRepo();
     let recipe = new Recipe(recipe1);
-    RecipeRepoFactory.addToCook(recipe);
-    expect(RecipeRepoFactory.recipesToCook).to.deep.equal([recipe]);
+    toCookRecipeRepo.add(recipe);
+    expect(toCookRecipeRepo.recipesToCook).to.deep.equal([recipe]);
   });
 
   it('should be remove from favoriteRecipes', function () {
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
     let recipe = new Recipe(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe);
-    RecipeRepoFactory.removeFromFavorite(recipe);
-    expect(RecipeRepoFactory.favoriteRecipes).to.deep.equal([]);
+    favoriteRecipeRepo.add(recipe);
+    favoriteRecipeRepo.remove(recipe);
+    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal([]);
   });
   it('should be remove from recipesToCook', function () {
+    let toCookRecipeRepo = new ToCookRecipeRepo();
     let recipe = new Recipe(recipe1);
-    RecipeRepoFactory.addToCook(recipe);
-    RecipeRepoFactory.removeFromCook(recipe);
-    expect(RecipeRepoFactory.recipesToCook).to.deep.equal([]);
+    toCookRecipeRepo.add(recipe);
+    toCookRecipeRepo.remove(recipe);
+    expect(toCookRecipeRepo.recipesToCook).to.deep.equal([]);
   });
   it('must contain getFavoriteRecipeByName method', () => {
-    expect(RecipeRepoFactory).to.have.property("getFavoriteRecipeByName");
+    expect(FavoriteRecipeRepo).to.have.property("getFavoriteRecipeByName");
   });
   it('must contain getFavoriteRecipesByIngredients method', () => {
-    expect(RecipeRepoFactory).to.have.property("getFavoriteRecipesByIngredients");
+    expect(FavoriteRecipeRepo).to.have.property("getFavoriteRecipesByIngredients");
   });
   it('must contain getFavoriteRecipesByTags method', () => {
-    expect(RecipeRepoFactory).to.have.property("getFavoriteRecipesByTags");
+    expect(FavoriteRecipeRepo).to.have.property("getFavoriteRecipesByTags");
   });
   it('should be able to filter based on name', () => {
-    RecipeRepoFactory.addToFavorite(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe2);
-    RecipeRepoFactory.addToFavorite(recipe3);
-    RecipeRepoFactory.addToFavorite(recipe4);
-    RecipeRepoFactory.addToFavorite(recipe5);
-    expect(RecipeRepoFactory.getFavoriteRecipeByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal(recipe2);
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+    favoriteRecipeRepo.add(recipe1);
+    favoriteRecipeRepo.add(recipe2);
+    favoriteRecipeRepo.add(recipe3);
+    favoriteRecipeRepo.add(recipe4);
+    favoriteRecipeRepo.add(recipe5);
+    expect(favoriteRecipeRepo.getRecipeByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal(recipe2);
   });
   it('should be able to filter based on a single tag', () => {
-    RecipeRepoFactory.addToFavorite(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe2);
-    RecipeRepoFactory.addToFavorite(recipe3);
-    RecipeRepoFactory.addToFavorite(recipe4);
-    RecipeRepoFactory.addToFavorite(recipe5);
-    expect(RecipeRepoFactory.getFavoriteRecipesByTags('sauce')).to.deep.equal([recipe3]);
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+
+    favoriteRecipeRepo.add(recipe1);
+    favoriteRecipeRepo.add(recipe2);
+    favoriteRecipeRepo.add(recipe3);
+    favoriteRecipeRepo.add(recipe4);
+    favoriteRecipeRepo.add(recipe5);
+    expect(favoriteRecipeRepo.getRecipesByTags('sauce')).to.deep.equal([recipe3]);
   });
   it('should be able to filter based on multiple tags', () => {
-    RecipeRepoFactory.addToFavorite(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe2);
-    RecipeRepoFactory.addToFavorite(recipe3);
-    RecipeRepoFactory.addToFavorite(recipe4);
-    RecipeRepoFactory.addToFavorite(recipe5);
-    expect(RecipeRepoFactory.getFavoriteRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+    favoriteRecipeRepo.add(recipe1);
+    favoriteRecipeRepo.add(recipe2);
+    favoriteRecipeRepo.add(recipe3);
+    favoriteRecipeRepo.add(recipe4);
+    favoriteRecipeRepo.add(recipe5);
+    expect(favoriteRecipeRepo.getRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
   });
   it('should be able to filter based on a single ingredient', () => {
-    RecipeRepoFactory.addToFavorite(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe2);
-    RecipeRepoFactory.addToFavorite(recipe3);
-    RecipeRepoFactory.addToFavorite(recipe4);
-    RecipeRepoFactory.addToFavorite(recipe5);
-    expect(RecipeRepoFactory.getFavoriteRecipesByIngredients('dijon style mustard')).to.deep.equal([recipe2]);
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+    favoriteRecipeRepo.add(recipe1);
+    favoriteRecipeRepo.add(recipe2);
+    favoriteRecipeRepo.add(recipe3);
+    favoriteRecipeRepo.add(recipe4);
+    favoriteRecipeRepo.add(recipe5);
+    expect(favoriteRecipeRepo.getRecipesByIngredients('dijon style mustard')).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
-    RecipeRepoFactory.addToFavorite(recipe1);
-    RecipeRepoFactory.addToFavorite(recipe2);
-    RecipeRepoFactory.addToFavorite(recipe3);
-    RecipeRepoFactory.addToFavorite(recipe4);
-    RecipeRepoFactory.addToFavorite(recipe5);
-    expect(RecipeRepoFactory.getFavoriteRecipesByIngredients('wheat flour', 'buck wheat flour', 'butter')).to.deep.equal([recipe4]);
+    let favoriteRecipeRepo = new FavoriteRecipeRepo();
+    favoriteRecipeRepo.add(recipe1);
+    favoriteRecipeRepo.add(recipe2);
+    favoriteRecipeRepo.add(recipe3);
+    favoriteRecipeRepo.add(recipe4);
+    favoriteRecipeRepo.add(recipe5);
+    expect(favoriteRecipeRepo.getRecipesByIngredients('wheat flour', 'buck wheat flour', 'butter')).to.deep.equal([recipe4]);
   });
 });
