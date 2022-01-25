@@ -1,7 +1,8 @@
-import {ingredientsData} from "../data/ingredients";
+// import {ingredientsData} from "../data/ingredients";
 
 class ToCookRecipeRepo {
-  constructor() {
+  constructor(ingredientsData) {
+    this.ingredientsData = ingredientsData;
     this.To_Cook_Key = `favoriteRecipes${localStorage.getItem('userId')}`;
     this.recipesToCook = JSON.parse(localStorage.getItem(this.To_Cook_Key) || '[]');
   }
@@ -49,7 +50,7 @@ class ToCookRecipeRepo {
 
   getRecipesByIngredients(...ingreds) {
     return this.recipesToCook.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
-      ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
+      this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
   }
 

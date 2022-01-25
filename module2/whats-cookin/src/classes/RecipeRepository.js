@@ -1,8 +1,9 @@
-const {ingredientsData} = require('../data/ingredients');
+// const {ingredientsData} = require('../data/ingredients');
 
 class RecipeRepository {
-  constructor(recipes) {
+  constructor(recipes, ingredientsData) {
     this.recipes = recipes;
+    this.ingredientsData = ingredientsData;
   }
 
   getRecipesByTags(...tags) {
@@ -20,7 +21,7 @@ class RecipeRepository {
 
   getRecipesByIngredients(...ingreds) {
     return this.recipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
-      ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
+      this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
   }
 

@@ -1,4 +1,4 @@
-import {ingredientsData} from "../data/ingredients";
+// import {ingredientsData} from "../data/ingredients";
 
 /*global.localStorage = {
   data: {},
@@ -20,7 +20,8 @@ import {ingredientsData} from "../data/ingredients";
 // let Favorite_Key;
 
 class FavoriteRecipeRepo {
-  constructor() {
+  constructor(ingredientsData) {
+    this.ingredientsData = ingredientsData;
     this.Favorite_Key = `favoriteRecipes${localStorage.getItem('userId')}`;
     this.favoriteRecipes = JSON.parse(localStorage.getItem(this.Favorite_Key) || '[]');
   }
@@ -68,7 +69,7 @@ class FavoriteRecipeRepo {
 
   getRecipesByIngredients(...ingreds) {
     return this.favoriteRecipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
-      ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
+      this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
   }
 

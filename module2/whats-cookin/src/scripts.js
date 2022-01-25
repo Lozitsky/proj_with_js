@@ -9,16 +9,13 @@ import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
 import User from "./classes/User";
-import {usersData} from "./data/users";
 import FavoriteRecipeRepo from "./classes/FavoriteRecipeRepo";
 import ToCookRecipeRepo from "./classes/ToCookRecipeRepo";
-// import apiCalls from './apiCalls';
-
+import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
 
 // Create variables targetting the relevant DOM elements here 👇
 let currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo;
 let user;
-const {recipeData} = require('../src/data/recipes');
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
 const details = document.querySelector('#details');
@@ -32,7 +29,8 @@ const favBtn = document.querySelector('.fav-link');
 const toCookBtn = document.querySelector('.to-cook-link');
 
 // Add your event listeners here 👇
-document.addEventListener('DOMContentLoaded', loadContent);
+// document.addEventListener('DOMContentLoaded', loadContent);
+window.addEventListener('load', loadContent);
 input.addEventListener('input', findByText);
 ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
 name.addEventListener('click', () => (changeTitleTo('name')));
@@ -212,13 +210,21 @@ function injectTag(tag, target) {
   target.appendChild(section);
 }
 
-function loadContent() {
-  user = new User(usersData.find(user => user.id === getRandomIndex(usersData)));
-  favoriteRecipeRepo = new FavoriteRecipeRepo();
+async function loadContent() {
+  // let recipeData = await getAllRecipes() || [];
+  let recipeData;
+  // let ingredientsData = await getAllIngredients() || [];
+  let ingredientsData;
+  let usersData = await getAllUsers()
+      .then(ingredientsData = await getAllIngredients())
+      .then(recipeData = await getAllRecipes());
+
+  user = new User(usersData.find(user => user.id === getRandomIndex(usersData)) || []);
+  favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
   Object.freeze(favoriteRecipeRepo);
-  toCookRecipeRepo = new ToCookRecipeRepo();
+  toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
   Object.freeze(toCookRecipeRepo);
-  recipeRepository = new RecipeRepository(recipeData);
+  recipeRepository = new RecipeRepository(recipeData, ingredientsData);
   showTags();
   showAllRecipes();
 }
