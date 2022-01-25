@@ -1,6 +1,3 @@
-// import ingredients from '../data/ingredients';
-// import recipe from "./Recipe";
-
 const {ingredientsData} = require('../data/ingredients');
 
 class RecipeRepository {

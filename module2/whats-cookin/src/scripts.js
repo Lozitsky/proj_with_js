@@ -4,21 +4,20 @@ import './images/prototype.webp';
 import './images/bender.webp';
 import './images/search.svg';
 import './images/star.svg';
+import './images/add.svg';
 import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
 import User from "./classes/User";
 import {usersData} from "./data/users";
 import FavoriteRecipeRepo from "./classes/FavoriteRecipeRepo";
+import ToCookRecipeRepo from "./classes/ToCookRecipeRepo";
 // import apiCalls from './apiCalls';
 
 
 // Create variables targetting the relevant DOM elements here 👇
-// let variables = JSON.parse(localStorage.getItem("variable") || '[]');
-let favoriteRecipeRepoInstance;
+let currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo;
 let user;
-let recipeRepository;
-let currentRepo;
 const {recipeData} = require('../src/data/recipes');
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
@@ -30,6 +29,7 @@ const searchTitle = document.querySelector('.sec-search__title');
 const sectionCheckboxes = document.querySelector('.aside-tags__checkboxes');
 const searchTagsButton = document.querySelector('.aside-tags__button');
 const favBtn = document.querySelector('.fav-link');
+const toCookBtn = document.querySelector('.to-cook-link');
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', loadContent);
@@ -38,7 +38,8 @@ ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
 name.addEventListener('click', () => (changeTitleTo('name')));
 searchTagsButton.addEventListener('click', findByTags);
 favBtn.addEventListener('click', toggleFavorite);
-// asideTags.addEventListener('')
+toCookBtn.addEventListener('click', toggleToCook);
+
 // Create your event handlers and other functions here 👇
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -47,7 +48,15 @@ function getRandomIndex(array) {
 function toggleFavorite() {
   if (favBtn.innerText === 'show all recipes'.toUpperCase()) {
     showAllRecipes();
-  } else {
+  } else if (favBtn.innerText === 'show favorite recipes'.toUpperCase()) {
+    showFavorites();
+  }
+}
+
+function toggleToCook() {
+  if (toCookBtn.innerText === 'show to cook recipes'.toUpperCase()) {
+    showToCook();
+  } else if (toCookBtn.innerText === 'show favorite recipes'.toUpperCase()) {
     showFavorites();
   }
 }
@@ -58,7 +67,6 @@ function findByTags(ev) {
 
   let checkboxes = sectionCheckboxes.querySelectorAll('input[type=checkbox]');
   let filter = Array.prototype.slice.call(checkboxes).filter(checkbox => checkbox.checked).map(input => input.name);
-  // recipeRepository.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
   currentRepo.getRecipesByTags(...filter).forEach(check => injectRecipe(check, recipesContainer));
 }
 
@@ -71,10 +79,8 @@ function findByText() {
   clearSecRecipes();
   let recipeList;
   if (searchTitle.textContent.includes('name')) {
-    // recipeList = recipeRepository.getRecipesByName(input.value);
     recipeList = currentRepo.getRecipesByName(input.value);
   } else {
-    // recipeList = recipeRepository.getRecipesByIngredients(...input.value.split(' '));
     recipeList = currentRepo.getRecipesByIngredients(...input.value.split(' '));
   }
   recipeList.forEach(recipe => {
@@ -131,41 +137,61 @@ function createDetails(data) {
 }
 
 function switchFavorite(recipe, svg) {
-  svg.classList.contains('card__star-full') ? svg.classList.remove("card__star-full") : svg.classList.add('card__star-full');
+  switchSelected(recipe, favoriteRecipeRepo, svg, 'card__star-full');
+}
 
-  favoriteRecipeRepoInstance.isInFavoriteContained(recipe) ? favoriteRecipeRepoInstance.remove(recipe) :
-    favoriteRecipeRepoInstance.add(recipe);
+function switchToCook(recipe, svg) {
+  switchSelected(recipe, toCookRecipeRepo, svg, 'card__add-full');
+}
+
+function switchSelected(recipe, repo, svg, img_class) {
+  svg.classList.contains(img_class) ? svg.classList.remove(img_class) : svg.classList.add(img_class);
+  repo.isInRepoContained(recipe) ? repo.remove(recipe) : repo.add(recipe);
 }
 
 function injectRecipe(recipe, target) {
   let a = document.createElement('a');
-  a.classList.add('popup-link');
+  a.classList.add('card__popup-link');
   a.setAttribute('href', '#details');
+
   let article = document.createElement('article');
   article.classList.add('card');
+
   let section = document.createElement('section');
   section.classList.add('card__label');
+
   let img = document.createElement('img');
   img.classList.add('card__img');
   img.setAttribute('src', recipe.image);
   img.setAttribute('alt', 'no image available');
-  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.classList.add('card__star');
-  favoriteRecipeRepoInstance.isInFavoriteContained(recipe) ? svg.classList.add('card__star-full') : '';
 
-  svg.addEventListener('click', () => switchFavorite(recipe, svg));
-  let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-  use.setAttributeNS(null, 'href', 'images/star.svg#star');
   let p = document.createElement('p');
   p.classList.add('card__name');
   p.textContent = recipe.name;
+
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add('card__star');
+  favoriteRecipeRepo.isInRepoContained(recipe) ? svg.classList.add('card__star-full') : '';
+  svg.addEventListener('click', () => switchFavorite(recipe, svg));
+  let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttributeNS(null, 'href', 'images/star.svg#star');
+
+  let svg2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg2.classList.add('card__add');
+  toCookRecipeRepo.isInRepoContained(recipe) ? svg2.classList.add('card__add-full') : '';
+  svg2.addEventListener('click', () => switchToCook(recipe, svg2));
+  let use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use2.setAttributeNS(null, 'href', 'images/add.svg#add');
+
   section.appendChild(img);
-  svg.appendChild(use);
   section.appendChild(p);
   a.appendChild(section);
   a.addEventListener('click', () => createDetails(recipe));
+  svg.appendChild(use);
+  svg2.appendChild(use2);
   article.appendChild(a);
   article.appendChild(svg)
+  article.appendChild(svg2)
   target.appendChild(article);
 }
 
@@ -188,8 +214,10 @@ function injectTag(tag, target) {
 
 function loadContent() {
   user = new User(usersData.find(user => user.id === getRandomIndex(usersData)));
-  favoriteRecipeRepoInstance = new FavoriteRecipeRepo();
-  Object.freeze(favoriteRecipeRepoInstance);
+  favoriteRecipeRepo = new FavoriteRecipeRepo();
+  Object.freeze(favoriteRecipeRepo);
+  toCookRecipeRepo = new ToCookRecipeRepo();
+  Object.freeze(toCookRecipeRepo);
   recipeRepository = new RecipeRepository(recipeData);
   showTags();
   showAllRecipes();
@@ -205,13 +233,22 @@ function showTags() {
 
 function showAllRecipes() {
   favBtn.innerText = 'show favorite recipes'.toUpperCase();
+  toCookBtn.innerText = 'show to cook recipes'.toUpperCase();
   currentRepo = recipeRepository;
   showRecipes();
 }
 
 function showFavorites() {
   favBtn.innerText = 'show all recipes'.toUpperCase();
-  currentRepo = favoriteRecipeRepoInstance;
+  toCookBtn.innerText = 'show to cook recipes'.toUpperCase();
+  currentRepo = favoriteRecipeRepo;
+  showRecipes();
+}
+
+function showToCook() {
+  favBtn.innerText = 'show all recipes'.toUpperCase();
+  toCookBtn.innerText = 'show favorite recipes'.toUpperCase();
+  currentRepo = toCookRecipeRepo;
   showRecipes();
 }
 

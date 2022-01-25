@@ -1,4 +1,3 @@
-// import allIngredients from '../data/ingredients';
 import Ingredient from "./Ingredient";
 
 const {ingredientsData} = require('../data/ingredients');

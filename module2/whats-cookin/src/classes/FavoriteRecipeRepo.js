@@ -26,7 +26,7 @@ class FavoriteRecipeRepo {
   }
 
   add(recipe) {
-    if (!this.isInFavoriteContained(recipe)) {
+    if (!this.isInRepoContained(recipe)) {
       this.favoriteRecipes.push(recipe);
       localStorage.setItem(this.Favorite_Key, JSON.stringify(this.favoriteRecipes));
     }
@@ -40,12 +40,12 @@ class FavoriteRecipeRepo {
   }
 
   remove(recipe) {
-    if (this.isInFavoriteContained(recipe)) {
+    if (this.isInRepoContained(recipe)) {
       this.removeFrom(this.favoriteRecipes, recipe, this.Favorite_Key);
     }
   }
 
-  isInFavoriteContained(newRecipe) {
+  isInRepoContained(newRecipe) {
     return this.isContained(newRecipe, this.favoriteRecipes);
   }
 
@@ -66,14 +66,14 @@ class FavoriteRecipeRepo {
     return this.favoriteRecipes.filter(recipe => recipe.name.includes(name));
   }
 
-  getAllRecipes() {
-    return this.favoriteRecipes;
-  }
-
   getRecipesByIngredients(...ingreds) {
     return this.favoriteRecipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
       ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
+  }
+
+  getAllRecipes() {
+    return this.favoriteRecipes;
   }
 
 }

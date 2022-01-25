@@ -1,3 +1,4 @@
+import {ingredientsData} from "../data/ingredients";
 
 class ToCookRecipeRepo {
   constructor() {
@@ -31,6 +32,25 @@ class ToCookRecipeRepo {
 
   isContained(newRecipe, repo) {
     return repo.some(recipe => recipe.id * 1 === newRecipe.id * 1);
+  }
+
+  getRecipesByTags(...tags) {
+    return this.recipesToCook.filter(recipe => tags.some(el =>
+      el === '' ? !recipe.tags.length : recipe.tags.includes(el)));
+  }
+
+  getRecipeByName(name) {
+    return this.recipesToCook.find(recipe => recipe.name === name);
+  }
+
+  getRecipesByName(name) {
+    return this.recipesToCook.filter(recipe => recipe.name.includes(name));
+  }
+
+  getRecipesByIngredients(...ingreds) {
+    return this.recipesToCook.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
+      ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
+    )));
   }
 
   getAllRecipes() {
