@@ -401,7 +401,7 @@ button::-moz-focus-inner {
     padding: 0;
     border: 0;
 }
-/*
+
 a, a:visited {
     text-decoration: none;
 }
@@ -414,6 +414,7 @@ ul li {
 img {
     vertical-align: top;
 }
+/*
 h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: inherit;

@@ -26,21 +26,85 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: url(../fonts/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
     src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    url(../fonts/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../fonts/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(../fonts/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-.material-icons {
+/*endregion ----------------- fonts --------------------*/
+html, body {
+    overflow-y: hidden;
+    font-family: 'Lato', sans-serif;
+    font-size: calc((100vw - 320px) / ((1920 - 320) / (22 - 9)) + 9px);
+}
+
+body > img {
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+}
+
+.container {
+    padding: 0 1em;
+}
+
+.container-fxdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+/*region ----------------- header ----------------------------*/
+.header {
+    padding: 1.2em .6em 2.3em .4em;
+}
+
+.header-dark {
+    background: #2b2b2b;
+}
+
+.header__nav {
+    width: 42.05%;
+}
+
+.header__links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__link {
+    padding-left: 1.6em;
+    position: relative;
+}
+
+.header__link-blue {
+    font-size: .76em;
+    color: #26b6fc;
+    align-self: center;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.header__link::before {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
+    font-size: 1.4em;
+    position: absolute;
     display: inline-block;
-    line-height: 1;
+    top: 50%;
+    left: -.1em;
+
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    /*line-height: 1;*/
     text-transform: none;
     letter-spacing: normal;
     word-wrap: normal;
@@ -59,12 +123,89 @@
     font-feature-settings: 'liga';
 }
 
-/*endregion ----------------- fonts --------------------*/
+.share::before {
+    font-family: 'Material Icons';
+    content: 'share';
+}
 
-body > img {
-    opacity: .5;
+.playlists::before {
+    font-family: 'Material Icons';
+    content: 'format_list_bulleted';
+    color: #26b6fc;
+}
+
+.personal::before {
+    font-family: 'Material Icons';
+    content: 'person_outline';
+    color: #26b6fc;
+}
+
+.account_circle::before {
+    font-family: 'Material Icons';
+    content: 'account_circle';
+    color: #ffffff;
+}
+
+.panorama_fish_eye::before {
+    font-family: 'Material Icons';
+    content: 'panorama_fish_eye';
+    color: #ffffff;
+    font-size: 2.3em;
+    left: -.45em;
+}
+
+.person_outline::after {
     position: absolute;
-    width: 100%;
+    font-family: 'Material Icons';
+    left: -.45em;
+    top: -.3em;
+    font-size: 1.7em;
+    content: 'person_outline';
+    color: #ffffff;
+}
+
+.arrow_drop_down::before {
+    position: absolute;
+    font-family: 'Material Icons';
+    content: 'play_arrow';
+    color: #26b6fc;
+
+    font-size: 2em;
+    display: inline-block;
+    top: 50%;
+    right: -.1em;
+
+    -webkit-transform: translateY(-50%) rotate(90deg);
+    -moz-transform: translateY(-50%) rotate(90deg);
+    -ms-transform: translateY(-50%) rotate(90deg);
+    -o-transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.header__link-selected {
+    color: #ffffff;
+}
+
+.header__link-unselected {
+    color: #9b9b9b;
+}
+
+.header__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    height: 5.7em;
+}
+
+.header__logo {
+    width: 9.8em;
+}
+
+/*endregion ----------------- header ----------------------------*/
+
+.main-light {
+    background: #efefef;
 }
 
 /*region------------------------media-------------------------------------*/
