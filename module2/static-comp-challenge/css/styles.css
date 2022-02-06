@@ -1,45 +1,49 @@
 /*region ----------------- fonts --------------------*/
 
 @font-face {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato';
     src: url('../fonts/Lato-Regular.eot');
-    src: url('../fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+    src:  local('Lato'),
+    local('Lato-Regular'),
+    url('../fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Lato-Regular.woff') format('woff'),
     url('../fonts/Lato-Regular.woff2') format('woff2'),
     url('../fonts/Lato-Regular.ttf') format('truetype');
-    font-style: normal;
     font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato';
     src: url('../fonts/Lato-Bold.eot');
-    src: url('../fonts/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+    src:  local('Lato'),
+    local('Lato-Bold'),
+    url('../fonts/Lato-Bold.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Lato-Bold.woff') format('woff'),
     url('../fonts/Lato-Bold.woff2') format('woff2'),
     url('../fonts/Lato-Bold.ttf') format('truetype');
-    font-style: normal;
     font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
     src: url(../fonts/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
     src: local('Material Icons'),
     local('MaterialIcons-Regular'),
     url(../fonts/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
     url(../fonts/iconfont/MaterialIcons-Regular.woff) format('woff'),
     url(../fonts/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 /*endregion ----------------- fonts --------------------*/
 html, body {
-    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Lato', sans-serif;
     font-size: calc((100vw - 320px) / ((1920 - 320) / (22 - 9)) + 9px);
-    /*position: relative;*/
 }
 
 body > img {
@@ -49,7 +53,7 @@ body > img {
 }
 
 .container {
-    padding: 0 1em;
+    padding: 0 1.01em 0 1.03em;
 }
 
 .container-fxdr {
@@ -60,7 +64,7 @@ body > img {
 
 /*region ----------------- header ----------------------------*/
 .header {
-    padding: 1.2em .6em 2.3em .4em;
+    padding: .9em .6em 2.3em .4em;
 }
 
 .header-dark {
@@ -68,26 +72,28 @@ body > img {
 }
 
 .header__nav {
-    width: 42.05%;
+    width: 42.1%;
 }
 
 .header__links {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    font-weight: 600;
 }
 
 .header__link {
+    font-size: 1.05em;
     padding-left: 1.6em;
     position: relative;
 }
 
 .header__link-blue {
-    font-size: .76em;
+    font-weight: 400;
+    font-size: .89em;
     color: #26b6fc;
     align-self: center;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 0 1.6em;
 }
 
 .header__link::before {
@@ -105,7 +111,6 @@ body > img {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 
-    /*line-height: 1;*/
     text-transform: none;
     letter-spacing: normal;
     word-wrap: normal;
@@ -171,7 +176,7 @@ body > img {
     content: 'play_arrow';
     color: #26b6fc;
 
-    font-size: 2em;
+    font-size: 1.6em;
     display: inline-block;
     top: 50%;
     right: -.1em;
@@ -192,11 +197,12 @@ body > img {
 }
 
 .header__aside {
+    padding: .2em 0 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: end;
-    height: 5.7em;
+    height: 6em;
 }
 
 .header__logo {
@@ -214,21 +220,22 @@ body > img {
 }
 
 .title {
-    font-size: 2em;
+    font-size: 2.25em;
+    line-height: 1.15em;
+    padding: 1em 0 .9em 0;
+    color: #4d4d4d;
     font-weight: 400;
-    line-height: 1.5em;
-    padding: 1.1em 0 .8em 0;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-column-gap: .6em;
-    grid-row-gap: .5em;
-    /*grid-auto-rows: 1fr;*/
+    grid-template-columns: repeat(auto-fill, minmax(277px, 1fr));
+    grid-column-gap: .68em;
+    grid-row-gap: .7em;
 }
 
 .card {
+    box-shadow: 0 0 5px 0 #b7b7b7;
 }
 
 .card__img-section {
@@ -237,12 +244,11 @@ body > img {
     overflow-y: hidden;
     overflow-x: hidden;
     position: relative;
-    box-shadow: 0 0 5px 0 #b7b7b7;
 }
 
 .card__img {
-    width: 100%;
-    height: 115%;
+    width: 102%;
+    height: 124%;
     right: 0;
     object-fit: cover;
     filter: brightness(50%);
@@ -272,9 +278,8 @@ body > img {
 .card__link:after {
     color: #4e4e4e;
     position: absolute;
-    top: 50%;
+    top: 47%;
     left: 50%;
-
     content: 'reply';
     font-size: 1.1em;
 
@@ -291,22 +296,88 @@ body > img {
 
 .card__views-title {
     position: absolute;
-    top: 9%;
-    right: 5%;
+    top: 9.5%;
+    right: 7%;
     font-size: .7em;
-
 }
 
-.card__views-num {
+.card__num {
+    font-size: 1.85em;
+}
+
+.card__num-views {
     position: absolute;
-    top: 18%;
-    right: 5%;
-    font-size: 2em;
+    top: 20%;
+    right: 7%;
 }
 
 .card__body {
-
+    height: 16em;
+    background: #ffffff;
+    color: #4f4f4f;
+    padding: .9em 1.3em 1.25em 1.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.card__bio {
+    font-size: .85em;
+    font-weight: 400;
+    line-height: 1.3em;
+    padding-bottom: .3em;
+}
+
+.card__name {
+    font-weight: 400;
+}
+
+.card__data {
+    font-size: .9em;
+    opacity: .5;
+}
+
+.card__rec {
+    background: #efefef;
+    height: 3.2em;
+    padding: .39em .5em;
+}
+
+.card__rec-link {
+    font-size: .76em;
+    line-height: 1.25em;
+    max-width: 220px;
+    /*text-overflow: '-';*/
+    /*need eng lang for true dictionary*/
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-break: keep-all;
+    opacity: .7;
+    font-weight: 700;
+}
+
+.card__playlist {
+    padding-left: .15em;
+}
+
+.card__subtitle {
+    line-height: 1.7em;
+    font-size: .68em;
+}
+
+.card__playlist-name {
+}
+
+.card__attach {
+    padding-left: .1em;
+}
+
+.card__num-blue {
+    color: #28b5fd;
+}
+
 
 /*region------------------------media-------------------------------------*/
 
