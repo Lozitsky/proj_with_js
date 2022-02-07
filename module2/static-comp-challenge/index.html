@@ -5,234 +5,240 @@
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet"/>
     <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <meta content="width=device-width" name="viewport, initial-scale=1">
+<!--    <meta content="width=device-width" name="viewport, initial-scale=1">-->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta charset="UTF-8">
 </head>
 <body>
 <!--<img src="assets/static-comp-challenge-2.jpg" alt="image error">-->
 <!--header.header-dark+main.main-light-->
 <!--(header.header.header-dark>(nav.header__nav>ul.header__links>li.header__link{Link$}*3)+aside.header__aside>span{Admin Username}+img.header__logo[alt='logo error'])+main.main-light-->
-<header class="header header-dark">
-    <div class="container container-fxdr">
-        <nav class="header__nav">
-            <ul class="header__links">
-                <li><a href="#" class="header__link share header__link-selected">SHARES</a></li>
-                <li><a href="#" class="header__link playlists header__link-unselected">PLAYLISTS</a></li>
-                <li><a href="#" class="header__link personal header__link-unselected">PERSONAL VIDEOS</a></li>
-            </ul>
-        </nav>
-        <aside class="header__aside">
-            <a href="#" class="header__link panorama_fish_eye person_outline header__link-blue">Admin Username <span
-                    class="arrow_drop_down"></span></a>
-            <img src="assets/2Win.svg" alt="logo error" class="header__logo">
-        </aside>
-    </div>
-</header>
-<main class="main-light">
-    <div class="container container-img-sec">
-        <!--        h2.title{Shares}+section.grid-container>article.card*8>(section.card__img-section>img.card__img)+section.card__body-->
-        <!--        h2.title{Shares}+section.grid-container>article.card*8>(section.card__img-section>img.card__img+a.card__link[#]+section.card__views-info>span.card__views-title{VIEWS}+span.card__views-num{02})+section.card__body-->
-        <h2 class="title">Shares</h2>
-        <section class="grid-container">
-            <article class="card">
-                <section class="card__img-section">
-                    <img src="assets/img1.webp" alt="" class="card__img">
-                    <a href="#" class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span>
+<div class="wrapper">
+    <input type="checkbox" name="" id="header__toggle">
+    <header class="header header-dark">
+        <div class="container header__container">
+            <label for="header__toggle" class="header__burger"><span></span></label>
+            <nav class="header__menu">
+                <ul class="header__list">
+                    <li><a href="#" class="header__link share header__link-selected">SHARES</a></li>
+                    <li><a href="#" class="header__link playlists header__link-unselected">PLAYLISTS</a></li>
+                    <li><a href="#" class="header__link personal header__link-unselected">PERSONAL VIDEOS</a></li>
+                </ul>
+            </nav>
+            <aside class="header__aside">
+                <a href="#" class="header__link panorama_fish_eye person_outline header__link-blue">Admin Username <span
+                        class="arrow_drop_down"></span></a>
+                <img src="assets/2Win.svg" alt="logo error" class="header__logo">
+            </aside>
+        </div>
+    </header>
+    <main class="main-light">
+        <div class="container container-img-sec">
+            <!--        h2.title{Shares}+section.grid-container>article.card*8>(section.card__img-section>img.card__img)+section.card__body-->
+            <!--        h2.title{Shares}+section.grid-container>article.card*8>(section.card__img-section>img.card__img+a.card__link[#]+section.card__views-info>span.card__views-title{VIEWS}+span.card__views-num{02})+section.card__body-->
+            <h2 class="title">Shares</h2>
+            <section class="grid-container">
+                <article class="card">
+                    <section class="card__img-section">
+                        <img src="assets/img1.webp" alt="" class="card__img">
+                        <a href="#" class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span>
+                        </section>
                     </section>
-                </section>
-                <section class="card__body">
-                    <!--                    section.card__bio>h3.card__name{Recipeint's Namehere}+p.card__data{Monday 01/23/16 10:22am}^section.card__rec>p.card__rec-link{http://2win.2winstage.com/p/recipients_namehere}^section.card__playlist>h4.card__subtitle{PLAYLIST}+p.card__playlist-name{Name of Playlist}^section.card__attach>h4.card__subtitle{ATTACHMENTS}+p.card__num.card__num-blue{04}-->
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
+                    <section class="card__body">
+                        <!--                    section.card__bio>h3.card__name{Recipeint's Namehere}+p.card__data{Monday 01/23/16 10:22am}^section.card__rec>p.card__rec-link{http://2win.2winstage.com/p/recipients_namehere}^section.card__playlist>h4.card__subtitle{PLAYLIST}+p.card__playlist-name{Name of Playlist}^section.card__attach>h4.card__subtitle{ATTACHMENTS}+p.card__num.card__num-blue{04}-->
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section">
+                        <img src="assets/img2_2.webp" alt="" class="card__img">
+                        <a href="#" class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/IBM_Hero.webp" alt="" class="card__img"><a
+                            href="#"
+                            class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section">
-                    <img src="assets/img2_2.webp" alt="" class="card__img">
-                    <a href="#" class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
-                    </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
-                    </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
-                    </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/IBM_Hero.webp" alt="" class="card__img"><a href="#"
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/img4.webp" alt="" class="card__img"><a href="#"
                                                                                                                class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/img5.jpg" alt="" class="card__img"><a href="#"
+                                                                                                              class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/img4.webp" alt="" class="card__img"><a href="#"
-                                                                                                           class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/img6.webp" alt="" class="card__img"><a href="#"
+                                                                                                               class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/img7_1.jpg" alt="" class="card__img"><a href="#"
+                                                                                                                class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/img5.jpg" alt="" class="card__img"><a href="#"
-                                                                                                          class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
+                </article>
+                <article class="card">
+                    <section class="card__img-section"><img src="assets/img8.webp" alt="" class="card__img"><a href="#"
+                                                                                                               class="card__link"></a>
+                        <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
+                                class="card__num card__num-views">02</span></section>
                     </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                    <section class="card__body">
+                        <section class="card__bio">
+                            <h3 class="card__name">Recipeint's Namehere</h3>
+                            <p class="card__data">Monday 01/23/16 10:22am</p>
+                        </section>
+                        <section class="card__rec">
+                            <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
+                        </section>
+                        <section class="card__playlist">
+                            <h4 class="card__subtitle">PLAYLIST</h4>
+                            <p class="card__playlist-name">Name of Playlist</p>
+                        </section>
+                        <section class="card__attach">
+                            <h4 class="card__subtitle">ATTACHMENTS</h4>
+                            <p class="card__num card__num-blue">04</p>
+                        </section>
                     </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
-                    </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
-                    </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/img6.webp" alt="" class="card__img"><a href="#"
-                                                                                                           class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
-                    </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
-                    </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
-                    </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
-                    </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/img7_1.jpg" alt="" class="card__img"><a href="#"
-                                                                                                            class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
-                    </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
-                    </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
-                    </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
-                    </section>
-                </section>
-            </article>
-            <article class="card">
-                <section class="card__img-section"><img src="assets/img8.webp" alt="" class="card__img"><a href="#"
-                                                                                                           class="card__link"></a>
-                    <section class="card__views-info"><span class="card__views-title">VIEWS</span><span
-                            class="card__num card__num-views">02</span></section>
-                </section>
-                <section class="card__body">
-                    <section class="card__bio">
-                        <h3 class="card__name">Recipeint's Namehere</h3>
-                        <p class="card__data">Monday 01/23/16 10:22am</p>
-                    </section>
-                    <section class="card__rec">
-                        <p class="card__rec-link">http://2win.2winstage.com/p/recipients_namehere</p>
-                    </section>
-                    <section class="card__playlist">
-                        <h4 class="card__subtitle">PLAYLIST</h4>
-                        <p class="card__playlist-name">Name of Playlist</p>
-                    </section>
-                    <section class="card__attach">
-                        <h4 class="card__subtitle">ATTACHMENTS</h4>
-                        <p class="card__num card__num-blue">04</p>
-                    </section>
-                </section>
-            </article>
-        </section>
-    </div>
-</main>
+                </article>
+            </section>
+        </div>
+    </main>
+</div>
 </body>
 <!--<script src="src/main.js" type="text/javascript"></script>-->
 <!--<script src="src/data.js"></script>-->
