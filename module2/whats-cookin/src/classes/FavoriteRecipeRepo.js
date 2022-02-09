@@ -1,6 +1,6 @@
 // import {ingredientsData} from "../data/ingredients";
 
-/*global.localStorage = {
+global.localStorage = {
   data: {},
   getItem(key) {
     const val = this.data[key]
@@ -15,7 +15,7 @@
   removeItem(key) {
     delete this.data[key];
   }
-};*/
+};
 
 // let Favorite_Key;
 
@@ -67,7 +67,7 @@ class FavoriteRecipeRepo {
     return this.favoriteRecipes.filter(recipe => recipe.name.includes(name));
   }
 
-  getRecipesByIngredients(...ingreds) {
+  getRecipesByIngredients(ingreds) {
     return this.favoriteRecipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
       this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));

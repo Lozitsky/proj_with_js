@@ -12,6 +12,7 @@ import User from "./classes/User";
 import FavoriteRecipeRepo from "./classes/FavoriteRecipeRepo";
 import ToCookRecipeRepo from "./classes/ToCookRecipeRepo";
 import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
+import {ingredientsData} from "./data/ingredients";
 
 // Create variables targetting the relevant DOM elements here 👇
 let currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo;
@@ -79,7 +80,8 @@ function findByText() {
   if (searchTitle.textContent.includes('name')) {
     recipeList = currentRepo.getRecipesByName(input.value);
   } else {
-    recipeList = currentRepo.getRecipesByIngredients(...input.value.split(' '));
+    // recipeList = currentRepo.getRecipesByIngredients(...input.value.split(' '));
+    recipeList = currentRepo.getRecipesByIngredients(input.value.split(' '));
   }
   recipeList.forEach(recipe => {
     injectRecipe(recipe, recipesContainer);
@@ -87,7 +89,7 @@ function findByText() {
 }
 
 function createDetails(data) {
-  let recipe = new Recipe(data);
+  let recipe = new Recipe(data, ingredientsData);
   details.innerHTML = '';
   details.classList.add('popup');
   let area = document.createElement('a');
@@ -212,12 +214,12 @@ function injectTag(tag, target) {
 
 async function loadContent() {
   // let recipeData = await getAllRecipes() || [];
-  let recipeData;
+  let recipeData = await getAllRecipes();
   // let ingredientsData = await getAllIngredients() || [];
-  let ingredientsData;
-  let usersData = await getAllUsers()
-      .then(ingredientsData = await getAllIngredients())
-      .then(recipeData = await getAllRecipes());
+  let ingredientsData = await getAllIngredients();
+  let usersData = await getAllUsers();
+      // .then(ingredientsData = await getAllIngredients())
+      // .then(recipeData = await getAllRecipes());
 
   user = new User(usersData.find(user => user.id === getRandomIndex(usersData)) || []);
   favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);

@@ -1,16 +1,33 @@
 // import {ingredientsData} from "../data/ingredients";
 
+global.localStorage = {
+  data: {},
+  getItem(key) {
+    const val = this.data[key]
+    if (val) {
+      return val
+    }
+    return null
+  },
+  setItem(key, value) {
+    this.data[key] = value;
+  },
+  removeItem(key) {
+    delete this.data[key];
+  }
+};
+
 class ToCookRecipeRepo {
   constructor(ingredientsData) {
     this.ingredientsData = ingredientsData;
-    this.To_Cook_Key = `favoriteRecipes${localStorage.getItem('userId')}`;
-    this.recipesToCook = JSON.parse(localStorage.getItem(this.To_Cook_Key) || '[]');
+    this.To_Cook_Key = `toCookRecipes${localStorage.getItem('userId')}`;
+    this.toCookRecipes = JSON.parse(localStorage.getItem(this.To_Cook_Key) || '[]');
   }
 
   add(recipe) {
     if (!this.isInRepoContained(recipe)) {
-      this.recipesToCook.push(recipe);
-      localStorage.setItem(this.To_Cook_Key, JSON.stringify(this.recipesToCook));
+      this.toCookRecipes.push(recipe);
+      localStorage.setItem(this.To_Cook_Key, JSON.stringify(this.toCookRecipes));
     }
   }
 
@@ -23,12 +40,12 @@ class ToCookRecipeRepo {
 
   remove(recipe) {
     if (this.isInRepoContained(recipe)) {
-      this.removeFrom(this.recipesToCook, recipe, this.To_Cook_Key);
+      this.removeFrom(this.toCookRecipes, recipe, this.To_Cook_Key);
     }
   }
 
   isInRepoContained(newRecipe) {
-    return this.isContained(newRecipe, this.recipesToCook);
+    return this.isContained(newRecipe, this.toCookRecipes);
   }
 
   isContained(newRecipe, repo) {
@@ -36,26 +53,26 @@ class ToCookRecipeRepo {
   }
 
   getRecipesByTags(...tags) {
-    return this.recipesToCook.filter(recipe => tags.some(el =>
+    return this.toCookRecipes.filter(recipe => tags.some(el =>
       el === '' ? !recipe.tags.length : recipe.tags.includes(el)));
   }
 
   getRecipeByName(name) {
-    return this.recipesToCook.find(recipe => recipe.name === name);
+    return this.toCookRecipes.find(recipe => recipe.name === name);
   }
 
   getRecipesByName(name) {
-    return this.recipesToCook.filter(recipe => recipe.name.includes(name));
+    return this.toCookRecipes.filter(recipe => recipe.name.includes(name));
   }
 
-  getRecipesByIngredients(...ingreds) {
-    return this.recipesToCook.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
+  getRecipesByIngredients(ingreds) {
+    return this.toCookRecipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
       this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
   }
 
   getAllRecipes() {
-    return this.recipesToCook;
+    return this.toCookRecipes;
   }
 
 }

@@ -1,10 +1,8 @@
 import Ingredient from "./Ingredient";
 
-const {ingredientsData} = require('../data/ingredients');
-
 class Recipe {
-  constructor(id, image, ingredients, instructions, name, tags) {
-
+  constructor(id, ingredientsData, image, ingredients, instructions, name, tags) {
+    this.ingredientsData = ingredientsData;
     if (tags === undefined && id !== undefined) {
       this.id = id.id;
       this.image = id.image;
@@ -23,11 +21,11 @@ class Recipe {
   }
 
   getIngredientNames() {
-    return this.ingredients.map(ingredient => ingredientsData.find(ingred => ingred.id === ingredient.id).name);
+    return this.ingredients.map(ingredient => this.ingredientsData.find(ingred => ingred.id === ingredient.id).name);
   }
 
   getIngredientsCost() {
-    return this.ingredients.reduce((sum, ingr) => sum + ingredientsData.find(ingred => ingred.id === ingr.id).estimatedCostInCents * ingr.quantity.amount, 0);
+    return this.ingredients.reduce((sum, ingr) => sum + this.ingredientsData.find(ingred => ingred.id === ingr.id).estimatedCostInCents * ingr.quantity.amount, 0);
   }
 
   getInstructions() {
@@ -36,11 +34,11 @@ class Recipe {
 
   getIngredients() {
     return this.ingredients.map(ingredient => {
-      let name = ingredientsData.find(ingred => ingred.id === ingredient.id).name;
+      let name = this.ingredientsData.find(ingred => ingred.id === ingredient.id).name;
       return new Ingredient(name, ingredient.quantity.amount, ingredient.quantity.unit);
     });
   }
-  
+
 
 }
 

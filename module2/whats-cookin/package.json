@@ -22,6 +22,10 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
+    "testRecipe": "mochapack 'test/**/Recipe-test.js'",
+    "testRecipeRepo": "mochapack 'test/**/RecipeRepository-test.js'",
+    "testFavoriteRecipeRepo": "mochapack 'test/**/FavoriteRecipeRepo-test.js'",
+    "testToCookRecipeRepo": "mochapack 'test/**/ToCookRecipeRepo-test.js'",
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "author": "Turing School of Software and Design",

@@ -1,6 +1,8 @@
 import {expect} from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import {ingredientsData} from "../src/data/ingredients";
 
+// const ingrediensData = ingredientsData;
 const recipe1 = {
   "id": 595736,
   "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -657,12 +659,12 @@ describe('RecipeRepository', () => {
     expect(recipe.getRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
   });
   it('should be able to filter based on a single ingredient', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    expect(recipe.getRecipesByIngredients('dijon style mustard')).to.deep.equal([recipe2]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientsData);
+    expect(recipe.getRecipesByIngredients(['dijon', 'style', 'mustard'])).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    expect(recipe.getRecipesByIngredients('wheat flour', 'buck wheat flour', 'butter')).to.deep.equal([recipe4]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientsData);
+    expect(recipe.getRecipesByIngredients(['wheat flour', 'buck wheat flour', 'butter'])).to.deep.equal([recipe4]);
   });
 
 })

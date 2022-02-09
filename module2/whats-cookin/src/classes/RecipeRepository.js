@@ -19,10 +19,14 @@ class RecipeRepository {
     return this.recipes.filter(recipe => recipe.name.includes(name));
   }
 
-  getRecipesByIngredients(...ingreds) {
+  getRecipesByIngredients(ingreds) {
     return this.recipes.filter(recipe => ingreds.every(name => recipe.ingredients.some(ingred =>
       this.ingredientsData.some(ing => (ing.name || '').includes(name) && ing.id === ingred.id)
     )));
+  }
+
+  getAllIngredients() {
+    return this.ingredientsData;
   }
 
   getAllRecipes() {
