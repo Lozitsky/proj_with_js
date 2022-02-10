@@ -23,6 +23,8 @@
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
     "testRecipe": "mochapack 'test/**/Recipe-test.js'",
+    "testUser": "mochapack 'test/**/User-test.js'",
+    "testPantry": "mochapack 'test/**/Pantry-test.js'",
     "testRecipeRepo": "mochapack 'test/**/RecipeRepository-test.js'",
     "testFavoriteRecipeRepo": "mochapack 'test/**/FavoriteRecipeRepo-test.js'",
     "testToCookRecipeRepo": "mochapack 'test/**/ToCookRecipeRepo-test.js'",
