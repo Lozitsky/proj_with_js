@@ -30,8 +30,8 @@ const favBtn = document.querySelector('.fav-link');
 const toCookBtn = document.querySelector('.to-cook-link');
 
 // Add your event listeners here 👇
-// document.addEventListener('DOMContentLoaded', loadContent);
-window.addEventListener('load', loadContent);
+document.addEventListener('DOMContentLoaded', loadContent);
+// window.addEventListener('load', loadContent);
 input.addEventListener('input', findByText);
 ingredients.addEventListener('click', () => (changeTitleTo('ingredients')));
 name.addEventListener('click', () => (changeTitleTo('name')));
@@ -212,23 +212,24 @@ function injectTag(tag, target) {
   target.appendChild(section);
 }
 
-async function loadContent() {
-  // let recipeData = await getAllRecipes() || [];
-  let recipeData = await getAllRecipes();
-  // let ingredientsData = await getAllIngredients() || [];
-  let ingredientsData = await getAllIngredients();
-  let usersData = await getAllUsers();
-      // .then(ingredientsData = await getAllIngredients())
-      // .then(recipeData = await getAllRecipes());
-
+function initData(usersData, ingredientsData, recipeData) {
   user = new User(usersData.find(user => user.id === getRandomIndex(usersData)) || []);
+
   favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
   Object.freeze(favoriteRecipeRepo);
   toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
   Object.freeze(toCookRecipeRepo);
   recipeRepository = new RecipeRepository(recipeData, ingredientsData);
-  showTags();
-  showAllRecipes();
+}
+
+function loadContent() {
+  Promise.all([getAllUsers(), getAllRecipes(), getAllIngredients()])
+    .then(([usersData, recipeData, ingredientsData]) => {
+      initData(usersData, ingredientsData, recipeData);
+      showTags();
+      showAllRecipes();
+    }
+    );
 }
 
 function showTags() {

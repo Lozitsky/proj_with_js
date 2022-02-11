@@ -1,6 +1,6 @@
 // import {ingredientsData} from "../data/ingredients";
 
-global.localStorage = {
+/*global.localStorage = {
   data: {},
   getItem(key) {
     const val = this.data[key]
@@ -15,7 +15,7 @@ global.localStorage = {
   removeItem(key) {
     delete this.data[key];
   }
-};
+};*/
 
 class ToCookRecipeRepo {
   constructor(ingredientsData) {

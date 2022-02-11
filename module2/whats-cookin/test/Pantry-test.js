@@ -22,4 +22,17 @@ describe('Pantry', function () {
     let pantry = new Pantry(user, ingredientsData);
     expect(pantry.ingredients).to.equal(ingredientsData);
   });
+  it('must contained getAllIngredients method', function () {
+    let pantry = new Pantry();
+    expect(pantry).to.have.property('getAllIngredients');
+  });
+  it('must contained hasIngredients method', function () {
+    let pantry = new Pantry();
+    expect(pantry).to.have.property('hasIngredients');
+  });
+  it('should be return what ingredients exist inside pantry', function () {
+    let user = new User(usersData[13]);
+    let pantry = new Pantry(user, ingredientsData);
+    expect(pantry.ingredients)
+  });
 });

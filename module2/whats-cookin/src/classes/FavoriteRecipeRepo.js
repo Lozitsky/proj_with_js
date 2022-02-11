@@ -1,6 +1,6 @@
 // import {ingredientsData} from "../data/ingredients";
 
-global.localStorage = {
+/*global.localStorage = {
   data: {},
   getItem(key) {
     const val = this.data[key]
@@ -15,7 +15,7 @@ global.localStorage = {
   removeItem(key) {
     delete this.data[key];
   }
-};
+};*/
 
 // let Favorite_Key;
 
@@ -78,11 +78,5 @@ class FavoriteRecipeRepo {
   }
 
 }
-
-// const recipeRepoFactoryInstance = new RecipeRepoFactory();
-// Object.freeze(recipeRepoFactoryInstance);
-//
-//
-// export default recipeRepoFactoryInstance;
 
 export default FavoriteRecipeRepo;
