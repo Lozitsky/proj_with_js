@@ -1,13 +1,20 @@
 // import users from '../data/users';
 
-class UserRepository {
-    constructor(users) {
-        this.users = users;
-    }
+import {getAllUsers} from "../apiCallsLocal";
+import User from "./User";
 
-    getUserById(id) {
-        return this.users.find(user => user.id === id);
-    }
+class UserRepository {
+  constructor(users) {
+    this.users = users;
+  }
+
+  getUserById(id) {
+    return new User(this.users.find(user => user.id === id) || []);
+  }
+
+  getAllUsers() {
+    return getAllUsers();
+  }
 }
 
 export default UserRepository;

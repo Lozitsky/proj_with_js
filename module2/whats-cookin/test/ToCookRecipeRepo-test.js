@@ -1,7 +1,8 @@
 import {ingredientsData} from "../src/data/ingredients";
 import {expect} from "chai";
-import ToCookRecipeRepo from "../src/classes/ToCookRecipeRepo";
+// import ToCookRecipeRepo from "../src/classes/ToCookRecipeRepo";
 import Recipe from "../src/classes/Recipe";
+import FactoryRecipeRepo from "../src/classes/FactoryRecipeRepo";
 
 const recipe1 = {
   ingredientsData,
@@ -625,40 +626,40 @@ const recipe5 = {
 
 describe('ToCookRecipeRepo', function () {
   it('should be a function', function () {
-    expect(ToCookRecipeRepo).to.be.a('function');
+    expect(FactoryRecipeRepo).to.be.a('function');
   });
   it('should be the same', function () {
-    let toCookRecipeRepo = new ToCookRecipeRepo();
-    expect(toCookRecipeRepo.toCookRecipes).to.deep.equal(JSON.parse(localStorage.getItem('toCookRecipes') || '[]'));
+    let toCookRecipeRepo = new FactoryRecipeRepo();
+    expect(toCookRecipeRepo.recipes).to.deep.equal(JSON.parse(localStorage.getItem('toCookRecipes') || '[]'));
   });
   it('should be add to toCookRecipes', function () {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     let recipe = new Recipe(recipe1, ingredientsData);
     toCookRecipeRepo.add(recipe);
-    expect(toCookRecipeRepo.toCookRecipes).to.deep.equal([recipe]);
+    expect(toCookRecipeRepo.recipes).to.deep.equal([recipe]);
   });
   it('should be remove from toCookRecipes', function () {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     let recipe = new Recipe(recipe1);
     toCookRecipeRepo.add(recipe);
     toCookRecipeRepo.remove(recipe);
-    expect(toCookRecipeRepo.toCookRecipes).to.deep.equal([]);
+    expect(toCookRecipeRepo.recipes).to.deep.equal([]);
   });
 
   it('must contain getRecipeByName method', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     expect(toCookRecipeRepo).to.have.property("getRecipeByName");
   });
   it('must contain getRecipesByIngredients method', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     expect(toCookRecipeRepo).to.have.property("getRecipesByIngredients");
   });
   it('must contain getRecipesByTags method', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     expect(toCookRecipeRepo).to.have.property("getRecipesByTags");
   });
   it('should be able to filter based on name', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     toCookRecipeRepo.add(recipe1);
     toCookRecipeRepo.add(recipe2);
     toCookRecipeRepo.add(recipe3);
@@ -667,7 +668,7 @@ describe('ToCookRecipeRepo', function () {
     expect(toCookRecipeRepo.getRecipeByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal(recipe2);
   });
   it('should be able to filter based on a single tag', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
 
     toCookRecipeRepo.add(recipe1);
     toCookRecipeRepo.add(recipe2);
@@ -677,7 +678,7 @@ describe('ToCookRecipeRepo', function () {
     expect(toCookRecipeRepo.getRecipesByTags('sauce')).to.deep.equal([recipe3]);
   });
   it('should be able to filter based on multiple tags', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     toCookRecipeRepo.add(recipe1);
     toCookRecipeRepo.add(recipe2);
     toCookRecipeRepo.add(recipe3);
@@ -686,7 +687,7 @@ describe('ToCookRecipeRepo', function () {
     expect(toCookRecipeRepo.getRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
   });
   it('should be able to filter based on a single ingredient', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     toCookRecipeRepo.add(recipe1);
     toCookRecipeRepo.add(recipe2);
     toCookRecipeRepo.add(recipe3);
@@ -695,7 +696,7 @@ describe('ToCookRecipeRepo', function () {
     expect(toCookRecipeRepo.getRecipesByIngredients(['dijon style mustard'])).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
-    let toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+    let toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
     toCookRecipeRepo.add(recipe1);
     toCookRecipeRepo.add(recipe2);
     toCookRecipeRepo.add(recipe3);

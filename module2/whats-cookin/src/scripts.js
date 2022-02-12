@@ -8,14 +8,15 @@ import './images/add.svg';
 import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
-import User from "./classes/User";
-import FavoriteRecipeRepo from "./classes/FavoriteRecipeRepo";
-import ToCookRecipeRepo from "./classes/ToCookRecipeRepo";
-import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
-import {ingredientsData} from "./data/ingredients";
+// import User from "./classes/User";
+import FactoryRecipeRepo from "./classes/FactoryRecipeRepo";
+// import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
+import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCallsLocal';
+import IngredientRepo from "./classes/IngredientRepo";
+import UserRepository from "./classes/UserRepository";
 
 // Create variables targetting the relevant DOM elements here 👇
-let currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo;
+let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientsRepo;
 let user;
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
@@ -89,7 +90,7 @@ function findByText() {
 }
 
 function createDetails(data) {
-  let recipe = new Recipe(data, ingredientsData);
+  let recipe = new Recipe(data, ingredientsRepo.getAllIngredients());
   details.innerHTML = '';
   details.classList.add('popup');
   let area = document.createElement('a');
@@ -213,11 +214,13 @@ function injectTag(tag, target) {
 }
 
 function initData(usersData, ingredientsData, recipeData) {
-  user = new User(usersData.find(user => user.id === getRandomIndex(usersData)) || []);
+  userRepo = new UserRepository(usersData);
+  user = userRepo.getUserById(getRandomIndex(usersData));
 
-  favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+  ingredientsRepo = new IngredientRepo(ingredientsData);
+  favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
   Object.freeze(favoriteRecipeRepo);
-  toCookRecipeRepo = new ToCookRecipeRepo(ingredientsData);
+  toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
   Object.freeze(toCookRecipeRepo);
   recipeRepository = new RecipeRepository(recipeData, ingredientsData);
 }
@@ -228,8 +231,7 @@ function loadContent() {
       initData(usersData, ingredientsData, recipeData);
       showTags();
       showAllRecipes();
-    }
-    );
+    });
 }
 
 function showTags() {

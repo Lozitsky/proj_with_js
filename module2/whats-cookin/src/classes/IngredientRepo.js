@@ -1,4 +1,4 @@
-class IngredientRepository {
+class IngredientRepo {
   constructor(ingredientsData) {
     this.ingredientsData = ingredientsData;
   }
@@ -10,6 +10,10 @@ class IngredientRepository {
   getIngredientByName(name) {
     return this.ingredientsData.find(ingredient => ingredient.name === name);
   }
+
+  getAllIngredients() {
+    return this.ingredientsData;
+  }
 }
 
-export default IngredientRepository;
+export default IngredientRepo;

@@ -25,7 +25,20 @@ class Pantry {
     });
   }
 
+  addIngredient(ingredient) {
+
+  }
+
   addIngredients(ingredients) {
+
+  }
+
+  removeIngredient(ingredient) {
+
+  }
+
+  removeIngredients(ingredients) {
+
   }
 
 }

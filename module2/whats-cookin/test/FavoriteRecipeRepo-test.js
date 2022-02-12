@@ -1,5 +1,5 @@
 import {expect} from "chai";
-import FavoriteRecipeRepo from "../src/classes/FavoriteRecipeRepo";
+import FactoryRecipeRepo from "../src/classes/FactoryRecipeRepo";
 import Recipe from "../src/classes/Recipe";
 import {ingredientsData} from "../src/data/ingredients";
 
@@ -625,41 +625,41 @@ const recipe5 = {
 
 describe('FavoriteRecipeRepo', () => {
   it('should be a function', () => {
-    expect(FavoriteRecipeRepo).to.be.a('function');
+    expect(FactoryRecipeRepo).to.be.a('function');
   });
   it('should be the same', function () {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo();
-    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
+    let favoriteRecipeRepo = new FactoryRecipeRepo();
+    expect(favoriteRecipeRepo.recipes).to.deep.equal(JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'));
   });
   it('should be add to favoriteRecipes', function () {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     let recipe = new Recipe(recipe1, ingredientsData);
     favoriteRecipeRepo.add(recipe);
-    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal([recipe]);
+    expect(favoriteRecipeRepo.recipes).to.deep.equal([recipe]);
   });
 
   it('should be remove from favoriteRecipes', function () {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     let recipe = new Recipe(recipe1);
     favoriteRecipeRepo.add(recipe);
     favoriteRecipeRepo.remove(recipe);
-    expect(favoriteRecipeRepo.favoriteRecipes).to.deep.equal([]);
+    expect(favoriteRecipeRepo.recipes).to.deep.equal([]);
   });
 
   it('must contain getRecipeByName method', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     expect(favoriteRecipeRepo).to.have.property("getRecipeByName");
   });
   it('must contain getRecipesByIngredients method', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     expect(favoriteRecipeRepo).to.have.property("getRecipesByIngredients");
   });
   it('must contain getRecipesByTags method', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     expect(favoriteRecipeRepo).to.have.property("getRecipesByTags");
   });
   it('should be able to filter based on name', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     favoriteRecipeRepo.add(recipe1);
     favoriteRecipeRepo.add(recipe2);
     favoriteRecipeRepo.add(recipe3);
@@ -668,7 +668,7 @@ describe('FavoriteRecipeRepo', () => {
     expect(favoriteRecipeRepo.getRecipeByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal(recipe2);
   });
   it('should be able to filter based on a single tag', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
 
     favoriteRecipeRepo.add(recipe1);
     favoriteRecipeRepo.add(recipe2);
@@ -678,7 +678,7 @@ describe('FavoriteRecipeRepo', () => {
     expect(favoriteRecipeRepo.getRecipesByTags('sauce')).to.deep.equal([recipe3]);
   });
   it('should be able to filter based on multiple tags', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     favoriteRecipeRepo.add(recipe1);
     favoriteRecipeRepo.add(recipe2);
     favoriteRecipeRepo.add(recipe3);
@@ -687,7 +687,7 @@ describe('FavoriteRecipeRepo', () => {
     expect(favoriteRecipeRepo.getRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
   });
   it('should be able to filter based on a single ingredient', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     favoriteRecipeRepo.add(recipe1);
     favoriteRecipeRepo.add(recipe2);
     favoriteRecipeRepo.add(recipe3);
@@ -696,7 +696,7 @@ describe('FavoriteRecipeRepo', () => {
     expect(favoriteRecipeRepo.getRecipesByIngredients(['dijon style mustard'])).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
-    let favoriteRecipeRepo = new FavoriteRecipeRepo(ingredientsData);
+    let favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
     favoriteRecipeRepo.add(recipe1);
     favoriteRecipeRepo.add(recipe2);
     favoriteRecipeRepo.add(recipe3);
