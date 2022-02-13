@@ -1,13 +1,11 @@
+import {modifyIngredients} from "../CallsLocalAPI";
+
 class Pantry {
-  constructor(user, ingredients) {
+  constructor(user) {
     this.user = user;
-    this.ingredients = ingredients;
   }
 
   getAllIngredients() {
-/*    return this.user.pantry.map(unit =>
-      this.ingredients.find(ingredient => ingredient.id === unit.ingredient).name
-    );*/
     return this.user.pantry;
   }
 
@@ -25,20 +23,14 @@ class Pantry {
     });
   }
 
-  addIngredient(ingredient) {
-
+  addIngredients(id, amount) {
+    let userId = localStorage.getItem('userId');
+    modifyIngredients(userId, id, amount);
   }
 
-  addIngredients(ingredients) {
-
-  }
-
-  removeIngredient(ingredient) {
-
-  }
-
-  removeIngredients(ingredients) {
-
+  removeIngredients(id, amount) {
+    let userId = localStorage.getItem('userId');
+    modifyIngredients(userId, id, amount)
   }
 
 }

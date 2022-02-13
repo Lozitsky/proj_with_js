@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import Pantry from "../src/classes/Pantry";
 import User from "../src/classes/User";
-import {ingredientsData} from "../src/data/ingredients";
+// import {ingredientsData} from "../src/data/ingredients";
 import {usersData} from "../src/data/users";
 
 describe('Pantry', function () {
@@ -14,13 +14,8 @@ describe('Pantry', function () {
   });
   it('should store the user', function () {
     let user = new User(usersData[13]);
-    let pantry = new Pantry(user, ingredientsData);
+    let pantry = new Pantry(user);
     expect(pantry.user).to.equal(user);
-  });
-  it('should store the ingredients', function () {
-    let user = new User(usersData[13]);
-    let pantry = new Pantry(user, ingredientsData);
-    expect(pantry.ingredients).to.equal(ingredientsData);
   });
   it('must contained getAllIngredients method', function () {
     let pantry = new Pantry();
@@ -32,7 +27,7 @@ describe('Pantry', function () {
   });
   it('should be return what ingredients exist inside pantry', function () {
     let user = new User(usersData[13]);
-    let pantry = new Pantry(user, ingredientsData);
-    expect(pantry.ingredients)
+    let pantry = new Pantry(user);
+    expect(pantry.getAllIngredients()).to.deep.equal(user.pantry);
   });
 });

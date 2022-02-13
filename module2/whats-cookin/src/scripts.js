@@ -11,9 +11,10 @@ import Recipe from "./classes/Recipe";
 // import User from "./classes/User";
 import FactoryRecipeRepo from "./classes/FactoryRecipeRepo";
 // import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
-import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCallsLocal';
+// import {getAllRecipes, getAllUsers, getAllIngredients} from './CallsLocalAPI';
 import IngredientRepo from "./classes/IngredientRepo";
 import UserRepository from "./classes/UserRepository";
+import CallsLocalAPI from "./CallsLocalAPI";
 
 // Create variables targetting the relevant DOM elements here 👇
 let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientsRepo;
@@ -214,6 +215,7 @@ function injectTag(tag, target) {
 }
 
 function initData(usersData, ingredientsData, recipeData) {
+
   userRepo = new UserRepository(usersData);
   user = userRepo.getUserById(getRandomIndex(usersData));
 
@@ -226,12 +228,18 @@ function initData(usersData, ingredientsData, recipeData) {
 }
 
 function loadContent() {
-  Promise.all([getAllUsers(), getAllRecipes(), getAllIngredients()])
+  // // https://marcrodrigfelix.github.io/fetch_request_with_a_js_class
+  Promise.all([CallsLocalAPI.getAllUsers(), CallsLocalAPI.getAllRecipes(), CallsLocalAPI.getAllIngredients()])
     .then(([usersData, recipeData, ingredientsData]) => {
       initData(usersData, ingredientsData, recipeData);
       showTags();
       showAllRecipes();
     });
+
+/*  // https://marcrodrigfelix.github.io/fetch_request_with_a_js_class
+  initData(CallsLocalAPI.getAllUsers(), CallsLocalAPI.getAllRecipes(), CallsLocalAPI.getAllIngredients());
+  showTags();
+  showAllRecipes();*/
 }
 
 function showTags() {

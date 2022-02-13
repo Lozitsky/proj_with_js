@@ -1,7 +1,5 @@
-// import users from '../data/users';
-
-import {getAllUsers} from "../apiCallsLocal";
 import User from "./User";
+import CallsLocalAPI from "../CallsLocalAPI";
 
 class UserRepository {
   constructor(users) {
@@ -13,7 +11,7 @@ class UserRepository {
   }
 
   getAllUsers() {
-    return getAllUsers();
+    return CallsLocalAPI.getAllUsers();
   }
 }
 
