@@ -208,7 +208,7 @@ describe('Recipe', () => {
   });
   it('should be determine the names of ingredients needed', function () {
     const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
-    expect(recipe.getIngredientNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla']);
+    expect(recipe.getIngredientsNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla']);
   });
   it('should return the cost of the recipe ingredients', function () {
     const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);

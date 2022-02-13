@@ -8,16 +8,13 @@ import './images/add.svg';
 import './classes/RecipeRepository'
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
-// import User from "./classes/User";
 import FactoryRecipeRepo from "./classes/FactoryRecipeRepo";
-// import {getAllRecipes, getAllUsers, getAllIngredients} from './apiCalls';
-// import {getAllRecipes, getAllUsers, getAllIngredients} from './CallsLocalAPI';
-import IngredientRepo from "./classes/IngredientRepo";
+import IngredientDataRepo from "./classes/IngredientDataRepo";
 import UserRepository from "./classes/UserRepository";
 import CallsLocalAPI from "./CallsLocalAPI";
 
 // Create variables targetting the relevant DOM elements here 👇
-let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientsRepo;
+let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientDataRepo;
 let user;
 const secRecipes = document.querySelector('.sec-recipes');
 const recipesContainer = secRecipes.querySelector('.grid-container');
@@ -82,7 +79,6 @@ function findByText() {
   if (searchTitle.textContent.includes('name')) {
     recipeList = currentRepo.getRecipesByName(input.value);
   } else {
-    // recipeList = currentRepo.getRecipesByIngredients(...input.value.split(' '));
     recipeList = currentRepo.getRecipesByIngredients(input.value.split(' '));
   }
   recipeList.forEach(recipe => {
@@ -91,7 +87,7 @@ function findByText() {
 }
 
 function createDetails(data) {
-  let recipe = new Recipe(data, ingredientsRepo.getAllIngredients());
+  let recipe = new Recipe(data, ingredientDataRepo);
   details.innerHTML = '';
   details.classList.add('popup');
   let area = document.createElement('a');
@@ -111,11 +107,14 @@ function createDetails(data) {
   let cost = document.createElement('h3');
   cost.textContent = `Total cost: $${Math.round((recipe.getIngredientsCost() + Number.EPSILON)) / 100}`;
   let h2 = document.createElement('h2');
+  h2.classList.add('popup__subtitle');
   h2.textContent = 'Ingredients';
   let ingredients = document.createElement('section');
+  ingredients.classList.add('popup__ingredients');
   let ul = document.createElement('ul');
   recipe.getIngredients().forEach(ingredient => {
     let li = document.createElement('li');
+    li.classList.add('popup__ingredient');
     li.textContent = `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
     ul.appendChild(li);
   });
@@ -215,16 +214,16 @@ function injectTag(tag, target) {
 }
 
 function initData(usersData, ingredientsData, recipeData) {
-
   userRepo = new UserRepository(usersData);
   user = userRepo.getUserById(getRandomIndex(usersData));
 
-  ingredientsRepo = new IngredientRepo(ingredientsData);
-  favoriteRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'favoriteRecipes');
+  ingredientDataRepo = new IngredientDataRepo(ingredientsData);
+
+  favoriteRecipeRepo = new FactoryRecipeRepo('favoriteRecipes');
   Object.freeze(favoriteRecipeRepo);
-  toCookRecipeRepo = new FactoryRecipeRepo(ingredientsData, 'toCookRecipes');
+  toCookRecipeRepo = new FactoryRecipeRepo('toCookRecipes');
   Object.freeze(toCookRecipeRepo);
-  recipeRepository = new RecipeRepository(recipeData, ingredientsData);
+  recipeRepository = new RecipeRepository(recipeData);
 }
 
 function loadContent() {
@@ -235,11 +234,6 @@ function loadContent() {
       showTags();
       showAllRecipes();
     });
-
-/*  // https://marcrodrigfelix.github.io/fetch_request_with_a_js_class
-  initData(CallsLocalAPI.getAllUsers(), CallsLocalAPI.getAllRecipes(), CallsLocalAPI.getAllIngredients());
-  showTags();
-  showAllRecipes();*/
 }
 
 function showTags() {

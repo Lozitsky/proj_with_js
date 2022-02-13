@@ -677,6 +677,18 @@ input[type=checkbox]:checked ~ .header .header__menu {
     margin: 0 0 1em 0;
 }
 
+.popup__subtitle {
+    padding: 0 0 0 .5em;
+}
+
+.popup__ingredients {
+    padding: .5em;
+}
+
+.popup__ingredient {
+    line-height: 1.3em;
+}
+
 .popup__text {
 
 }

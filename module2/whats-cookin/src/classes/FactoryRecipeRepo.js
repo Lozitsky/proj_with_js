@@ -21,8 +21,8 @@ import RecipeRepository from "./RecipeRepository";
 
 class FactoryRecipeRepo extends RecipeRepository {
 
-  constructor(ingredientsData, key) {
-    super(JSON.parse(localStorage.getItem(`${key}${localStorage.getItem('userId')}`) || '[]'), ingredientsData);
+  constructor(key) {
+    super(JSON.parse(localStorage.getItem(`${key}${localStorage.getItem('userId')}`) || '[]'));
     this.Key = `${key}${localStorage.getItem('userId')}`;
   }
 
@@ -51,7 +51,7 @@ class FactoryRecipeRepo extends RecipeRepository {
   }
 
   isContained(newRecipe, repo) {
-    return repo.some(recipe => recipe.id * 1 === newRecipe.id * 1);
+    return repo.some(recipe => recipe.id === newRecipe.id);
   }
 
 }

@@ -1,12 +1,13 @@
-import {modifyIngredients} from "../CallsLocalAPI";
+import CallsLocalAPI from "../CallsLocalAPI";
 
 class Pantry {
-  constructor(user) {
+  constructor(user, ingredientRepo) {
     this.user = user;
+    this.ingredientRepo = ingredientRepo;
   }
 
-  getAllIngredients() {
-    return this.user.pantry;
+  getIngredients() {
+    // return this.user.pantry.map(ingred => ingredRepo.);
   }
 
   hasIngredients(recipe) {
@@ -25,12 +26,12 @@ class Pantry {
 
   addIngredients(id, amount) {
     let userId = localStorage.getItem('userId');
-    modifyIngredients(userId, id, amount);
+    CallsLocalAPI.modifyIngredients(userId, id, amount);
   }
 
   removeIngredients(id, amount) {
     let userId = localStorage.getItem('userId');
-    modifyIngredients(userId, id, amount)
+    CallsLocalAPI.modifyIngredients(userId, id, amount)
   }
 
 }

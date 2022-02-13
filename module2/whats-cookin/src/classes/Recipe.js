@@ -1,8 +1,8 @@
 import Ingredient from "./Ingredient";
 
 class Recipe {
-  constructor(id, ingredientsData, image, ingredients, instructions, name, tags) {
-    this.ingredientsData = ingredientsData;
+  constructor(id, ingredientDataRepo, image, ingredients, instructions, name, tags) {
+    this.ingredientDataRepo = ingredientDataRepo;
     if (tags === undefined && id !== undefined) {
       this.id = id.id;
       this.image = id.image;
@@ -20,12 +20,12 @@ class Recipe {
     }
   }
 
-  getIngredientNames() {
-    return this.ingredients.map(ingredient => this.ingredientsData.find(ingred => ingred.id === ingredient.id).name);
+  getIngredientsNames() {
+    return this.ingredients.map(ingredient => this.ingredientDataRepo.getName(ingredient.id));
   }
 
   getIngredientsCost() {
-    return this.ingredients.reduce((sum, ingr) => sum + this.ingredientsData.find(ingred => ingred.id === ingr.id).estimatedCostInCents * ingr.quantity.amount, 0);
+    return this.ingredients.reduce((sum, ingr) => sum + this.ingredientDataRepo.getAll().find(ingred => ingred.id === ingr.id).estimatedCostInCents * ingr.quantity.amount, 0);
   }
 
   getInstructions() {
@@ -33,12 +33,10 @@ class Recipe {
   }
 
   getIngredients() {
-    return this.ingredients.map(ingredient => {
-      let name = this.ingredientsData.find(ingred => ingred.id === ingredient.id).name;
-      return new Ingredient(name, ingredient.quantity.amount, ingredient.quantity.unit);
-    });
+    return this.ingredients.map(ingredient =>
+      new Ingredient(this.ingredientDataRepo.getName(ingredient.id), ingredient.quantity.amount, ingredient.quantity.unit)
+    );
   }
-
 
 }
 
