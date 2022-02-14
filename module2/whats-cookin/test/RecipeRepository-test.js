@@ -1,9 +1,12 @@
 import {expect} from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import {ingredientsData} from "../src/data/ingredients";
+import IngredientDataRepo from "../src/classes/IngredientDataRepo";
+const ingredientDataRepo = new IngredientDataRepo(ingredientsData);
 
 // const ingrediensData = ingredientsData;
 const recipe1 = {
+  ingredientDataRepo,
   "id": 595736,
   "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
   "ingredients": [
@@ -122,6 +125,7 @@ const recipe1 = {
   ]
 };
 const recipe2 = {
+  ingredientDataRepo,
   "id": 678353,
   "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
   "ingredients": [
@@ -225,6 +229,7 @@ const recipe2 = {
   ]
 };
 const recipe3 = {
+  ingredientDataRepo,
   "id": 412309,
   "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
   "ingredients": [
@@ -332,6 +337,7 @@ const recipe3 = {
   ]
 };
 const recipe4 = {
+  ingredientDataRepo,
   "id": 741603,
   "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
   "ingredients": [
@@ -456,6 +462,7 @@ const recipe4 = {
   ]
 };
 const recipe5 = {
+  ingredientDataRepo,
   "id": 562334,
   "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
   "ingredients": [
@@ -628,11 +635,11 @@ describe('RecipeRepository', () => {
   });
   it('should be initialized with an array of Recipe', function () {
     const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    expect(recipe.recipes).to.be.an('array');
+    expect(recipe.recipeData).to.be.an('array');
   });
   it('must contain recipe objects within initialized RecipeRepository instance', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
-    expect(recipe.recipes).to.deep.equal([recipe1, recipe2, recipe3, recipe4, recipe5]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
+    expect(recipe.recipeData).to.deep.equal([recipe1, recipe2, recipe3, recipe4, recipe5]);
   });
   it('must contain getRecipeByName method', () => {
     const repository = new RecipeRepository();
@@ -647,23 +654,27 @@ describe('RecipeRepository', () => {
     expect(repository).to.have.property("getRecipesByTags");
   });
   it('should be able to filter based on name', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
+
     expect(recipe.getRecipeByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal(recipe2);
   });
   it('should be able to filter based on a single tag', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
+
     expect(recipe.getRecipesByTags('sauce')).to.deep.equal([recipe3]);
   });
   it('should be able to filter based on multiple tags', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5]);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
+
     expect(recipe.getRecipesByTags('sauce', '')).to.deep.equal([recipe3, recipe5]);
   });
   it('should be able to filter based on a single ingredient', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientsData);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
+
     expect(recipe.getRecipesByIngredients(['dijon', 'style', 'mustard'])).to.deep.equal([recipe2]);
   });
   it('should be able to filter based on multiple ingredients', () => {
-    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientsData);
+    const recipe = new RecipeRepository([recipe1, recipe2, recipe3, recipe4, recipe5], ingredientDataRepo);
     expect(recipe.getRecipesByIngredients(['wheat flour', 'buck wheat flour', 'butter'])).to.deep.equal([recipe4]);
   });
 

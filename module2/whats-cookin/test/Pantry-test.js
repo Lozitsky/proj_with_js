@@ -19,7 +19,7 @@ describe('Pantry', function () {
   });
   it('must contained getAllIngredients method', function () {
     let pantry = new Pantry();
-    expect(pantry).to.have.property('getAllIngredients');
+    expect(pantry).to.have.property('getIngredients');
   });
   it('must contained hasIngredients method', function () {
     let pantry = new Pantry();
@@ -28,6 +28,6 @@ describe('Pantry', function () {
   it('should be return what ingredients exist inside pantry', function () {
     let user = new User(usersData[13]);
     let pantry = new Pantry(user);
-    expect(pantry.getAllIngredients()).to.deep.equal(user.pantry);
+    expect(pantry.getIngredients()).to.deep.equal(user.pantry);
   });
 });

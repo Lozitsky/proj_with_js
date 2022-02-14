@@ -1,13 +1,12 @@
 import CallsLocalAPI from "../CallsLocalAPI";
 
 class Pantry {
-  constructor(user, ingredientRepo) {
+  constructor(user) {
     this.user = user;
-    this.ingredientRepo = ingredientRepo;
   }
 
   getIngredients() {
-    // return this.user.pantry.map(ingred => ingredRepo.);
+    return this.user.pantry;
   }
 
   hasIngredients(recipe) {

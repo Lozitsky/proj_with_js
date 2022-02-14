@@ -219,11 +219,11 @@ function initData(usersData, ingredientsData, recipeData) {
 
   ingredientDataRepo = new IngredientDataRepo(ingredientsData);
 
-  favoriteRecipeRepo = new FactoryRecipeRepo('favoriteRecipes');
+  favoriteRecipeRepo = new FactoryRecipeRepo('favoriteRecipes', ingredientDataRepo);
   Object.freeze(favoriteRecipeRepo);
-  toCookRecipeRepo = new FactoryRecipeRepo('toCookRecipes');
+  toCookRecipeRepo = new FactoryRecipeRepo('toCookRecipes', ingredientDataRepo);
   Object.freeze(toCookRecipeRepo);
-  recipeRepository = new RecipeRepository(recipeData);
+  recipeRepository = new RecipeRepository(recipeData, ingredientDataRepo);
 }
 
 function loadContent() {

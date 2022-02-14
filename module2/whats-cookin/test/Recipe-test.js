@@ -1,7 +1,9 @@
 import {expect} from "chai";
 import Recipe from "../src/classes/Recipe";
 import {ingredientsData} from "../src/data/ingredients";
+import IngredientDataRepo from "../src/classes/IngredientDataRepo";
 
+const ingredientDataRepo = new IngredientDataRepo(ingredientsData);
 const ingredients = [
   {
     "id": 20081,
@@ -83,7 +85,7 @@ const ingredients = [
 ];
 
 const recipe1 = {
-  ingredientsData,
+  ingredientDataRepo,
   "id": 595736,
   "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
   ingredients,
@@ -167,36 +169,36 @@ describe('Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe)
   });
   it('should store an id', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.id).to.equal(595736);
   });
   it('should store a name', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
   });
   it('should store an image link', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   });
   it('should store array of ingredients', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.ingredients).to.equal(ingredients);
   });
   it('should store array of instructions', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.instructions).to.equal(instructions);
   });
   it('should store array of tags', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.tags).to.equal(tags);
   });
   it('should be initialized with object of Recipe', function () {
-    const recipe = new Recipe(recipe1, ingredientsData);
+    const recipe = new Recipe(recipe1, ingredientDataRepo);
     expect(recipe).to.deep.equal(recipe1);
   });
   it('must contain getIngredientNames method', function () {
     const recipe = new Recipe();
-    expect(recipe).to.have.property('getIngredientNames');
+    expect(recipe).to.have.property('getIngredientsNames');
   });
   it('must contain getIngredientsCost method', function () {
     const recipe = new Recipe();
@@ -207,16 +209,16 @@ describe('Recipe', () => {
     expect(recipe).to.have.property('getInstructions');
   });
   it('should be determine the names of ingredients needed', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.getIngredientsNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla']);
   });
   it('should return the cost of the recipe ingredients', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     // 5×142.5×582+1×472+.5×902+3×660+.5×559+.5×280+24×528+2×253+.5×617+.5×926;
     expect(recipe.getIngredientsCost()).to.equal(17776);
   });
   it('should return ascending sorted array of instructions', function () {
-    const recipe = new Recipe(595736, ingredientsData, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
+    const recipe = new Recipe(595736, ingredientDataRepo, 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients, instructions, 'Loaded Chocolate Chip Pudding Cookie Cups', tags);
     expect(recipe.getInstructions()).to.deep.equal(["In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
       "Add egg and vanilla and mix until combined.",
       "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
