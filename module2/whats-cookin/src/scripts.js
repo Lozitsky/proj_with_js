@@ -12,6 +12,7 @@ import FactoryRecipeRepo from "./classes/FactoryRecipeRepo";
 import IngredientDataRepo from "./classes/IngredientDataRepo";
 import UserRepository from "./classes/UserRepository";
 import CallsLocalAPI from "./CallsLocalAPI";
+import Pantry from "./classes/Pantry";
 
 // Create variables targetting the relevant DOM elements here 👇
 let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientDataRepo;
@@ -88,6 +89,9 @@ function findByText() {
 
 function createDetails(data) {
   let recipe = new Recipe(data, ingredientDataRepo);
+  console.log(user);
+  let pantry = new Pantry(user);
+  console.log(pantry);
   details.innerHTML = '';
   details.classList.add('popup');
   let area = document.createElement('a');
@@ -111,14 +115,28 @@ function createDetails(data) {
   h2.textContent = 'Ingredients';
   let ingredients = document.createElement('section');
   ingredients.classList.add('popup__ingredients');
-  let ul = document.createElement('ul');
+  let table = document.createElement('section');
+  table.classList.add('popup__table');
   recipe.getIngredients().forEach(ingredient => {
-    let li = document.createElement('li');
+/*    let li = document.createElement('li');
     li.classList.add('popup__ingredient');
     li.textContent = `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
-    ul.appendChild(li);
+    table.appendChild(li);*/
+    let cell = document.createElement('span');
+    cell.classList.add('popup__ingredient');
+    cell.textContent = `${ingredient.name}:`;
+    let cell2 = document.createElement('span');
+    cell2.classList.add('popup__ingredient');
+    cell2.textContent = `${ingredient.amount} ${ingredient.unit}`;
+    let cell3 = document.createElement('span');
+    cell3.classList.add('popup__ingredient');
+    let amount = pantry.getAmountById(ingredient.id);
+    cell3.textContent = `${amount}`;
+    table.appendChild(cell);
+    table.appendChild(cell2);
+    table.appendChild(cell3);
   });
-  ingredients.appendChild(ul);
+  ingredients.appendChild(table);
   let instructions = document.createElement('section');
   instructions.classList.add('popup__text');
   recipe.getInstructions().forEach((instruction, i) => {

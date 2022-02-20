@@ -497,12 +497,12 @@ input:focus ~ .icon-holder > .icon {
     background: rgba(250, 247, 247, 0.7);
 }
 
-.card__star, .card__add{
+.card__star, .card__add {
     color: #f5d9d9;
     opacity: .4;
 }
 
-.card__star{
+.card__star {
     position: absolute;
     top: 0;
     left: 0;
@@ -687,6 +687,11 @@ input[type=checkbox]:checked ~ .header .header__menu {
 
 .popup__ingredient {
     line-height: 1.3em;
+}
+
+.popup__table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .popup__text {

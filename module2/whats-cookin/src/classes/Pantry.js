@@ -9,6 +9,17 @@ class Pantry {
     return this.user.pantry;
   }
 
+  getAmountById(id) {
+    if (this.user.pantry !== undefined) {
+      let find = this.user.pantry.find(unit => unit.ingredient === id);
+      if (find !== undefined) {
+        console.log(find.amount);
+        return find.amount;
+      }
+    }
+    return '0';
+  }
+
   hasIngredients(recipe) {
     return recipe.ingredients.reduce((acc, ingr) => acc && ingr.quantity.amount <= this.user.pantry.find(ingred => ingred.ingredient === ingr.id).amount);
   }

@@ -1,10 +1,12 @@
 class Ingredient {
-  constructor(name, amount, unit) {
-    if (unit === undefined && name !== undefined) {
-      this.name = name.name;
-      this.amount = name.amount;
-      this.unit = name.unit;
+  constructor(id, name, amount, unit) {
+    if (unit === undefined && id !== undefined) {
+      this.id = id.id;
+      this.name = id.name;
+      this.amount = id.amount;
+      this.unit = id.unit;
     } else {
+      this.id = id;
       this.name = name;
       this.amount = amount;
       this.unit = unit;

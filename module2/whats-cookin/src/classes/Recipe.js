@@ -34,7 +34,7 @@ class Recipe {
 
   getIngredients() {
     return this.ingredients.map(ingredient =>
-      new Ingredient(this.ingredientDataRepo.getName(ingredient.id), ingredient.quantity.amount, ingredient.quantity.unit)
+      new Ingredient(ingredient.id, this.ingredientDataRepo.getName(ingredient.id), ingredient.quantity.amount, ingredient.quantity.unit)
     );
   }
 

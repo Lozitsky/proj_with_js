@@ -1,4 +1,4 @@
-global.localStorage = {
+/*global.localStorage = {
   data: {},
   getItem(key) {
     const val = this.data[key]
@@ -13,17 +13,17 @@ global.localStorage = {
   removeItem(key) {
     delete this.data[key];
   }
-};
+};*/
 
 class User {
-  constructor(name, id, pantry) {
-    if (pantry === undefined && name !== undefined) {
-      this.name = name.name;
-      this.id = name.id;
-      this.pantry = name.pantry;
+  constructor(id, name, pantry) {
+    if (pantry === undefined && id !== undefined) {
+      this.id = id.id;
+      this.name = id.name;
+      this.pantry = id.pantry;
     } else {
-      this.name = name;
       this.id = id;
+      this.name = name;
       this.pantry = pantry;
     }
     localStorage.setItem('userId', this.id);
