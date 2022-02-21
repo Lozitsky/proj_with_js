@@ -28,8 +28,19 @@ class User {
     }
     localStorage.setItem('userId', this.id);
   }
-}
 
+  addIngredientsToPantry(id, amount) {
+    let index = this.pantry.findIndex(ingred => ingred.ingredient === id);
+    if (index > -1) {
+      this.pantry[index].amount += amount;
+    } else {
+      this.pantry.push({
+        "ingredient": id,
+        amount
+      });
+    }
+  }
+}
 
 
 export default User;

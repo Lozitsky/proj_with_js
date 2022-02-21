@@ -87,6 +87,47 @@ function findByText() {
   });
 }
 
+function convertToDollars(cost) {
+  return Math.round((cost + Number.EPSILON)) / 100;
+}
+
+function addIngredients(input, ingredientId, pantry) {
+  let ingredientModification = input.value - pantry.getAmountById(ingredientId);
+  CallsLocalAPI.modifyIngredients(user, ingredientId, ingredientModification > 0 ? ingredientModification : 0);
+}
+
+function createTable(recipe, pantry, table) {
+  recipe.getIngredients().forEach(ingredient => {
+    let cell = document.createElement('span');
+    cell.classList.add('popup__ingredient');
+    cell.textContent = `${ingredient.name}:`;
+    let cell2 = document.createElement('span');
+    cell2.classList.add('popup__ingredient');
+    cell2.textContent = `${ingredient.amount} ${ingredient.unit}`;
+    let input = document.createElement('input');
+    input.classList.add('popup__ingredient');
+    input.type = 'number';
+    input.min = input.value = pantry.getAmountById(ingredient.id);
+    input.max = '1000';
+    input.name = ingredient.id;
+    let addBtn = document.createElement('button');
+    addBtn.textContent = 'Add';
+    addBtn.addEventListener('click', () => addIngredients(input, ingredient.id, pantry));
+    table.appendChild(cell);
+    table.appendChild(cell2);
+    table.appendChild(input);
+    table.appendChild(addBtn);
+  });
+}
+
+function createInstructions(recipe, instructions) {
+  recipe.getInstructions().forEach((instruction, i) => {
+    let p = document.createElement('p');
+    p.textContent = `${(i + 1)}. ${instruction}`;
+    instructions.appendChild(p);
+  });
+}
+
 function createDetails(data) {
   let recipe = new Recipe(data, ingredientDataRepo);
   console.log(user);
@@ -109,7 +150,7 @@ function createDetails(data) {
   title.classList.add('popup__title');
   title.textContent = recipe.name;
   let cost = document.createElement('h3');
-  cost.textContent = `Total cost: $${Math.round((recipe.getIngredientsCost() + Number.EPSILON)) / 100}`;
+  cost.textContent = `Total cost: $${convertToDollars(recipe.getIngredientsCost())}`;
   let h2 = document.createElement('h2');
   h2.classList.add('popup__subtitle');
   h2.textContent = 'Ingredients';
@@ -117,39 +158,21 @@ function createDetails(data) {
   ingredients.classList.add('popup__ingredients');
   let table = document.createElement('section');
   table.classList.add('popup__table');
-  recipe.getIngredients().forEach(ingredient => {
-/*    let li = document.createElement('li');
-    li.classList.add('popup__ingredient');
-    li.textContent = `${ingredient.name}: ${ingredient.amount} ${ingredient.unit}`;
-    table.appendChild(li);*/
-    let cell = document.createElement('span');
-    cell.classList.add('popup__ingredient');
-    cell.textContent = `${ingredient.name}:`;
-    let cell2 = document.createElement('span');
-    cell2.classList.add('popup__ingredient');
-    cell2.textContent = `${ingredient.amount} ${ingredient.unit}`;
-    let cell3 = document.createElement('span');
-    cell3.classList.add('popup__ingredient');
-    let amount = pantry.getAmountById(ingredient.id);
-    cell3.textContent = `${amount}`;
-    table.appendChild(cell);
-    table.appendChild(cell2);
-    table.appendChild(cell3);
-  });
+  createTable(recipe, pantry, table);
   ingredients.appendChild(table);
   let instructions = document.createElement('section');
   instructions.classList.add('popup__text');
-  recipe.getInstructions().forEach((instruction, i) => {
-    let p = document.createElement('p');
-    p.textContent = `${(i + 1)}. ${instruction}`;
-    instructions.appendChild(p);
-  });
+  createInstructions(recipe, instructions);
+  let cookBtn = document.createElement('button');
+  cookBtn.classList.add('popup__btn-cook');
+  cookBtn.textContent = 'Cook';
   content.appendChild(close);
   content.appendChild(title);
   content.appendChild(cost);
   content.appendChild(h2);
   content.appendChild(ingredients);
   content.appendChild(instructions);
+  content.appendChild(cookBtn);
   body.appendChild(content);
   details.appendChild(area);
   details.appendChild(body);

@@ -691,7 +691,7 @@ input[type=checkbox]:checked ~ .header .header__menu {
 
 .popup__table {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .popup__text {

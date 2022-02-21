@@ -23,11 +23,11 @@ class CallsLocalAPI {
       .catch(error => console.log(error));
   }
 
-  static modifyIngredients(userId, ingredientID, ingredientModification) {
+  static modifyIngredients(user, ingredientID, ingredientModification) {
     fetch('http://localhost:3001/api/v1/users', {
       method: "POST",
       body: JSON.stringify({
-        userId,
+        userID: user.id,
         ingredientID,
         ingredientModification
       }),
@@ -35,7 +35,12 @@ class CallsLocalAPI {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.statusText === "Created") {
+          user.addIngredientsToPantry(ingredientID, ingredientModification);
+        }
+        return  response.json();
+      })
       .then(json => console.log(json));
   }
 }
