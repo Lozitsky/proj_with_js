@@ -12,6 +12,7 @@ import FactoryRecipeRepo from "./classes/FactoryRecipeRepo";
 import IngredientDataRepo from "./classes/IngredientDataRepo";
 import UserRepository from "./classes/UserRepository";
 import CallsLocalAPI from "./CallsLocalAPI";
+import callsLocalAPI from "./CallsLocalAPI";
 import Pantry from "./classes/Pantry";
 
 // Create variables targetting the relevant DOM elements here 👇
@@ -28,6 +29,7 @@ const sectionCheckboxes = document.querySelector('.aside-tags__checkboxes');
 const searchTagsButton = document.querySelector('.aside-tags__button');
 const favBtn = document.querySelector('.fav-link');
 const toCookBtn = document.querySelector('.to-cook-link');
+// const popupTable = document.querySelector('.popup__table');
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', loadContent);
@@ -91,10 +93,22 @@ function convertToDollars(cost) {
   return Math.round((cost + Number.EPSILON)) / 100;
 }
 
-function addIngredients(input, ingredientId, pantry) {
-  let ingredientModification = input.value - pantry.getAmountById(ingredientId);
-  CallsLocalAPI.modifyIngredients(user, ingredientId, ingredientModification > 0 ? ingredientModification : 0);
+function addIngredients(ev, input, pantry) {
+  ev.preventDefault();
+  let ingredientModification = input.value - pantry.getAmountById(input.name | 0);
+  CallsLocalAPI.modifyIngredients(user, input.name | 0, ingredientModification > 0 ? ingredientModification : 0).then(r => {
+    console.log(r);
+    pantry.setIngredients(user.pantry);
+    input.min = input.value = pantry.getAmountById(input.name | 0);
+  });
 }
+
+/*function checkInput(input, pantry) {
+  input.min = pantry.getAmountById(input.name | 0);
+  if (input.value < input.min) {
+    input.value = input.min;
+  }
+}*/
 
 function createTable(recipe, pantry, table) {
   recipe.getIngredients().forEach(ingredient => {
@@ -107,12 +121,14 @@ function createTable(recipe, pantry, table) {
     let input = document.createElement('input');
     input.classList.add('popup__ingredient');
     input.type = 'number';
+    input.size = 3;
     input.min = input.value = pantry.getAmountById(ingredient.id);
     input.max = '1000';
     input.name = ingredient.id;
+    // input.addEventListener('change', () => checkInput(input, pantry));
     let addBtn = document.createElement('button');
     addBtn.textContent = 'Add';
-    addBtn.addEventListener('click', () => addIngredients(input, ingredient.id, pantry));
+    addBtn.addEventListener('click', (ev) => addIngredients(ev, input, pantry));
     table.appendChild(cell);
     table.appendChild(cell2);
     table.appendChild(input);
@@ -128,6 +144,28 @@ function createInstructions(recipe, instructions) {
   });
 }
 
+function cookRecipe(ev, recipe, pantry, table) {
+  ev.preventDefault();
+
+  if (pantry.hasIngredients(recipe)) {
+    recipe.getIngredients().forEach(ingredient => {
+      callsLocalAPI.modifyIngredients(user, ingredient.id, -ingredient.amount)
+        .then(r => {
+          console.log(r);
+          let inputs = table.querySelectorAll('input');
+          for (const input of inputs) {
+            if ((input.name | 0) === ingredient.id) {
+              pantry.setIngredients(user.pantry);
+              input.min = input.value = pantry.getAmountById(ingredient.id);
+              return;
+            }
+          }
+        });
+    });
+  }
+
+}
+
 function createDetails(data) {
   let recipe = new Recipe(data, ingredientDataRepo);
   console.log(user);
@@ -140,7 +178,8 @@ function createDetails(data) {
   area.setAttribute('href', '#');
   let body = document.createElement('article');
   body.classList.add('popup__body');
-  let content = document.createElement('section');
+  // let content = document.createElement('section');
+  let content = document.createElement('form');
   content.classList.add('popup__content');
   let close = document.createElement('a');
   close.classList.add('popup__close');
@@ -166,6 +205,7 @@ function createDetails(data) {
   let cookBtn = document.createElement('button');
   cookBtn.classList.add('popup__btn-cook');
   cookBtn.textContent = 'Cook';
+  cookBtn.addEventListener('click', (ev) => cookRecipe(ev, recipe, pantry, table));
   content.appendChild(close);
   content.appendChild(title);
   content.appendChild(cost);

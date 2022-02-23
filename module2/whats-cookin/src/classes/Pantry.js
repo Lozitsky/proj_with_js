@@ -2,31 +2,34 @@ import CallsLocalAPI from "../CallsLocalAPI";
 
 class Pantry {
   constructor(user) {
-    this.user = user;
+    this.pantry = user.pantry;
   }
 
   getIngredients() {
-    return this.user.pantry;
+    return this.pantry;
+  }
+
+  setIngredients(pantry) {
+    return this.pantry = pantry;
   }
 
   getAmountById(id) {
-    if (this.user.pantry !== undefined) {
-      let find = this.user.pantry.find(unit => unit.ingredient === id);
+    if (this.pantry !== undefined) {
+      let find = this.pantry.find(unit => unit.ingredient === id);
       if (find !== undefined) {
-        console.log(find.amount);
         return find.amount;
       }
     }
-    return '0';
+    return 0;
   }
 
   hasIngredients(recipe) {
-    return recipe.ingredients.reduce((acc, ingr) => acc && ingr.quantity.amount <= this.user.pantry.find(ingred => ingred.ingredient === ingr.id).amount);
+    return recipe.ingredients.reduce((acc, ingr) => acc && ingr.quantity.amount <= this.getAmountById(ingr.id));
   }
 
   getMissingIngredients(recipe) {
     return recipe.ingredients.reduce((arr, ingr) => {
-      let amount = ingr.quantity.amount - this.user.pantry.find(ingred => ingred.ingredient === ingr.id).amount;
+      let amount = ingr.quantity.amount - this.pantry.find(ingred => ingred.ingredient === ingr.id).amount;
       if (amount > 0) {
         arr.push({id: `${ingr.id}`, amount: `${amount}`});
       }

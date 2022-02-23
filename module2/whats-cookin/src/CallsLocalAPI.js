@@ -24,7 +24,7 @@ class CallsLocalAPI {
   }
 
   static modifyIngredients(user, ingredientID, ingredientModification) {
-    fetch('http://localhost:3001/api/v1/users', {
+    return fetch('http://localhost:3001/api/v1/users', {
       method: "POST",
       body: JSON.stringify({
         userID: user.id,
@@ -37,11 +37,11 @@ class CallsLocalAPI {
     })
       .then(response => {
         if (response.statusText === "Created") {
-          user.addIngredientsToPantry(ingredientID, ingredientModification);
+          user.changeIngredientsInPantry(ingredientID, ingredientModification);
         }
         return  response.json();
-      })
-      .then(json => console.log(json));
+      });
+    // .then(json => console.log(json));
   }
 }
 
