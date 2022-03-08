@@ -100,7 +100,7 @@ function addIngredients(ev, input, pantry) {
     console.log(r);
     pantry.setIngredients(user.pantry);
     input.min = input.value = pantry.getAmountById(input.name | 0);
-  });
+  }).catch(err => alert(err));
 }
 
 /*function checkInput(input, pantry) {
@@ -162,6 +162,8 @@ function cookRecipe(ev, recipe, pantry, table) {
           }
         });
     });
+  } else {
+    alert('Add ingredients to pantry!');
   }
 
 }
