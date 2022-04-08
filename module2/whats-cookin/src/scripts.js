@@ -1,5 +1,6 @@
-import './css/styles.css';
-import './css/reset.css';
+// import './css/styles.css';
+// import './css/reset.css';
+import './scss/styles.scss';
 import './images/prototype.webp';
 import './images/bender.webp';
 import './images/search.svg';

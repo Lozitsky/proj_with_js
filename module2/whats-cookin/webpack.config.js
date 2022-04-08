@@ -2,7 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/scripts.js',
+  // entry: './src/scripts.js',
+  entry: [
+    './src/scripts.js',
+    './src/scss/styles.scss'
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     // path: __dirname + '/dist',
@@ -15,8 +19,23 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        // test: /\.(css)$/,
+        // test: /\.(scss)$/,
+        // test: /\.(css|s[ac]ss)$/,
+        test: /\.(s[ac]ss)$/i,
+        // use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+            // 'style-loader', 'css-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].css',
+              outputPath: 'css/',
+              publicPath: 'css/' 
+            }
+          }, 'sass-loader'
+        ]
+        // exclude: /css/
       },
       {
         test: /\.(png|svg|jpe?g|gif|webp)$/i,
