@@ -1,0 +1,88 @@
+.sec-recipes {
+}
+
+.card-container {
+  min-width: 45vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-column-gap: 1.2vw;
+  grid-row-gap: 1.2vw;
+  grid-auto-rows: 1fr;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  border: .15vw solid #01021c;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  border-radius: 5%;
+  overflow: hidden;
+  text-align: center;
+
+  &__label {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  &__img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
+    display: block;
+    opacity: .7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__name {
+    width: 100%;
+    padding: 0 3%;
+    color: #000913;
+    font-size: calc((100vw - 320px) / ((1920 - 320) / (22 - 20)) + 20px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(250, 247, 247, 0.1);
+
+    &:hover {
+      background: rgba(250, 247, 247, 0.7);
+    }
+  }
+
+  &__star, &__add {
+    position: absolute;
+    color: #f5d9d9;
+    opacity: .4;
+    top: 0;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  &__star {
+    left: 0;
+    width: 3em;
+    height: 3em;
+  }
+
+  &__add {
+    right: 0;
+    padding-top: .5em;
+    padding-right: .5em;
+    width: 2.5em;
+    height: 2.5em;
+  }
+
+  &__sign-full {
+    color: #f16139;
+    opacity: 1;
+  }
+}

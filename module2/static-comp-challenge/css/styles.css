@@ -265,7 +265,7 @@ body > img {
     font-weight: 400;
 }
 
-.grid-container {
+.card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(277px, 1fr));
     grid-column-gap: .68em;
@@ -523,7 +523,7 @@ input[type=checkbox]:checked ~ .header .header__menu {
 
     /*endregion-----------------------start-menu-position-----------------------*/
 
-    .grid-container {
+    .card-container {
         grid-column-gap: .6em;
         grid-row-gap: 2em;
     }

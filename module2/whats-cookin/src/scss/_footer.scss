@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  align-items: center;
+  background-color: #112233;
+  height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);
+
+  &__list {
+    color: antiquewhite;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  &__link {
+    color: #fff;
+    text-transform: uppercase;
+  }
+  
+  &__container {
+    /*height: calc((100vw - 320px) / ((1920 - 320) / (38 - 40)) + 40px);*/
+    width: 100%;
+  }
+}

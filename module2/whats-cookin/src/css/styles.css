@@ -328,7 +328,7 @@ input[type=checkbox] {
 }
 
 /*region----------------------------------- Section Search ------------------------------*/
-.sec-search {
+.search {
     min-height: 11.5vh;
     display: flex;
     flex-direction: column;
@@ -380,13 +380,13 @@ input[type=checkbox] {
     outline: none;
 }
 
-.icon-holder {
+.search__icon-holder {
     display: flex;
     justify-content: space-around;
     margin-top: .4em;
 }
 
-.icon {
+.icon-holder__icon {
     position: relative;
     padding: .1em .2em;
     background: #8ad0f1;
@@ -442,7 +442,7 @@ input:focus ~ .icon-holder > .icon {
 .sec-recipes {
 }
 
-.grid-container {
+.card-container {
     min-width: 45vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -770,7 +770,7 @@ input[type=checkbox]:checked ~ .header .header__menu {
         box-sizing: border-box;
     }
 
-    .sec-search {
+    .search {
         padding: 2vw 0;
     }
 
@@ -895,7 +895,7 @@ input[type=checkbox]:checked ~ .header .header__menu {
         min-width: 5%;
     }
 
-    .section-main {
+    .main__section {
         max-width: 75%;
     }
 }

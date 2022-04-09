@@ -1,0 +1,59 @@
+.checkbox {
+  > [type=checkbox] {
+    display: none;
+
+    &:checked ~ .checkmark {
+      color: #000;
+
+      &:before, &:after {
+        background-color: #4fbb65;
+      }
+
+      &:after {
+        left: 1em;
+      }
+    }
+  }
+}
+
+.checkmark {
+  margin-right: .5em;
+  font-size: calc((100vw - 320px) / ((1920 - 320) / (18 - 16)) + 16px);
+  line-height: 1.2em;
+  padding: 0 0 0 2.2em;
+  position: relative;
+  cursor: pointer;
+  color: #b2b2b2;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    color: #000913;
+  }
+
+  &:before, &:after {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #bfc0c4;
+  }
+
+  /* https://stackoverflow.com/a/14524161/9586230 */
+  &:before {
+    content: '';
+    width: 2em;
+    height: .6em;
+    border-radius: .6em;
+    box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+  }
+
+  &:after {
+    content: '#';
+    padding: 0 0 0 .15em;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    box-shadow: 0 0 0.33em rgba(0, 0, 0, 0.3);
+  }
+}

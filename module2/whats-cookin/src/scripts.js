@@ -20,12 +20,12 @@ import Pantry from "./classes/Pantry";
 let userRepo, currentRepo, recipeRepository, favoriteRecipeRepo, toCookRecipeRepo, ingredientDataRepo;
 let user;
 const secRecipes = document.querySelector('.sec-recipes');
-const recipesContainer = secRecipes.querySelector('.grid-container');
+const recipesContainer = secRecipes.querySelector('.card-container');
 const details = document.querySelector('#details');
 const input = document.querySelector('#search');
 const name = document.querySelector('#name');
 const ingredients = document.querySelector('#ingredients');
-const searchTitle = document.querySelector('.sec-search__title');
+const searchTitle = document.querySelector('.search__title');
 const sectionCheckboxes = document.querySelector('.aside-tags__checkboxes');
 const searchTagsButton = document.querySelector('.aside-tags__button');
 const favBtn = document.querySelector('.fav-link');
@@ -222,11 +222,11 @@ function createDetails(data) {
 }
 
 function switchFavorite(recipe, svg) {
-  switchSelected(recipe, favoriteRecipeRepo, svg, 'card__star-full');
+  switchSelected(recipe, favoriteRecipeRepo, svg, 'card__sign-full');
 }
 
 function switchToCook(recipe, svg) {
-  switchSelected(recipe, toCookRecipeRepo, svg, 'card__add-full');
+  switchSelected(recipe, toCookRecipeRepo, svg, 'card__sign-full');
 }
 
 function switchSelected(recipe, repo, svg, img_class) {
@@ -256,14 +256,14 @@ function injectRecipe(recipe, target) {
 
   let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.classList.add('card__star');
-  favoriteRecipeRepo.isInRepoContained(recipe) ? svg.classList.add('card__star-full') : '';
+  favoriteRecipeRepo.isInRepoContained(recipe) ? svg.classList.add('card__sign-full') : '';
   svg.addEventListener('click', () => switchFavorite(recipe, svg));
   let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
   use.setAttributeNS(null, 'href', 'images/star.svg#star');
 
   let svg2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg2.classList.add('card__add');
-  toCookRecipeRepo.isInRepoContained(recipe) ? svg2.classList.add('card__add-full') : '';
+  toCookRecipeRepo.isInRepoContained(recipe) ? svg2.classList.add('card__sign-full') : '';
   svg2.addEventListener('click', () => switchToCook(recipe, svg2));
   let use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
   use2.setAttributeNS(null, 'href', 'images/add.svg#add');
@@ -282,7 +282,7 @@ function injectRecipe(recipe, target) {
 
 function injectTag(tag, target) {
   let section = document.createElement('section');
-  section.classList.add('block-form__input');
+  section.classList.add('aside__switcher');
   let label = document.createElement('label');
   label.classList.add('checkbox');
   let input = document.createElement('input');

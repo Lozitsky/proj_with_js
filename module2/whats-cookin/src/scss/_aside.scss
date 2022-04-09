@@ -1,0 +1,34 @@
+.aside {
+  min-width: 10%;
+  padding: 2vw 1vw;
+
+  &-tags {
+    &__checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &__button {
+      display: block;
+      margin: 0 auto;
+      padding: .1em .2em;
+      border-radius: .6em;
+
+      background-color: #bfc0c4;
+      box-shadow: 0 0 0.18em rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background-color: #4fbb65;
+      }
+    }
+  }
+
+  &__switcher {
+    margin-bottom: 1em;
+  }
+
+  &-advertisement {
+  }
+}
+
+@import "greenSwitch";
