@@ -28,20 +28,20 @@ html, body {
   padding: 0 1vw;
 }
 
-#header__toggle {
+#burger-toggle {
   opacity: 0;
   display: none;
 }
 
-/*region------------------------header-----------------------------*/
+/*region------------------------------header-------------------*/
 @import "header";
-/*endregion------------------------------------header------------------*/
+/*endregion------------------------------header------------------*/
 
-/*region------------------------footer-----------------------------*/
+/*region------------------------footer------------------------------*/
 @import "footer";
-/*endregion-----------------footer-----------------------------------*/
+/*endregion----------------------footer--------------------------------*/
 
-/*region------------------------main--------------------------------*/
+/*region------------------------main-------------------------------------*/
 .main-footer-wrapper {
   display: flex;
   flex-direction: column;
@@ -52,15 +52,15 @@ html, body {
 }
 
 @import "main";
-/*endregion----------------------------main----------------------*/
+/*endregion----------------------------main---------------------------------------*/
 
 /*region------------------------------ #checkboxes ---------------------------------*/
 @import "aside";
 /*endregion------------------------------ checkboxes ---------------------------------*/
 
-/*region------------------------media----------------------------------*/
+/*region------------------------media---------------------------------------------------*/
 /*region Extra small devices (phones, 599px and down) */
-@media only screen and (max-width: 599px) {
+@mixin index--exSm() {
   .main-footer-wrapper {
     min-height: 100%;
     padding: 3em 0 0 0;
@@ -83,224 +83,48 @@ html, body {
     max-width: none;
   }
 
-  .header {
-    &__logo {
-    }
-
-    &__burger {
-      display: block;
-      position: relative;
-      width: 6vw;
-      height: 4vw;
-      z-index: 1;
-    }
-
-    &__list {
-      display: block;
-    }
-  }
-
-  .aside-tags {
-  }
-
-  .sec-recipes {
-  }
-
-  /*region-----------------------start-menu-position-as-hidden----------------------*/
-  .header__menu {
-    position: fixed;
-    top: -300%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #28aca8;
-    transition: all .3s ease 0s;
-    padding: 14vw 2vw 4vw 2vw;
-  }
-
-  /*endregion-----------------------start-menu-position-----------------------*/
-  .main__container {
-    flex-direction: column;
-  }
-
-  //input[type=checkbox]:checked ~ .main-footer-wrapper {
-  #header__toggle:checked ~ .main-footer-wrapper {
+  #burger-toggle:checked ~ .main-footer-wrapper {
     max-width: 100%;
     box-sizing: border-box;
   }
-
-  .search {
-    padding: 2vw 0;
-
-    &__field {
-    }
-
-    &__box {
-    }
-  }
 }
-
 /*endregion Extra small devices (phones, 599px and down) */
 
 /*region Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+@mixin index--sm() {
   .container {
     max-width: 95vw;
   }
 
-  .header__logo {
-  }
-
-  .sec-recipes {
-    min-height: 60vh;
-  }
-
   .main-footer-wrapper {
     padding: 4vw 0 0 0;
-  }
-
-  .main {
-    &__container {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    &__section {
-      max-width: 75%;
-      min-width: 70%;
-    }
-  }
-
-  .search {
-    &__field {
-    }
-
-    &__box {
-      max-width: 90%;
-    }
-  }
-
-  .aside {
-    &-tags {
-      max-width: 25%;
-      min-width: 20%;
-    }
-
-    &-advertisement {
-      width: 100%;
-    }
   }
 }
 
 /*endregion Small devices (portrait tablets and large phones, 600px and up) */
 
 /*region Medium devices (landscape tablets, 900px and up) */
-@media only screen and (min-width: 900px) {
-  .header__logo {
-  }
-
+@mixin index--md() {
   .main-footer-wrapper {
     padding: 3.5vw 0 0 0;
   }
-
-  .main {
-    &__container {
-      flex-wrap: nowrap;
-    }
-
-    &__section {
-      /*background: #222;*/
-      max-width: 70%;
-    }
-  }
-
-  .search {
-    &__field {
-      min-height: 3vw;
-    }
-
-    &__box {
-      max-width: 70%;
-    }
-  }
-
-  .aside {
-    &-tags {
-      max-width: 25%;
-      min-width: 20%;
-    }
-
-    &-advertisement {
-      max-width: 10%;
-      min-width: 5%;
-    }
-  }
-
 }
-
 /*endregion Medium devices (landscape tablets, 900px and up) */
 
 /*region Large devices (laptops/desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .header__logo {
-  }
-
+@mixin index--lg() {
   .main-footer-wrapper {
     padding: 3vw 0 0 0;
   }
-
-  .main__section {
-    max-width: 75%;
-  }
-
-  .search {
-    &__field {
-      min-height: 2vw;
-    }
-
-    &__box {
-      max-width: 55%;
-    }
-  }
-
-  .aside {
-    &-tags {
-      max-width: 20%;
-      min-width: 18%;
-    }
-
-    &-advertisement {
-      max-width: 7%;
-      min-width: 5%;
-    }
-  }
-
 }
-
 /*endregion Large devices (laptops/desktops, 1200px and up) */
 
 /*region Extra large devices (large desktops, 1800px and up) */
-@media only screen and (min-width: 1800px) {
-  .search {
-    &__field {
-      min-height: 1.8vw;
-    }
+@mixin index--exLg() {
 
-    &__box {
-      max-width: 40%;
-    }
-  }
-
-  .aside-advertisement, .aside-tags {
-    max-width: 15%;
-    min-width: 13%;
-  }
-
-  .main__section {
-    max-width: 80%;
-  }
 }
-
 /*endregion Extra large devices (large desktops, 1800px and up) */
+
+@import "media-queries";
 
 /*endregion-------------------------------media----------------------------------------------*/

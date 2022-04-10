@@ -1,3 +1,5 @@
+@import "greenSwitch";
+
 .aside {
   min-width: 10%;
   padding: 2vw 1vw;
@@ -31,4 +33,65 @@
   }
 }
 
-@import "greenSwitch";
+/*region Extra small devices (phones, 599px and down) */
+@mixin aside--exSm() {
+  .aside-tags {
+  }
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
+@mixin aside--sm() {
+  .aside {
+    &-tags {
+      max-width: 25%;
+      min-width: 20%;
+    }
+
+    &-advertisement {
+      width: 100%;
+    }
+  }
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
+@mixin aside--md() {
+  .aside {
+    &-tags {
+      max-width: 25%;
+      min-width: 20%;
+    }
+
+    &-advertisement {
+      max-width: 10%;
+      min-width: 5%;
+    }
+  }
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
+@mixin aside--lg() {
+  .aside {
+    &-tags {
+      max-width: 20%;
+      min-width: 18%;
+    }
+
+    &-advertisement {
+      max-width: 7%;
+      min-width: 5%;
+    }
+  }
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
+@mixin aside--exLg() {
+  .aside-advertisement, .aside-tags {
+    max-width: 15%;
+    min-width: 13%;
+  }
+}
+/*endregion Extra large devices (large desktops, 1800px and up) */

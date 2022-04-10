@@ -99,3 +99,72 @@
 #ingredients {
   animation-delay: 0.2s;
 }
+
+/*region Extra small devices (phones, 599px and down) */
+@mixin search--exSm() {
+  .search {
+    padding: 2vw 0;
+
+    &__field {
+    }
+
+    &__box {
+    }
+  }
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
+@mixin search--sm() {
+  .search {
+    &__field {
+    }
+
+    &__box {
+      max-width: 90%;
+    }
+  }
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
+@mixin search--md() {
+  .search {
+    &__field {
+      min-height: 3vw;
+    }
+
+    &__box {
+      max-width: 70%;
+    }
+  }
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
+@mixin search--lg() {
+  .search {
+    &__field {
+      min-height: 2vw;
+    }
+
+    &__box {
+      max-width: 55%;
+    }
+  }
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
+@mixin search--exLg() {
+  .search {
+    &__field {
+      min-height: 1.8vw;
+    }
+
+    &__box {
+      max-width: 40%;
+    }
+  }
+}
+/*endregion Extra large devices (large desktops, 1800px and up) */

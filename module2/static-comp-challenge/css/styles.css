@@ -108,7 +108,7 @@ body > img {
     z-index: 2;
 }
 
-#header__toggle {
+#burger-toggle {
     opacity: 0;
     display: none;
 }

@@ -76,3 +76,63 @@
     }
   }
 }
+
+/*region Extra small devices (phones, 599px and down) */
+@mixin header--exSm() {
+  .header {
+    &__logo {
+    }
+
+    &__burger {
+      display: block;
+      position: relative;
+      width: 6vw;
+      height: 4vw;
+      z-index: 1;
+    }
+
+    &__list {
+      display: block;
+    }
+    /*region-----------------------start-menu-position-as-hidden----------------------*/
+    &__menu {
+      position: fixed;
+      top: -300%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #28aca8;
+      transition: all .3s ease 0s;
+      padding: 14vw 2vw 4vw 2vw;
+    }
+    /*endregion-----------------------start-menu-position-----------------------------*/
+  }
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
+@mixin header--sm() {
+  .header__logo {
+  }
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
+@mixin header--md() {
+  .header__logo {
+  }
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
+@mixin header--lg() {
+  .header__logo {
+  }
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
+@mixin --exLg() {
+
+}
+/*endregion Extra large devices (large desktops, 1800px and up) */

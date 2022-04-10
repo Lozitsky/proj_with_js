@@ -32,3 +32,58 @@
   }
 }
 
+/*region Extra small devices (phones, 599px and down) */
+@mixin main--exSm() {
+  .main__container {
+    flex-direction: column;
+  }
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
+@mixin main--sm() {
+  .main {
+    &__container {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    &__section {
+      max-width: 75%;
+      min-width: 70%;
+    }
+  }
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
+@mixin main--md() {
+  .main {
+    &__container {
+      flex-wrap: nowrap;
+    }
+
+    &__section {
+      /*background: #222;*/
+      max-width: 70%;
+    }
+  }
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
+@mixin main--lg() {
+  .main__section {
+    max-width: 75%;
+  }
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
+@mixin main--exLg() {
+  .main__section {
+    max-width: 80%;
+  }
+}
+/*endregion Extra large devices (large desktops, 1800px and up) */
+

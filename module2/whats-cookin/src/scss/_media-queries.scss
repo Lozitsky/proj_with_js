@@ -1,0 +1,50 @@
+/*region Extra small devices (phones, 599px and down) */
+@media only screen and (max-width: 599px) {
+  @include index--exSm();
+  @include header--exSm();
+  @include aside--exSm();
+  @include main--exSm();
+  @include search--exSm();
+  @include cards--exSm();
+}
+/*endregion Extra small devices (phones, 599px and down) */
+
+/*region Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  @include index--sm();
+  @include header--sm();
+  @include aside--sm();
+  @include main--sm();
+  @include search--sm();
+  @include cards--sm();
+}
+/*endregion Small devices (portrait tablets and large phones, 600px and up) */
+
+/*region Medium devices (landscape tablets, 900px and up) */
+@media only screen and (min-width: 900px) {
+  @include index--md();
+  @include header--md();
+  @include aside--md();
+  @include main--md();
+  @include search--md();
+}
+/*endregion Medium devices (landscape tablets, 900px and up) */
+
+/*region Large devices (laptops/desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  @include index--lg();
+  @include header--lg();
+  @include aside--lg();
+  @include main--lg();
+  @include search--lg();
+}
+/*endregion Large devices (laptops/desktops, 1200px and up) */
+
+/*region Extra large devices (large desktops, 1800px and up) */
+@media only screen and (min-width: 1800px) {
+  @include index--exLg();
+  @include aside--exLg();
+  @include main--exLg();
+  @include search--exLg();
+}
+/*endregion Extra large devices (large desktops, 1800px and up) */
