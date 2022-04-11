@@ -1,0 +1,22 @@
+.example-text {
+  margin-top: 75px;
+
+  &__correct-location, &__wrong-location, &__wrong {
+    font-size: 35px;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid black;
+  }
+
+  &__correct-location {
+    background-color: var(--spot-correct);
+  }
+
+  &__wrong-location {
+    background-color: var(--spot-wrong);
+  }
+
+  &__wrong {
+    background-color: var(--wrong);
+  }
+}

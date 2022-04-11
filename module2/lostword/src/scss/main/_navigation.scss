@@ -1,0 +1,23 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &__btn {
+    margin-top: 10px;
+    width: 200px;
+    color: var(--teal-light);
+    background-color: var(--green);
+    letter-spacing: 2px;
+
+    &:hover {
+      background-color: var(--teal-light);
+      color: var(--green);
+    }
+  }
+
+  .active {
+    color: var(--green);
+    background-color: var(--spot-correct);
+  }
+}

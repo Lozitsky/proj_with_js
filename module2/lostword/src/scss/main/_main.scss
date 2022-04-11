@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    width: 33%;
+  }
+
+  /* RULES & STATS */
+  &__rules,
+  &__stats {
+    text-align: center;
+  }
+
+  &__info-text {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 25px;
+  }
+
+  &__subtitle {
+    font-size: 25px;
+  }
+}
+
+/* GAME BOARD (grid) */
+
+@import "gameBoard";
+
+@import "button";
+
+/* GUESS BUTTON */
+
+@import "guess";
+
+/* NAV BUTTONS (right side) */
+
+@import "src/scss/main/navigation";
+
+/* LETTERS KEY (left side) */
+
+@import "keys";
+
+@import "rules";
+
+/* HIDDEN ELEMENTS */
+.hidden {
+  visibility: hidden;
+}
+
+.collapsed {
+  display: none;
+}

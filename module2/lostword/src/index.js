@@ -9,17 +9,17 @@ let currentRow = 1;
 let guess = '';
 
 // Query Selectors
-const inputs = document.querySelectorAll('input');
-const guessButton = document.querySelector('#guess-button');
-const keyLetters = document.querySelectorAll('span');
-const errorMessage = document.querySelector('#error-message');
-const viewRulesButton = document.querySelector('#rules-button');
-const viewGameButton = document.querySelector('#play-button');
-const viewStatsButton = document.querySelector('#stats-button');
-const gameBoard = document.querySelector('#game-section');
-const letterKey = document.querySelector('#key-section');
-const rules = document.querySelector('#rules-section');
-const stats = document.querySelector('#stats-section');
+const inputs = document.querySelectorAll('.table__input');
+const guessButton = document.querySelector('.guess__button');
+const keyLetters = document.querySelectorAll('.key-section__key');
+const errorMessage = document.querySelector('.guess__error');
+const viewRulesButton = document.querySelector('.nav__btn-rules');
+const viewGameButton = document.querySelector('.nav__btn-play');
+const viewStatsButton = document.querySelector('.nav__btn-stats');
+const gameBoard = document.querySelector('.main__game');
+const letterKey = document.querySelector('.key-section');
+const rules = document.querySelector('.main__rules');
+const stats = document.querySelector('.main__stats');
 
 // Event Listeners
 window.addEventListener('load', setGame);

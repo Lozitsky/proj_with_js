@@ -1,0 +1,16 @@
+.key-section {
+  padding: 0 25px 25px;
+  text-align: center;
+
+  .correct-location-key {
+    color: var(--spot-correct);
+  }
+
+  .wrong-location-key {
+    color: var(--spot-wrong);
+  }
+
+  .wrong-key {
+    color: var(--wrong);
+  }
+}

@@ -1,0 +1,29 @@
+.table {
+  margin: auto;
+
+  &__input {
+    height: 50px;
+    width: 50px;
+    font-size: 40px;
+    text-align: center;
+    border: none;
+    margin: 3px;
+
+    &:focus {
+      outline: none;
+      border: 2px solid var(--spot-correct);
+    }
+  }
+
+  .wrong {
+    background-color: var(--wrong);
+  }
+
+  .wrong-location {
+    background-color: var(--spot-wrong);
+  }
+
+  .correct-location {
+    background-color: var(--spot-correct);
+  }
+}
