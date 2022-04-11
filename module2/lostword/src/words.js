@@ -1,4 +1,4 @@
-var words = [
+let words = [
   "aback",
   "abase",
   "abate",
@@ -2499,3 +2499,5 @@ var words = [
   "yummy",
   "zones"
 ];
+
+module.exports = {words};

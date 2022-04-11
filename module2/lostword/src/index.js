@@ -1,30 +1,40 @@
 // Global Variables
-var winningWord = '';
-var currentRow = 1;
-var guess = '';
+// import words from './words';
+let {words} = require('./words.js');
+import './scss/styles.scss';
+import './assets/turdle-turtle.png';
+
+let winningWord = '';
+let currentRow = 1;
+let guess = '';
 
 // Query Selectors
-var inputs = document.querySelectorAll('input');
-var guessButton = document.querySelector('#guess-button');
-var keyLetters = document.querySelectorAll('span');
-var errorMessage = document.querySelector('#error-message');
-var viewRulesButton = document.querySelector('#rules-button');
-var viewGameButton = document.querySelector('#play-button');
-var viewStatsButton = document.querySelector('#stats-button');
-var gameBoard = document.querySelector('#game-section');
-var letterKey = document.querySelector('#key-section');
-var rules = document.querySelector('#rules-section');
-var stats = document.querySelector('#stats-section');
+const inputs = document.querySelectorAll('input');
+const guessButton = document.querySelector('#guess-button');
+const keyLetters = document.querySelectorAll('span');
+const errorMessage = document.querySelector('#error-message');
+const viewRulesButton = document.querySelector('#rules-button');
+const viewGameButton = document.querySelector('#play-button');
+const viewStatsButton = document.querySelector('#stats-button');
+const gameBoard = document.querySelector('#game-section');
+const letterKey = document.querySelector('#key-section');
+const rules = document.querySelector('#rules-section');
+const stats = document.querySelector('#stats-section');
 
 // Event Listeners
 window.addEventListener('load', setGame);
 
-for (var i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener('keyup', function() { moveToNextInput(event) });
+let i;
+for (i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('keyup', function () {
+    moveToNextInput(event)
+  });
 }
 
-for (var i = 0; i < keyLetters.length; i++) {
-  keyLetters[i].addEventListener('click', function() { clickLetter(event) });
+for (i = 0; i < keyLetters.length; i++) {
+  keyLetters[i].addEventListener('click', function () {
+    clickLetter(event)
+  });
 }
 
 guessButton.addEventListener('click', submitGuess);
@@ -43,13 +53,13 @@ function setGame() {
 }
 
 function getRandomWord() {
-  var randomIndex = Math.floor(Math.random() * 2500);
+  const randomIndex = Math.floor(Math.random() * 2500);
   return words[randomIndex];
 }
 
 function updateInputPermissions() {
-  for(var i = 0; i < inputs.length; i++) {
-    if(!inputs[i].id.includes(`-${currentRow}-`)) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (!inputs[i].id.includes(`-${currentRow}-`)) {
       inputs[i].disabled = true;
     } else {
       inputs[i].disabled = false;
@@ -60,20 +70,20 @@ function updateInputPermissions() {
 }
 
 function moveToNextInput(e) {
-  var key = e.keyCode || e.charCode;
+  let key = e.keyCode || e.charCode;
 
-  if( key !== 8 && key !== 46 ) {
-    var indexOfNext = parseInt(e.target.id.split('-')[2]) + 1;
+  if (key !== 8 && key !== 46) {
+    let indexOfNext = parseInt(e.target.id.split('-')[2]) + 1;
     inputs[indexOfNext].focus();
   }
 }
 
 function clickLetter(e) {
-  var activeInput = null;
-  var activeIndex = null;
+  let activeInput = null;
+  let activeIndex = null;
 
-  for (var i = 0; i < inputs.length; i++) {
-    if(inputs[i].id.includes(`-${currentRow}-`) && !inputs[i].value && !activeInput) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].id.includes(`-${currentRow}-`) && !inputs[i].value && !activeInput) {
       activeInput = inputs[i];
       activeIndex = i;
     }
@@ -100,8 +110,8 @@ function submitGuess() {
 function checkIsWord() {
   guess = '';
 
-  for(var i = 0; i < inputs.length; i++) {
-    if(inputs[i].id.includes(`-${currentRow}-`)) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].id.includes(`-${currentRow}-`)) {
       guess += inputs[i].value;
     }
   }
@@ -110,9 +120,9 @@ function checkIsWord() {
 }
 
 function compareGuess() {
-  var guessLetters = guess.split('');
+  let guessLetters = guess.split('');
 
-  for (var i = 0; i < guessLetters.length; i++) {
+  for (let i = 0; i < guessLetters.length; i++) {
 
     if (winningWord.includes(guessLetters[i]) && winningWord.split('')[i] !== guessLetters[i]) {
       updateBoxColor(i, 'wrong-location');
@@ -129,10 +139,10 @@ function compareGuess() {
 }
 
 function updateBoxColor(letterLocation, className) {
-  var row = [];
+  const row = [];
 
-  for (var i = 0; i < inputs.length; i++) {
-    if(inputs[i].id.includes(`-${currentRow}-`)) {
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].id.includes(`-${currentRow}-`)) {
       row.push(inputs[i]);
     }
   }
@@ -141,9 +151,9 @@ function updateBoxColor(letterLocation, className) {
 }
 
 function updateKeyColor(letter, className) {
-  var keyLetter = null;
+  let keyLetter = null;
 
-  for (var i = 0; i < keyLetters.length; i++) {
+  for (let i = 0; i < keyLetters.length; i++) {
     if (keyLetters[i].innerText === letter) {
       keyLetter = keyLetters[i];
     }
