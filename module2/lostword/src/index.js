@@ -1,5 +1,4 @@
 // Global Variables
-// import words from './words';
 let {words} = require('./words.js');
 import './scss/styles.scss';
 import './assets/turdle-turtle.png';
@@ -9,7 +8,7 @@ let currentRow = 1;
 let guess = '';
 
 // Query Selectors
-const inputs = document.querySelectorAll('.table__input');
+const rows = document.querySelectorAll('.table__row');
 const guessButton = document.querySelector('.guess__button');
 const keyLetters = document.querySelectorAll('.key-section__key');
 const errorMessage = document.querySelector('.guess__error');
@@ -24,73 +23,89 @@ const stats = document.querySelector('.main__stats');
 // Event Listeners
 window.addEventListener('load', setGame);
 
-let i;
-for (i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener('keyup', function () {
-    moveToNextInput(event)
-  });
+function setListeners() {
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].addEventListener('keyup', moveToNextInput);
+  }
+
+  for (let i = 0; i < keyLetters.length; i++) {
+    keyLetters[i].addEventListener('click', clickLetter);
+  }
+
+  guessButton.addEventListener('click', submitGuess);
+
+  viewRulesButton.addEventListener('click', viewRules);
+
+  viewGameButton.addEventListener('click', viewGame);
+
+  viewStatsButton.addEventListener('click', viewStats);
 }
-
-for (i = 0; i < keyLetters.length; i++) {
-  keyLetters[i].addEventListener('click', function () {
-    clickLetter(event)
-  });
-}
-
-guessButton.addEventListener('click', submitGuess);
-
-viewRulesButton.addEventListener('click', viewRules);
-
-viewGameButton.addEventListener('click', viewGame);
-
-viewStatsButton.addEventListener('click', viewStats);
 
 // Functions
+function moveToNextInput(e) {
+  const cells = e.currentTarget.querySelectorAll('.table__cell');
+  let key = e.keyCode || e.charCode;
+  if (key !== 8 && key !== 46) {
+    let indexOfNext = parseInt(e.target.className.split(' ')
+      .find(c => c.includes('-'))
+      .split('-')[1]);
+    setFocusToInput(indexOfNext, cells);
+  }
+}
+
+function setFocusToInput(activeIndex, cells) {
+  if (activeIndex < cells.length) {
+    cells[activeIndex].focus();
+  }
+}
+
+function getCurrentRow() {
+  return document.querySelector(`.table__row-${currentRow}`);
+}
+
+function getCurrentCells() {
+  return getCurrentRow().querySelectorAll('.table__cell');
+}
+
+function clickLetter(e) {
+  const cells = getCurrentCells();
+  for (let i = 0; i < cells.length; i++) {
+    if (!cells[i].value) {
+      cells[i].value = e.target.innerText;
+      setFocusToInput(i + 1, cells);
+      return;
+    }
+  }
+}
+
 function setGame() {
   winningWord = getRandomWord();
+  setListeners();
   console.log(winningWord);
   updateInputPermissions();
 }
 
 function getRandomWord() {
-  const randomIndex = Math.floor(Math.random() * 2500);
+  const randomIndex = Math.floor(Math.random() * words.length);
   return words[randomIndex];
 }
 
 function updateInputPermissions() {
-  for (let i = 0; i < inputs.length; i++) {
-    if (!inputs[i].id.includes(`-${currentRow}-`)) {
-      inputs[i].disabled = true;
-    } else {
-      inputs[i].disabled = false;
+  // let rows = document.querySelectorAll(`.table__row`);
+  let cell0;
+  let cells;
+  for (let i = 0; i < rows.length; i++) {
+    cells = rows[i].querySelectorAll('.table__cell');
+    if (rows[i].className.includes(`-${currentRow}`)) {
+      cell0 = cells[0];
+    }
+    for (let j = 0; j < rows[i].length; j++) {
+      cells[j].disabled = !rows[i].className.includes(`-${currentRow}`);
     }
   }
-
-  inputs[0].focus();
-}
-
-function moveToNextInput(e) {
-  let key = e.keyCode || e.charCode;
-
-  if (key !== 8 && key !== 46) {
-    let indexOfNext = parseInt(e.target.id.split('-')[2]) + 1;
-    inputs[indexOfNext].focus();
+  if (cell0) {
+    cell0.focus();
   }
-}
-
-function clickLetter(e) {
-  let activeInput = null;
-  let activeIndex = null;
-
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].id.includes(`-${currentRow}-`) && !inputs[i].value && !activeInput) {
-      activeInput = inputs[i];
-      activeIndex = i;
-    }
-  }
-
-  activeInput.value = e.target.innerText;
-  inputs[activeIndex + 1].focus();
 }
 
 function submitGuess() {
@@ -109,11 +124,9 @@ function submitGuess() {
 
 function checkIsWord() {
   guess = '';
-
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].id.includes(`-${currentRow}-`)) {
-      guess += inputs[i].value;
-    }
+  let cells = getCurrentCells();
+  for (let i = 0; i < cells.length; i++) {
+    guess += cells[i].value;
   }
 
   return words.includes(guess);
@@ -121,33 +134,24 @@ function checkIsWord() {
 
 function compareGuess() {
   let guessLetters = guess.split('');
+  let cells = getCurrentCells();
 
   for (let i = 0; i < guessLetters.length; i++) {
-
     if (winningWord.includes(guessLetters[i]) && winningWord.split('')[i] !== guessLetters[i]) {
-      updateBoxColor(i, 'wrong-location');
+      updateBoxColor(cells, i, 'wrong-location');
       updateKeyColor(guessLetters[i], 'wrong-location-key');
     } else if (winningWord.split('')[i] === guessLetters[i]) {
-      updateBoxColor(i, 'correct-location');
+      updateBoxColor(cells, i, 'correct-location');
       updateKeyColor(guessLetters[i], 'correct-location-key');
     } else {
-      updateBoxColor(i, 'wrong');
+      updateBoxColor(cells, i, 'wrong');
       updateKeyColor(guessLetters[i], 'wrong-key');
     }
   }
-
 }
 
-function updateBoxColor(letterLocation, className) {
-  const row = [];
-
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].id.includes(`-${currentRow}-`)) {
-      row.push(inputs[i]);
-    }
-  }
-
-  row[letterLocation].classList.add(className);
+function updateBoxColor(cells, letterLocation, className) {
+  cells[letterLocation].classList.add(className);
 }
 
 function updateKeyColor(letter, className) {
