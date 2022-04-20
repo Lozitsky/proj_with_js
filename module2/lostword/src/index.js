@@ -1,8 +1,10 @@
 // Global Variables
-let {words} = require('./words.js');
+// let {words} = require('./classes/words.js');
+import TurdleAPI from './classes/LocalTurdleAPI';
 import './scss/styles.scss';
 import './assets/turdle-turtle.png';
 
+let words = [];
 let winningWord = '';
 let currentRow = 1;
 let guess = '';
@@ -45,6 +47,7 @@ function setListeners() {
 function moveToNextInput(e) {
   const cells = e.currentTarget.querySelectorAll('.table__cell');
   let key = e.keyCode || e.charCode;
+  // console.log(key);
   if (key !== 8 && key !== 46) {
     let indexOfNext = parseInt(e.target.className.split(' ')
       .find(c => c.includes('-'))
@@ -79,19 +82,28 @@ function clickLetter(e) {
 }
 
 function setGame() {
-  winningWord = getRandomWord();
   setListeners();
-  console.log(winningWord);
-  updateInputPermissions();
+  makeRandomWord().then(data => {
+    if (data) {
+      console.log(data);
+      updateInputPermissions();
+    }
+  }).catch(console.error);
 }
 
-function getRandomWord() {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex];
+function makeRandomWord() {
+  return TurdleAPI.getAllWorlds().then(data => {
+    /*    for (const i in data) {
+      words.push(data[i]);
+    }*/
+    words = [...data];
+    const randomIndex = Math.floor(Math.random() * words.length);
+    winningWord = words[randomIndex];
+    return winningWord;
+  });
 }
 
 function updateInputPermissions() {
-  // let rows = document.querySelectorAll(`.table__row`);
   let cell0;
   let cells;
   for (let i = 0; i < rows.length; i++) {
