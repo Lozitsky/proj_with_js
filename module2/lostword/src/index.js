@@ -5,12 +5,18 @@ import './scss/styles.scss';
 import './assets/turdle-turtle.png';
 
 let words = [];
-let winningWord = '';
-let currentRow = 1;
-let guess = '';
+let countdown;
+
+let time_count;
+const countInit = 4;
+let winningWord;
+let currentRow;
+let guess;
+let timeout;
 
 // Query Selectors
 const rows = document.querySelectorAll('.table__row');
+const cells = document.querySelectorAll('.table__cell');
 const guessButton = document.querySelector('.guess__button');
 const keyLetters = document.querySelectorAll('.key-section__key');
 const errorMessage = document.querySelector('.guess__error');
@@ -21,6 +27,8 @@ const gameBoard = document.querySelector('.main__game');
 const letterKey = document.querySelector('.key-section');
 const rules = document.querySelector('.main__rules');
 const stats = document.querySelector('.main__stats');
+const popup = document.querySelector('.popup');
+const time = document.querySelector('.popup__time');
 
 // Event Listeners
 window.addEventListener('load', setGame);
@@ -81,8 +89,12 @@ function clickLetter(e) {
   }
 }
 
-function setGame() {
-  setListeners();
+function resetGame() {
+  winningWord = '';
+  currentRow = 1;
+  guess = '';
+  clearRows();
+  clearLetters();
   makeRandomWord().then(data => {
     if (data) {
       console.log(data);
@@ -91,11 +103,14 @@ function setGame() {
   }).catch(console.error);
 }
 
+function setGame() {
+  time_count = countInit;
+  setListeners();
+  resetGame();
+}
+
 function makeRandomWord() {
   return TurdleAPI.getAllWorlds().then(data => {
-    /*    for (const i in data) {
-      words.push(data[i]);
-    }*/
     words = [...data];
     const randomIndex = Math.floor(Math.random() * words.length);
     winningWord = words[randomIndex];
@@ -120,12 +135,40 @@ function updateInputPermissions() {
   }
 }
 
+function getNoticedClass(cellClass) {
+  return cellClass.includes('wrong') || cellClass.includes('correct');
+}
+
+function clearNoticed(cell) {
+  for (const cellClass of cell.className.split(' ')) {
+    if (getNoticedClass(cellClass)) {
+      cell.classList.remove(cellClass);
+    }
+  }
+}
+
+function clearRows() {
+  for (const cell of cells) {
+    cell.value = '';
+    clearNoticed(cell);
+  }
+}
+
+function clearLetters() {
+  for (const letter of keyLetters) {
+    clearNoticed(letter);
+  }
+}
+
 function submitGuess() {
   if (checkIsWord()) {
     errorMessage.innerText = '';
     compareGuess();
     if (checkForWin()) {
       declareWinner();
+    } else if (currentRow === rows.length) {
+      showPopup();
+      resetGame();
     } else {
       changeRow();
     }
@@ -150,20 +193,21 @@ function compareGuess() {
 
   for (let i = 0; i < guessLetters.length; i++) {
     if (winningWord.includes(guessLetters[i]) && winningWord.split('')[i] !== guessLetters[i]) {
-      updateBoxColor(cells, i, 'wrong-location');
+      updateBoxColor(cells[i], 'wrong-location');
       updateKeyColor(guessLetters[i], 'wrong-location-key');
     } else if (winningWord.split('')[i] === guessLetters[i]) {
-      updateBoxColor(cells, i, 'correct-location');
+      updateBoxColor(cells[i], 'correct-location');
       updateKeyColor(guessLetters[i], 'correct-location-key');
     } else {
-      updateBoxColor(cells, i, 'wrong');
+      updateBoxColor(cells[i], 'wrong');
       updateKeyColor(guessLetters[i], 'wrong-key');
     }
   }
 }
 
-function updateBoxColor(cells, letterLocation, className) {
-  cells[letterLocation].classList.add(className);
+
+function updateBoxColor(cell, className) {
+  cell.classList.add(className);
 }
 
 function updateKeyColor(letter, className) {
@@ -219,4 +263,31 @@ function viewStats() {
   viewGameButton.classList.remove('active');
   viewRulesButton.classList.remove('active');
   viewStatsButton.classList.add('active');
+}
+
+function showTime() {
+  if (--time_count < 1) {
+    console.log('clearInterval', time_count);
+    clearTimeout(timeout);
+    clearInterval(countdown);
+    time_count = countInit;
+  }
+  time.innerText = time_count;
+}
+
+function showPopup() {
+  console.log('Popup!', `time_count: ${time_count}`);
+  makeVisible(popup);
+  timeout = setTimeout(() => makeInvisible(popup), time_count * 1000);
+  countdown = setInterval(showTime, 1000);
+}
+
+function makeInvisible(target) {
+  console.log('makeInvisible');
+  target.classList.add('hidden');
+}
+
+function makeVisible(target) {
+  console.log('makeVisible');
+  target.classList.remove('hidden');
 }

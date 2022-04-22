@@ -1,0 +1,31 @@
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: var(--wrong);
+  color: var(--teal-light);
+  &__title {
+    color: var(--spot-wrong);
+  }
+
+  &__text {
+
+  }
+
+  &__time {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: var(--spot-wrong);
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .visible {
+    visibility: visible;
+  }
+}
