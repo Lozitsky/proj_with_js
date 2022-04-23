@@ -91,6 +91,7 @@ function clickLetter(e) {
 }
 
 function resetGame() {
+  setStats();
   winningWord = '';
   currentRow = 1;
   guess = '';
@@ -102,6 +103,19 @@ function resetGame() {
       updateInputPermissions();
     }
   }).catch(console.error);
+}
+
+function setStats() {
+  let total = stats.querySelector('.main__stats-total');
+  total.innerText = gamesPlayed.length;
+  let percent = stats.querySelector('.main__stats-percent');
+  // percent.innerText = gamesPlayed.filter(item => item.solved).length;
+
+  let percent_correct = gamesPlayed.reduce((sum, item) => item.solved ? ++sum : sum, 0) * 100 / gamesPlayed.length;
+  percent.innerText = percent_correct | 0;
+  let average = stats.querySelector('.main__stats-average');
+  let average_guesses = gamesPlayed.reduce((acc, item) => acc + item.guesses, 0) / gamesPlayed.length;
+  average.innerText = average_guesses | 0;
 }
 
 function setGame() {
