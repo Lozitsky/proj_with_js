@@ -5,6 +5,7 @@ import './scss/styles.scss';
 import './assets/turdle-turtle.png';
 
 let words = [];
+let gamesPlayed = [];
 let countdown;
 
 let time_count;
@@ -160,6 +161,11 @@ function clearLetters() {
   }
 }
 
+function saveResult(state) {
+  gamesPlayed.push({solved: state, guesses: currentRow});
+  console.log(gamesPlayed);
+}
+
 function submitGuess() {
   if (checkIsWord()) {
     errorMessage.innerText = '';
@@ -167,6 +173,7 @@ function submitGuess() {
     if (checkForWin()) {
       declareWinner();
     } else if (currentRow === rows.length) {
+      saveResult(false);
       showPopup();
       resetGame();
     } else {
