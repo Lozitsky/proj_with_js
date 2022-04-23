@@ -56,7 +56,6 @@ function setListeners() {
 function moveToNextInput(e) {
   const cells = e.currentTarget.querySelectorAll('.table__cell');
   let key = e.keyCode || e.charCode;
-  // console.log(key);
   if (key !== 8 && key !== 46) {
     let indexOfNext = parseInt(e.target.className.split(' ')
       .find(c => c.includes('-'))
@@ -91,7 +90,7 @@ function clickLetter(e) {
 }
 
 function resetGame() {
-  setStats();
+  getStats();
   winningWord = '';
   currentRow = 1;
   guess = '';
@@ -105,17 +104,26 @@ function resetGame() {
   }).catch(console.error);
 }
 
-function setStats() {
+function populateStats(param_gues) {
   let total = stats.querySelector('.main__stats-total');
   total.innerText = gamesPlayed.length;
   let percent = stats.querySelector('.main__stats-percent');
-  // percent.innerText = gamesPlayed.filter(item => item.solved).length;
 
   let percent_correct = gamesPlayed.reduce((sum, item) => item.solved ? ++sum : sum, 0) * 100 / gamesPlayed.length;
   percent.innerText = percent_correct | 0;
   let average = stats.querySelector('.main__stats-average');
-  let average_guesses = gamesPlayed.reduce((acc, item) => acc + item.guesses, 0) / gamesPlayed.length;
+  let average_guesses = gamesPlayed.reduce((acc, item) => acc + item[param_gues], 0) / gamesPlayed.length;
   average.innerText = average_guesses | 0;
+}
+
+function getStats() {
+  console.log('getStats');
+  const param_gues = "numGuesses";
+  TurdleAPI.getStats().then(arr => {
+    gamesPlayed = [...arr];
+    console.log(gamesPlayed);
+    populateStats(param_gues);
+  });
 }
 
 function setGame() {
@@ -176,7 +184,9 @@ function clearLetters() {
 }
 
 function saveResult(state) {
-  gamesPlayed.push({solved: state, guesses: currentRow});
+  let current_state = {solved: state, guesses: currentRow};
+  TurdleAPI.addStats(current_state)
+    .then(isSaved => isSaved ? (gamesPlayed.push(current_state) ? resetGame() : console.error("Error! Unable to save to local")) : console.error("Error! Unable to save to server"));
   console.log(gamesPlayed);
 
   if (state) {
@@ -184,7 +194,6 @@ function saveResult(state) {
   } else {
     showPopup();
   }
-  resetGame();
 }
 
 function submitGuess() {
