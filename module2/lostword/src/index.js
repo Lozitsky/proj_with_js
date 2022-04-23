@@ -164,6 +164,13 @@ function clearLetters() {
 function saveResult(state) {
   gamesPlayed.push({solved: state, guesses: currentRow});
   console.log(gamesPlayed);
+
+  if (state) {
+    declareWinner();
+  } else {
+    showPopup();
+  }
+  resetGame();
 }
 
 function submitGuess() {
@@ -171,11 +178,9 @@ function submitGuess() {
     errorMessage.innerText = '';
     compareGuess();
     if (checkForWin()) {
-      declareWinner();
+      saveResult(true);
     } else if (currentRow === rows.length) {
       saveResult(false);
-      showPopup();
-      resetGame();
     } else {
       changeRow();
     }
