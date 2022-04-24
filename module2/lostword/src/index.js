@@ -35,14 +35,10 @@ const time = document.querySelector('.popup__time');
 window.addEventListener('load', setGame);
 
 function setListeners() {
-  for (let i = 0; i < rows.length; i++) {
-    rows[i].addEventListener('keyup', moveToNextInput);
-  }
-
-  for (let i = 0; i < keyLetters.length; i++) {
-    keyLetters[i].addEventListener('click', clickLetter);
-  }
-
+  rows.forEach(row => row.addEventListener('keyup', moveToNextInput));
+  
+  keyLetters.forEach(key => key.addEventListener('click', clickLetter));
+  
   guessButton.addEventListener('click', submitGuess);
 
   viewRulesButton.addEventListener('click', viewRules);
@@ -65,9 +61,7 @@ function moveToNextInput(e) {
 }
 
 function setFocusToInput(activeIndex, cells) {
-  if (activeIndex < cells.length) {
-    cells[activeIndex].focus();
-  }
+  return activeIndex < cells.length ? !cells[activeIndex].focus() : false;
 }
 
 function getCurrentRow() {
@@ -79,14 +73,13 @@ function getCurrentCells() {
 }
 
 function clickLetter(e) {
-  const cells = getCurrentCells();
-  for (let i = 0; i < cells.length; i++) {
-    if (!cells[i].value) {
-      cells[i].value = e.target.innerText;
-      setFocusToInput(i + 1, cells);
-      return;
+  let cells = Array.prototype.slice.call(getCurrentCells());
+  cells.find((cell, i) => {
+    if (!cell.value) {
+      cell.value = e.target.innerText;
+      return setFocusToInput(i + 1, cells);
     }
-  }
+  });
 }
 
 function resetGame() {
@@ -107,21 +100,22 @@ function resetGame() {
 function populateStats(param_gues) {
   let total = stats.querySelector('.main__stats-total');
   total.innerText = gamesPlayed.length;
-  let percent = stats.querySelector('.main__stats-percent');
 
+  let percent = stats.querySelector('.main__stats-percent');
   let percent_correct = gamesPlayed.reduce((sum, item) => item.solved ? ++sum : sum, 0) * 100 / gamesPlayed.length;
   percent.innerText = percent_correct | 0;
+
   let average = stats.querySelector('.main__stats-average');
   let average_guesses = gamesPlayed.reduce((acc, item) => acc + item[param_gues], 0) / gamesPlayed.length;
   average.innerText = average_guesses | 0;
 }
 
 function getStats() {
-  console.log('getStats');
+  // console.log('getStats');
   const param_gues = "numGuesses";
   TurdleAPI.getStats().then(arr => {
     gamesPlayed = [...arr];
-    console.log(gamesPlayed);
+    // console.log(gamesPlayed);
     populateStats(param_gues);
   });
 }
@@ -142,20 +136,12 @@ function makeRandomWord() {
 }
 
 function updateInputPermissions() {
-  let cell0;
-  let cells;
-  for (let i = 0; i < rows.length; i++) {
-    cells = rows[i].querySelectorAll('.table__cell');
-    if (rows[i].className.includes(`-${currentRow}`)) {
-      cell0 = cells[0];
-    }
-    for (let j = 0; j < rows[i].length; j++) {
-      cells[j].disabled = !rows[i].className.includes(`-${currentRow}`);
-    }
-  }
-  if (cell0) {
-    cell0.focus();
-  }
+  let all_raws = Array.prototype.slice.call(rows);
+  all_raws.forEach(row => Array.prototype.slice.call(row.querySelectorAll('.table__cell'))
+    .forEach(cell => cell.disabled = !row.className.includes(`-${currentRow}`)));
+
+  all_raws.find(row => row.className.includes(`-${currentRow}`))
+    .querySelector('.table__cell').focus();
 }
 
 function getNoticedClass(cellClass) {
@@ -163,11 +149,8 @@ function getNoticedClass(cellClass) {
 }
 
 function clearNoticed(cell) {
-  for (const cellClass of cell.className.split(' ')) {
-    if (getNoticedClass(cellClass)) {
-      cell.classList.remove(cellClass);
-    }
-  }
+  cell.className.split(' ')
+    .forEach(sClass => getNoticedClass(sClass) ? cell.classList.remove(sClass) : undefined);
 }
 
 function clearRows() {
@@ -186,8 +169,10 @@ function clearLetters() {
 function saveResult(state) {
   let current_state = {solved: state, guesses: currentRow};
   TurdleAPI.addStats(current_state)
-    .then(isSaved => isSaved ? (gamesPlayed.push(current_state) ? resetGame() : console.error("Error! Unable to save to local")) : console.error("Error! Unable to save to server"));
-  console.log(gamesPlayed);
+    .then(isSaved => isSaved ? 
+      (gamesPlayed.push(current_state) ? resetGame() : console.error("Error! Unable to save to local"))
+      : console.error("Error! Unable to save to server"));
+  // console.log(gamesPlayed);
 
   if (state) {
     declareWinner();
@@ -213,48 +198,33 @@ function submitGuess() {
 }
 
 function checkIsWord() {
-  guess = '';
-  let cells = getCurrentCells();
-  for (let i = 0; i < cells.length; i++) {
-    guess += cells[i].value;
-  }
-
+  guess = Array.prototype.slice.call(getCurrentCells())
+    .reduce((word, cell) => word + cell.value, '');
   return words.includes(guess);
 }
 
 function compareGuess() {
-  let guessLetters = guess.split('');
-  let cells = getCurrentCells();
-
-  for (let i = 0; i < guessLetters.length; i++) {
-    if (winningWord.includes(guessLetters[i]) && winningWord.split('')[i] !== guessLetters[i]) {
-      updateBoxColor(cells[i], 'wrong-location');
-      updateKeyColor(guessLetters[i], 'wrong-location-key');
-    } else if (winningWord.split('')[i] === guessLetters[i]) {
-      updateBoxColor(cells[i], 'correct-location');
-      updateKeyColor(guessLetters[i], 'correct-location-key');
-    } else {
-      updateBoxColor(cells[i], 'wrong');
-      updateKeyColor(guessLetters[i], 'wrong-key');
-    }
-  }
+  guess.split('').forEach((letter, i) => {
+    let wrongClass = getWrongClass(i, letter);
+    updateBoxColor(getCurrentCells()[i], wrongClass);
+    updateKeyColor(letter, `${wrongClass}-key`);
+  });
 }
 
+function getWrongClass(index, letter) {
+  return winningWord.includes(letter) && winningWord.split('')[index] !== letter ? 
+    'wrong-location' : winningWord[index] === letter ?
+      'correct-location' : 
+      'wrong';
+}
 
 function updateBoxColor(cell, className) {
   cell.classList.add(className);
 }
 
 function updateKeyColor(letter, className) {
-  let keyLetter = null;
-
-  for (let i = 0; i < keyLetters.length; i++) {
-    if (keyLetters[i].innerText === letter) {
-      keyLetter = keyLetters[i];
-    }
-  }
-
-  keyLetter.classList.add(className);
+  Array.prototype.slice.call(keyLetters)
+    .find(key => key.innerText === letter ? !key.classList.add(className) : false);
 }
 
 function checkForWin() {
@@ -302,7 +272,7 @@ function viewStats() {
 
 function showTime() {
   if (--time_count < 1) {
-    console.log('clearInterval', time_count);
+    // console.log('clearInterval', time_count);
     clearTimeout(timeout);
     clearInterval(countdown);
     time_count = countInit;
@@ -311,18 +281,18 @@ function showTime() {
 }
 
 function showPopup() {
-  console.log('Popup!', `time_count: ${time_count}`);
+  // console.log('Popup!', `time_count: ${time_count}`);
   makeVisible(popup);
   timeout = setTimeout(() => makeInvisible(popup), time_count * 1000);
   countdown = setInterval(showTime, 1000);
 }
 
 function makeInvisible(target) {
-  console.log('makeInvisible');
+  // console.log('makeInvisible');
   target.classList.add('hidden');
 }
 
 function makeVisible(target) {
-  console.log('makeVisible');
+  // console.log('makeVisible');
   target.classList.remove('hidden');
 }
