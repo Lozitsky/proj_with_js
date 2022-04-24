@@ -4,21 +4,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: var(--wrong);
-  color: var(--teal-light);
+  background-color: var(--green);
+
   &__title {
-    color: var(--spot-wrong);
+    color: var(--spot-correct);
   }
 
   &__text {
-
+    //color: var(--teal-light);
+    color: var(--text-dark);
   }
 
   &__time {
     position: absolute;
     right: 1rem;
     top: 1rem;
-    color: var(--spot-wrong);
+    color: var(--spot-correct);
   }
 
   .hidden {

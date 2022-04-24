@@ -30,6 +30,7 @@ const rules = document.querySelector('.main__rules');
 const stats = document.querySelector('.main__stats');
 const popup = document.querySelector('.popup');
 const time = document.querySelector('.popup__time');
+const popup_title = document.querySelector('.popup__title');
 
 // Event Listeners
 window.addEventListener('load', setGame);
@@ -83,6 +84,7 @@ function clickLetter(e) {
 }
 
 function resetGame() {
+  // makeVisible(popup);
   getStats();
   winningWord = '';
   currentRow = 1;
@@ -111,11 +113,9 @@ function populateStats(param_gues) {
 }
 
 function getStats() {
-  // console.log('getStats');
   const param_gues = "numGuesses";
   TurdleAPI.getStats().then(arr => {
     gamesPlayed = [...arr];
-    // console.log(gamesPlayed);
     populateStats(param_gues);
   });
 }
@@ -172,13 +172,16 @@ function saveResult(state) {
     .then(isSaved => isSaved ? 
       (gamesPlayed.push(current_state) ? resetGame() : console.error("Error! Unable to save to local"))
       : console.error("Error! Unable to save to server"));
-  // console.log(gamesPlayed);
 
   if (state) {
-    declareWinner();
+    showPopup(declareWinner());
   } else {
-    showPopup();
+    showPopup(declareLoser());
   }
+}
+
+function isLastRow() {
+  return currentRow === rows.length;
 }
 
 function submitGuess() {
@@ -187,7 +190,7 @@ function submitGuess() {
     compareGuess();
     if (checkForWin()) {
       saveResult(true);
-    } else if (currentRow === rows.length) {
+    } else if (isLastRow()) {
       saveResult(false);
     } else {
       changeRow();
@@ -237,7 +240,10 @@ function changeRow() {
 }
 
 function declareWinner() {
-  console.log('winner!');
+  return 'Winner!';
+}
+function declareLoser() {
+  return 'You lost!';
 }
 
 function viewRules() {
@@ -272,7 +278,6 @@ function viewStats() {
 
 function showTime() {
   if (--time_count < 1) {
-    // console.log('clearInterval', time_count);
     clearTimeout(timeout);
     clearInterval(countdown);
     time_count = countInit;
@@ -280,19 +285,17 @@ function showTime() {
   time.innerText = time_count;
 }
 
-function showPopup() {
-  // console.log('Popup!', `time_count: ${time_count}`);
+function showPopup(title) {
+  popup_title.innerText = title;
   makeVisible(popup);
   timeout = setTimeout(() => makeInvisible(popup), time_count * 1000);
   countdown = setInterval(showTime, 1000);
 }
 
 function makeInvisible(target) {
-  // console.log('makeInvisible');
   target.classList.add('hidden');
 }
 
 function makeVisible(target) {
-  // console.log('makeVisible');
   target.classList.remove('hidden');
 }
