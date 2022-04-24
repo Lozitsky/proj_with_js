@@ -7,7 +7,8 @@ COLORS
   blue (wrong spot): #5271FF
   gray (wrong): #A6A6A6
 */
-:root {
+
+.wrapper {
   //--teal: #7ACFCA;
   --teal: hsla(176, 47%, 65%, 1);
   --main-c: var(--teal);
@@ -35,15 +36,16 @@ COLORS
   //--text-dark: #000000;
   --dark: hsla(0, 0%, 0%, 1);
   --text-c: var(--dark);
-
-  --white: hsl(100, 100%, 100%, 1)
 }
 
 /* GENERAL */
-
 @import "reset";
 
-html[data-theme="dark"] {
+.theme {
+  display: none;
+}
+
+.theme:checked ~ .wrapper {
   --main-c: var(--dark);
   --second-c: var(--teal-light);
   --third-c: var(--spot-wrong);
@@ -54,6 +56,10 @@ html[data-theme="dark"] {
 }
 
 body {
+}
+
+.wrapper {
+  min-height: 100vh;
   background-color: var(--main-c);
 }
 
