@@ -6,18 +6,24 @@
   &__btn {
     margin-top: 10px;
     width: 200px;
-    color: var(--teal-light);
-    background-color: var(--green);
+    color: var(--third-c);
+    background-color: var(--second-c);
+    //color: var(--nav-btn-c);
+    //background-color: var(--nav-bg-c);
     letter-spacing: 2px;
 
     &:hover {
-      background-color: var(--teal-light);
-      color: var(--green);
+      background-color: var(--third-c);
+      color: var(--second-c);
+      //--nav-btn-c: var(--nav-btn-c-hov);
+      //--nav-bg-c: var(--nav-bg-c-hov);
     }
   }
 
   .active {
-    color: var(--green);
-    background-color: var(--spot-correct);
+    color: var(--second-c);
+    background-color: var(--fourth-c);
+    //--nav-btn-c: var(--nav-btn-c-act);
+    //--nav-bg-c: var(--nav-bg-c-act);
   }
 }

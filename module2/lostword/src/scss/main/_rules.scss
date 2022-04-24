@@ -5,11 +5,11 @@
     font-size: 35px;
     text-align: center;
     padding: 10px;
-    border: 2px solid var(--text-dark);
+    border: 2px solid var(--text-c);
   }
 
   &__correct-location {
-    background-color: var(--spot-correct);
+    background-color: var(--fourth-c);
   }
 
   &__wrong-location {
@@ -17,6 +17,6 @@
   }
 
   &__wrong {
-    background-color: var(--wrong);
+    background-color: var(--fifth-c);
   }
 }

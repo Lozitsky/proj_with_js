@@ -2,8 +2,12 @@
   padding: 0 25px 25px;
   text-align: center;
 
+  &__key {
+    color: var(--text-c);
+  }
+
   .correct-location-key {
-    color: var(--spot-correct);
+    color: var(--fourth-c);
   }
 
   .wrong-location-key {
@@ -11,6 +15,6 @@
   }
 
   .wrong-key {
-    color: var(--wrong);
+    color: var(--fifth-c);
   }
 }

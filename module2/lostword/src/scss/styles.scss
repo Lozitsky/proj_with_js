@@ -8,21 +8,53 @@ COLORS
   gray (wrong): #A6A6A6
 */
 :root {
-  --teal: #7ACFCA;
-  --teal-light: #C7EEE4;
-  --green: #599641;
-  --spot-correct: #FDDE59;
-  --spot-wrong: #5271FF;
-  --wrong: #A6A6A6;
-  --text-dark: black;
+  //--teal: #7ACFCA;
+  --teal: hsla(176, 47%, 65%, 1);
+  --main-c: var(--teal);
+
+  //--green: #599641;
+  --green: hsla(103, 40%, 42%, 1);
+  --second-c: var(--green);
+
+  //--teal-light: #C7EEE4;
+  --teal-light: hsla(165, 53%, 86%, 1);
+  --third-c: var(--teal-light);
+
+  //--spot-correct: #FDDE59;
+  --spot-correct: hsla(49, 98%, 67%, 1);
+  --fourth-c: var(--spot-correct);
+
+  //--wrong: #A6A6A6;
+  --wrong: hsla(0, 0%, 65%, 1);
+  --fifth-c: var(--wrong);
+
+  //--spot-wrong: #5271FF;
+  --spot-wrong: hsla(229, 100%, 66%, 1);
+  --sixth-c: var(--spot-wrong);
+
+  //--text-dark: #000000;
+  --dark: hsla(0, 0%, 0%, 1);
+  --text-c: var(--dark);
+
+  --white: hsl(100, 100%, 100%, 1)
 }
 
 /* GENERAL */
 
 @import "reset";
 
+html[data-theme="dark"] {
+  --main-c: var(--dark);
+  --second-c: var(--teal-light);
+  --third-c: var(--spot-wrong);
+  --fourth-c: var(--green);
+  --fifth-c: var(--spot-correct);
+  --sixth-c: var(--teal);
+  --text-c: var(--wrong);
+}
+
 body {
-  background-color: var(--teal);
+  background-color: var(--main-c);
 }
 
 @import "main/main";
