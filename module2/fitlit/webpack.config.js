@@ -34,22 +34,43 @@ module.exports = {
     ]
   }
 };*/
-
+// const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HotModuleReplacementPlugin = require('webpack-hot-middleware');
+
+// const target = process.env.NODE_ENV === "production" ? "browserslist" : "web";
+// const mode = process.env.NODE_ENV || "development";
+// const isProduction = process.env.NODE_ENV === 'production';
+// const isDevelopment = !isProduction;
+
+// const publicPath = process.env.PUBLIC_URL || '/';
 
 module.exports = {
-  entry: [
-    './src/scripts.js',
-    './src/scss/styles.scss'
-  ],
+  // mode: mode,
+  // mode: isProduction ? 'production' : 'development',
+  // bail: isProduction,
+  entry: {
+    src: [
+      // './src/scripts.js',
+      './src/scss/styles.scss',
+      './src/scripts.js',
+    ]
+  },
+  // target: [target, "es5"],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    sourceMapFilename: "bundle.js.map"
+    // path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: '/',
+    // filename: 'bundle.js',
+    // sourceMapFilename: "bundle.js.map"
+    filename: '[name].[hash:8].js',
+    sourceMapFilename: '[name].[hash:8].map',
+    chunkFilename: '[id].[hash:8].js'
   },
   devtool: 'inline-source-map',
-  mode: 'development',
+  // devtool: 'source-map',
+  // mode: 'development',
   // CSS and file (image) loaders
   module: {
     rules: [
@@ -64,7 +85,8 @@ module.exports = {
               outputPath: 'css/',
               publicPath: 'css/'
             }
-          }, 'css-loader'
+          }
+          // , 'css-loader'
           , 'sass-loader'
         ]
       },
@@ -86,10 +108,39 @@ module.exports = {
   // Below is needed for webpack-dev-server
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
     })
   ],
   devServer: {
-    contentBase: './dist'
-  }
+    // contentBase: "./dist",
+    historyApiFallback: true,
+    hot: true,
+    watchFiles: {
+      paths: ['src/**/*'],
+    },
+    static: [
+      // Simple example
+      path.resolve(__dirname, 'dist'),
+      // Complex example
+      {
+        directory: path.resolve(__dirname, 'dist'),
+        staticOptions: {},
+        // Don't be confused with `dev.publicPath`, it is `publicPath` for static directory
+        // Can be:
+        // publicPath: ['/static-public-path-one/', '/static-public-path-two/'],
+        // publicPath: '/static-public-path/',
+        publicPath: "/assets/",
+        // Can be:
+        // serveIndex: {} (options for the `serveIndex` option you can find https://github.com/expressjs/serve-index)
+        serveIndex: true,
+        // Can be:
+        // watch: {} (options for the `watch` option you can find https://github.com/paulmillr/chokidar)
+        watch: true,
+      },
+    ]
+  },
 };
