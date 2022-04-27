@@ -41,14 +41,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const target = process.env.NODE_ENV === "production" ? "browserslist" : "web";
 // const mode = process.env.NODE_ENV || "development";
-// const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 // const isDevelopment = !isProduction;
 
 // const publicPath = process.env.PUBLIC_URL || '/';
 
 module.exports = {
   // mode: mode,
-  // mode: isProduction ? 'production' : 'development',
+  mode: isProduction ? 'production' : 'development',
   // bail: isProduction,
   entry: {
     src: [
