@@ -1,0 +1,9 @@
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+@import "account";
+@import "comparison";

@@ -6,31 +6,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <meta content="width=device-width" name="viewport, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>FitLit</title>
 </head>
 <body>
 <!--.wrapper>header.header+main.main+footer.footer-->
 <div class="wrapper">
     <header class="header">
-<!--figure.header__logo>img.header__icon[alt=logo]+figcaption.header__caption>{Hi, }+span.header__name+{!}-->
-        <figure class="header__logo"><img src="" alt="logo" class="header__icon">
-            <figcaption class="header__caption">Hi, <span class="header__name"></span>!</figcaption>
+        <!--figure.header__logo>img.header__icon[alt=logo]+figcaption.header__caption>{Hi, }+span.header__name+{!}-->
+        <figure class="header__logo">
+            <img src="" alt="logo" class="header__icon">
+            <figcaption class="header__caption">Hi, <span class="header__name">User</span>!</figcaption>
         </figure>
     </header>
     <!--        aside.aside>nav.aside__menu.menu>ul.menu__list>(li.menu__item>a[#].menu__link{$})*2-->
-    <aside class="aside">
-        <nav class="aside__menu menu">
-            <ul class="menu__list">
-                <li class="menu__item"><a href="#" class="menu__link">1</a></li>
-                <li class="menu__item"><a href="#" class="menu__link">2</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <!--    <aside class="aside">-->
+    <nav class="sidenav">
+        <ul class="sidenav__list">
+            <li class="sidenav__item">
+                <a href="#" class="sidenav__link">User's info</a></li>
+            <li class="sidenav__item">
+                <a href="#" class="sidenav__link">Compare goal</a></li>
+        </ul>
+    </nav>
+    <!--    </aside>-->
     <main class="main">
-<!--                section.account>article.account__bio.bio>table.bio__table>(thead.bio__thead>th.bio__name{full name}+th.bio__address{address}+th.bio__email{email}+th.bio__stride{stride length}+th.bio__goal{daily step goal}+th.bio__friends{friends})+tbody.bio__tbody>td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}-->
+        <!--                section.account>article.account__bio.bio>table.bio__table>(thead.bio__thead>th.bio__name{full name}+th.bio__address{address}+th.bio__email{email}+th.bio__stride{stride length}+th.bio__goal{daily step goal}+th.bio__friends{friends})+tbody.bio__tbody>td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}-->
         <section class="account collapsed">
             <article class="account__bio bio">
+                <h2 class="bio__title">User's info</h2>
                 <table class="bio__table">
+                    <!--<caption class="bio__caption">
+                    </caption>-->
                     <thead class="bio__thead">
                     <tr class="bio__row">
                         <th class="bio__head bio__name">full name</th>
@@ -39,35 +45,54 @@
                         <th class="bio__head bio__stride">stride length</th>
                         <th class="bio__head bio__goal">daily step goal</th>
                         <th class="bio__head bio__friends">friends</th>
-                    </tr></thead>
+                    </tr>
+                    </thead>
                     <tbody class="bio__tbody">
                     <tr class="bio__row">
                         <td class="bio__data">data</td>
                         <td class="bio__data">data</td>
-                        <td class="bio__data">data Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, soluta.</td>
+                        <td class="bio__data">data Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque,
+                            soluta.
+                        </td>
                         <td class="bio__data">data</td>
                         <td class="bio__data">data</td>
-                        <td class="bio__data">data Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dolorum esse facere, facilis fuga illo ipsum nihil qui sed voluptatem! Deserunt, dignissimos et eveniet hic illo, maxime minus molestias perspiciatis quasi quo, quod ratione rem similique sint tempore voluptatem voluptatibus? Accusantium, assumenda aut commodi consequatur corporis delectus ex explicabo facilis fugiat, fugit impedit molestias nihil porro similique tempore temporibus, voluptatibus. Aliquam aut illo itaque. Accusamus, accusantium aspernatur consequuntur delectus, deserunt, dicta dolore dolorem ducimus ea eius eos et eum facilis fugit ipsam iure iusto laudantium libero maiores molestiae nulla officia quaerat quas quidem quo quos repellat sit veritatis voluptates voluptatum.</td>
-                    </tr></tbody>
+                        <td class="bio__data">data Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
+                            dolorum esse facere, facilis fuga illo ipsum nihil qui sed voluptatem! Deserunt, dignissimos
+                            et eveniet hic illo, maxime minus molestias perspiciatis quasi quo, quod ratione rem
+                            similique sint tempore voluptatem voluptatibus? Accusantium, assumenda aut commodi
+                            consequatur corporis delectus ex explicabo facilis fugiat, fugit impedit molestias nihil
+                            porro similique tempore temporibus, voluptatibus. Aliquam aut illo itaque. Accusamus,
+                            accusantium aspernatur consequuntur delectus, deserunt, dicta dolore dolorem ducimus ea eius
+                            eos et eum facilis fugit ipsam iure iusto laudantium libero maiores molestiae nulla officia
+                            quaerat quas quidem quo quos repellat sit veritatis voluptates voluptatum.
+                        </td>
+                    </tr>
+                    </tbody>
                 </table>
             </article>
         </section>
-
-<!--        article.compare>h2.compare__title{Comparison step goal}+table.compare__table>(thead.compare__thead>th.compare__person{person info}+th.compare__average{average info}>)+(tbody.compare__tbody>td.compare__data{$}*2)-->
+        <!--        article.compare>h2.compare__title{Comparison step goal}+table.compare__table>(thead.compare__thead>th.compare__person{person info}+th.compare__average{average info}>)+(tbody.compare__tbody>td.compare__data{$}*2)-->
         <article class="compare collapsed">
-            <h2 class="compare__title">Comparison step goal</h2>
             <table class="compare__table">
+                <caption class="compare__caption">
+                    <h2 class="compare__title">Comparison step goal</h2>
+                </caption>
                 <thead class="compare__thead">
-                <th class="compare__person">person info</th>
-                <th class="compare__average">average info</th>
+                <tr class="compare__row">
+                    <th class="compare__head compare__person">person info</th>
+                    <th class="compare__head compare__average">average info</th>
+                </tr>
                 </thead>
                 <tbody class="compare__tbody">
-                <td class="compare__data">1</td>
-                <td class="compare__data">5</td>
+                <tr class="compare__row">
+                    <td class="compare__data">1</td>
+                    <td class="compare__data">5</td>
+                </tr>
                 </tbody>
             </table>
         </article>
     </main>
+    <aside class="sidebar"></aside>
     <footer class="footer"></footer>
 </div>
 </body>

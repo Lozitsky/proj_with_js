@@ -1,5 +1,33 @@
+@import "reset";
+
+:root {
+  --size: 4em;
+}
+
 body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-  background-repeat: no-repeat;
   height: 100%;
 }
+
+.wrapper {
+  background-image: linear-gradient(to top,
+          hsla(358, 100%, 80%, 1) 0%,
+          hsla(319, 96%, 90%, 1) 99%,
+          hsla(319, 96%, 90%, 1) 100%);
+  background-repeat: no-repeat;
+  min-height: 100%;
+  display: grid;
+  grid-template:
+          "header            header  header"
+          "sidenav           main    sidebar"
+          "footer            footer  footer" /
+          minmax(200px, 1fr) 5fr     minmax(200px, 1fr);
+  grid-gap: 1em 2em;
+  align-items: start;
+}
+
+@import "header";
+@import "sidenav";
+@import "main";
+@import "sidebar";
+@import "footer";
+

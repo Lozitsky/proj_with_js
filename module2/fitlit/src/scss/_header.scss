@@ -1,0 +1,29 @@
+.header {
+  grid-area: header;
+  background: hsla(300, 96%, 90%, .2);
+  height: max-content;
+  &__logo {
+    height: calc(1.5 * var(--size));
+    width: calc(1.5 * var(--size));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__icon {
+    height: var(--size);
+    width: var(--size);
+    border-radius: 50%;
+    border: 1px solid hsla(0, 96%, 10%, .2);
+    text-align: center;
+    line-height: var(--size);
+    background: hsla(300, 96%, 90%, .5);
+
+    overflow: hidden;
+  }
+  &__caption {
+  }
+  &__name {
+
+  }
+}

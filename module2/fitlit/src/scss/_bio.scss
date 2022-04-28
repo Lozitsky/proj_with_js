@@ -1,0 +1,80 @@
+.bio {
+  &__table {
+    background: hsla(0, 16%, 78%, .3);
+    color: hsla(0, 75%, 3%, 1);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 33vw;
+    min-width: 500px;
+    text-overflow: unset;
+    border-radius: 1em;
+  }
+
+  &__caption {
+
+  }
+  &__title {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  &__thead {
+  }
+
+  &__head {
+    margin: .5em;
+    padding: 1em;
+    background: hsla(229, 96%, 90%, .2);
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__row {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    white-space: nowrap;
+  }
+
+  &__name {
+
+  }
+
+  &__address {
+
+  }
+
+  &__email {
+
+  }
+
+  &__stride {
+
+  }
+
+  &__goal {
+  }
+
+  &__friends {
+
+  }
+
+  &__tbody {
+    overflow: hidden;
+    flex-basis: 100%;
+  }
+
+  &__data {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    max-height: 12%;
+    margin: .5em;
+    padding: 1em .5em;
+    background: hsla(129, 96%, 90%, .2) 0 100% repeat;
+  }
+}

@@ -5,17 +5,17 @@
 import './scss/styles.scss';
 import './images/turing-logo.png'
 import userData from './data/users';
+import Utils from './class/Utils';
 
-console.log(userData,"<>>>>userData")
+// Create variables targetting the relevant DOM elements here 👇
+// let variables = JSON.parse(localStorage.getItem("variable") || '[]');
 
-// An example of how you tell webpack to use a CSS file
+// Add your event listeners here 👇
+document.addEventListener('DOMContentLoaded', setupApp);
 
-// import './css/styles.css';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+// Create your event handlers and other functions here 👇
 
-console.log('This is the JavaScript entry file - your code begins here.');
+function setupApp() {
 
-// An example of how you tell webpack to use a JS file
-
-import UserRepository from './UserRepository';
+}
 
