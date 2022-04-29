@@ -4,7 +4,7 @@
   height: max-content;
   &__logo {
     height: calc(1.5 * var(--size));
-    width: calc(1.5 * var(--size));
+    width: calc(2 * var(--size));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,6 +24,6 @@
   &__caption {
   }
   &__name {
-
+    white-space: nowrap;
   }
 }

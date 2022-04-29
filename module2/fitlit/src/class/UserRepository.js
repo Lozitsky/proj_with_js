@@ -1,15 +1,23 @@
 class UserRepository {
-    constructor(data) {
-        this.data = [...data];
-    }
+  constructor(data) {
+    this.data = data;
+  }
 
-    getUserData(id) {
-        return this.data.find(user => user.id === id);
-    }
+  getAllUsers() {
+    return this.data;
+  }
 
-    getAverageStepGoal() {
-        return this.data.reduce((sum, user) => user.dailyStepGoal + sum, 0);
-    }
+  getQuantity() {
+    return this.data.length;
+  }
+
+  getUserData(id) {
+    return this.data.find(user => user.id === id);
+  }
+
+  getAverageStepGoal() {
+    return this.data.reduce((sum, user) => user.dailyStepGoal + sum, 0) / this.getQuantity();
+  }
 }
 
 export default UserRepository;
