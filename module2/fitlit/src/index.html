@@ -23,16 +23,16 @@
     <nav class="sidenav">
         <ul class="sidenav__list">
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link">User's info</a></li>
+                <a href="#" class="sidenav__link sidenav__link-user">User's info</a></li>
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link">Compare goal</a></li>
+                <a href="#" class="sidenav__link sidenav__link-all">Compare goal</a></li>
         </ul>
     </nav>
     <!--    </aside>-->
     <main class="main">
         <!--                section.account>article.account__bio.bio>table.bio__table>(thead.bio__thead>th.bio__name{full name}+th.bio__address{address}+th.bio__email{email}+th.bio__stride{stride length}+th.bio__goal{daily step goal}+th.bio__friends{friends})+tbody.bio__tbody>td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}+td.bio__data{data}-->
-        <section class="account collapsed">
-            <article class="account__bio bio">
+        <section class="account">
+            <article class="account__bio bio collapsed">
                 <h2 class="bio__title">User's info</h2>
                 <table class="bio__table">
                     <!--<caption class="bio__caption">
@@ -70,27 +70,27 @@
                     </tbody>
                 </table>
             </article>
+            <!--        article.compare>h2.compare__title{Comparison step goal}+table.compare__table>(thead.compare__thead>th.compare__person{person info}+th.compare__average{average info}>)+(tbody.compare__tbody>td.compare__data{$}*2)-->
+            <article class="account__compare compare collapsed">
+                <table class="compare__table">
+                    <caption class="compare__caption">
+                        <h2 class="compare__title">Comparison step goal</h2>
+                    </caption>
+                    <thead class="compare__thead">
+                    <tr class="compare__row compare__row-head">
+                        <th class="compare__head compare__person">person info</th>
+                        <th class="compare__head compare__average">average info</th>
+                    </tr>
+                    </thead>
+                    <tbody class="compare__tbody">
+                    <tr class="compare__row compare__row-data">
+                        <td class="compare__data compare__data-user">1</td>
+                        <td class="compare__data compare__data-all">5</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
         </section>
-        <!--        article.compare>h2.compare__title{Comparison step goal}+table.compare__table>(thead.compare__thead>th.compare__person{person info}+th.compare__average{average info}>)+(tbody.compare__tbody>td.compare__data{$}*2)-->
-        <article class="compare collapsed">
-            <table class="compare__table">
-                <caption class="compare__caption">
-                    <h2 class="compare__title">Comparison step goal</h2>
-                </caption>
-                <thead class="compare__thead">
-                <tr class="compare__row compare__row-head">
-                    <th class="compare__head compare__person">person info</th>
-                    <th class="compare__head compare__average">average info</th>
-                </tr>
-                </thead>
-                <tbody class="compare__tbody">
-                <tr class="compare__row compare__row-data">
-                    <td class="compare__data compare__data-user">1</td>
-                    <td class="compare__data compare__data-all">5</td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
     </main>
     <aside class="sidebar"></aside>
     <footer class="footer"></footer>

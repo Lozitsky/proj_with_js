@@ -1,7 +1,8 @@
 .header {
   grid-area: header;
   background: hsla(300, 96%, 90%, .2);
-  height: max-content;
+  //height: max-content;
+  height: 100%;
   &__logo {
     height: calc(1.5 * var(--size));
     width: calc(2 * var(--size));

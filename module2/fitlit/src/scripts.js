@@ -16,11 +16,40 @@ let user;
 const headerName = document.querySelector('.header__name');
 const rowData = document.querySelector('.bio__row-data');
 const rowCompare = document.querySelector('.compare__row-data');
+const navList = document.querySelector('.sidenav__list');
+const account = document.querySelector('.account__bio');
+const compare = document.querySelector('.account__compare');
+const userInfBtn = navList.querySelector('.sidenav__link-user');
+const allInfBtn = navList.querySelector('.sidenav__link-all');
 
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', setupApp);
+userInfBtn.addEventListener('click', showUserInfo);
+allInfBtn.addEventListener('click', showGoals);
 
 // Create your event handlers and other functions here 👇
+function makeCollapsed(target) {
+  target.classList.add('collapsed');
+}
+
+function makeVisible(target) {
+  // isCollapsed(compare) ? target.classList.remove('collapsed') : '';
+  target.classList.remove('collapsed');
+}
+
+function changeVisibility(mustVisible, ...mustHidden) {
+  mustHidden.forEach(item => makeCollapsed(item));
+  makeVisible(mustVisible);
+}
+
+function showUserInfo() {
+  changeVisibility(account, compare);
+}
+
+function showGoals() {
+  changeVisibility(compare, account);
+}
+
 function setGreet(user) {
   headerName.innerText = user.getName();
 }
