@@ -20,7 +20,8 @@
     </header>
     <!--        aside.aside>nav.aside__menu.menu>ul.menu__list>(li.menu__item>a[#].menu__link{$})*2-->
     <!--    <aside class="aside">-->
-    <nav class="sidenav">
+    <nav class="sidenav" aria-labelledby="secondary-nav-label">
+        <div id="secondary-nav-label" hidden>Secondary</div>
         <ul class="sidenav__list">
             <li class="sidenav__item">
                 <a href="#" class="sidenav__link sidenav__link-user">User's info</a></li>
@@ -92,7 +93,9 @@
             </article>
         </section>
     </main>
-    <aside class="sidebar"></aside>
+    <aside class="sidebar" aria-labelledby="sidebar-label">
+        <div id="sidebar-label" hidden>Sidebar</div>
+    </aside>
     <footer class="footer"></footer>
 </div>
 </body>
