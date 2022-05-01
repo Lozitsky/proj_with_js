@@ -8,6 +8,7 @@ import userData from './data/users';
 import Utils from './class/Utils';
 import UserRepository from "./class/UserRepository";
 import User from "./class/User";
+import FitlitAPI from './class/FitlitAPI';
 let userRepo;
 let user;
 
@@ -75,8 +76,13 @@ function populateData() {
 }
 
 function setupApp() {
-  userRepo = new UserRepository(userData);
-  user = new User(userRepo.getUserData(Utils.getRandomIndex(userRepo.getAllUsers())));
-  populateData();
+  FitlitAPI.getUserData().then(data => {
+    if (data) {
+      // console.log(data);
+      userRepo = new UserRepository(userData);
+      user = new User(userRepo.getUserData(Utils.getRandomIndex(userRepo.getAllUsers())));
+      populateData();
+    }
+  }).catch(console.log);
 }
 
