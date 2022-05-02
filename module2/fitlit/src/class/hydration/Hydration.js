@@ -4,11 +4,11 @@ class Hydration {
   }
 
   getDate() {
-    return this.hydrationData.data;
+    return this.hydrationData.date;
   }
 
   getNumOunces() {
-    this.hydrationData.numOunces;
+    return this.hydrationData.numOunces;
   }
 }
 

@@ -128,11 +128,11 @@ const users = [{
 }];
 
 describe('User Repository', () => {
+  let repo;
   it('should be a function', function () {
     expect(UserRepository).to.be.a('function');
   });
   describe('UserRepository()', () => {
-    let repo;
     beforeEach(() => {
       repo = new UserRepository();
     });
@@ -142,15 +142,14 @@ describe('User Repository', () => {
     it('should have a data property', function () {
       expect(repo).to.have.property('data');
     });
-    it('should have method `getUserData`', function () {
+    it('should have a method named `getUserData`', function () {
       expect(repo).itself.to.respondsTo('getUserData');
     });
-    it('should have method `getAverageStepGoal`', function () {
+    it('should have a method named `getAverageStepGoal`', function () {
       expect(repo).itself.to.respondsTo('getAverageStepGoal');
     });
   });
   describe('UserRepository(users)', () => {
-    let repo;
     beforeEach(() => {
       repo = new UserRepository(users);
     });
