@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import UserRepository from '../src/class/UserRepository';
+import UserRepository from '../src/class/user/UserRepository';
 // import users from '../src/data/users';
 
 const users = [{

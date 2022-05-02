@@ -6,8 +6,8 @@ import './scss/styles.scss';
 import './images/turing-logo.png'
 import userData from './data/users';
 import Utils from './class/Utils';
-import UserRepository from "./class/UserRepository";
-import User from "./class/User";
+import UserRepository from "./class/user/UserRepository";
+import User from "./class/user/User";
 import FitlitAPI from './class/FitlitAPI';
 let userRepo;
 let user;

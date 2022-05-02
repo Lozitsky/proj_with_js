@@ -2,7 +2,7 @@
 // const expect = chai.expect;
 
 import {expect} from 'chai';
-import User from '../src/class/User';
+import User from '../src/class/user/User';
 
 const user1 = {
   "id": 1,
