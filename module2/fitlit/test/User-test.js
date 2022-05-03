@@ -32,12 +32,13 @@ describe('User', () => {
       expect(user).to.be.an.instanceof(User);
     });
     it('should have a userData property', function () {
-      // const user = new User();
       expect(user).to.have.property('userData');
     });
     it('should have method `getName`', function () {
-      const user = new User();
       expect(user).itself.to.respondsTo('getName');
+    });
+    it('should have method `getId`', function () {
+      expect(user).itself.to.respondsTo('getId');
     });
   });
 
@@ -63,12 +64,13 @@ describe('User', () => {
       });
     });
     it('should return a user’s first name only', function () {
-      // const user = new User(user1);
       expect(user.getName()).to.be.a('string').eq('Luisa');
     });
     it('should return full name', function () {
-      // const user = new User(user1);
       expect(user.getFullname()).to.be.a('string').eq('Luisa Hane');
+    });
+    it('should return id', function () {
+      expect(user.getId()).to.be.a('number').eq(1);
     });
     it('should return an address', function () {
       expect(user.getAddress()).to.be.a('string').eq('15195 Nakia Tunnel, Erdmanport VA 19901-1697');

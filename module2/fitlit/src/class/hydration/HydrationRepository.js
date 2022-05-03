@@ -7,11 +7,11 @@ class HydrationRepository {
   }
 
   getAll() {
-    return this.data.filter(hydr => hydr.userID === this.id);
+    return this.data.filter(hydr => hydr.userID && hydr.userID === this.id);
   }
 
   getByDate(date) {
-    return this.data.find(hydr => hydr.userID === this.id && hydr.date === date);
+    return this.data.find(hydr => hydr.userID && hydr.userID === this.id && hydr.date && hydr.date === date);
   }
 
   getQuantity() {

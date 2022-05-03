@@ -24,9 +24,16 @@
         <div id="secondary-nav-label" hidden>Secondary</div>
         <ul class="sidenav__list">
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link sidenav__link-user">User's info</a></li>
+                <a href="#" class="sidenav__link sidenav__link-user">user's info</a></li>
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link sidenav__link-all">Compare goal</a></li>
+                <a href="#" class="sidenav__link sidenav__link-all">compare goal</a></li>
+<!--            li.sidenav__item>a[#].sidenav__link.sidenav__link-water-crnt{current water consumption}-->
+            <li class="sidenav__item"><a href="#" class="sidenav__link sidenav__link-cur-hydr">current water
+                consumption</a></li>
+<!--            li.sidenav__item>a[#].sidenav__link.sidenav__link-water-week{weekly water consumption}-->
+            <li class="sidenav__item"><a href="#" class="sidenav__link sidenav__link-w-h">weekly water
+                consumption</a></li>
+
         </ul>
     </nav>
     <!--    </aside>-->
@@ -91,6 +98,86 @@
                     </tbody>
                 </table>
             </article>
+<!--            article.account__hydration.hydration.collapsed>table.hydration__table>(caption.hydration__caption>h2.hydration__title{Comparison of current water consumption})+(thead.hydration__thead>tr.hydration__row.hydration__row-head>(th.hydration__head.hydration__person{current consumption}+th.hydration__head.hydration__average{average consumption}))+(tbody.hydration__tbody>tr.hydration__row.hydration__row-data>td.hydration__data{$}*2)-->
+            <article class="account__hydration hydration collapsed">
+                <table class="hydration__table">
+                    <caption class="hydration__caption">
+                        <h2 class="hydration__title">Comparison of hydration</h2>
+                    </caption>
+                    <thead class="hydration__thead">
+                    <tr class="hydration__row hydration__row-head">
+                        <th class="hydration__head hydration__person">current consumption</th>
+                        <th class="hydration__head hydration__average">average consumption</th>
+                    </tr>
+                    </thead>
+                    <tbody class="hydration__tbody">
+                    <tr class="hydration__row hydration__row-data">
+                        <td class="hydration__data hydration__data-cur">1</td>
+                        <td class="hydration__data hydration__data-aver">2</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
+<!--                        article.account__w-h.w-h.collapsed>table.w-h__table>(caption.w-h__caption>h2.w-h__title{weekly hydration statistics})+(thead.w-h__thead>tr.w-h__row.w-h__row-head>th.w-h__head.w-h__head-${$}*7)+(tbody.w-h__tbody>tr.w-h__row.w-h__row-data>td.w-h__data.w-h__data-${$}*7)-->
+            <article class="account__w-h w-h collapsed">
+                <table class="w-h__table">
+                    <caption class="w-h__caption">
+                        <h2 class="w-h__title">weekly hydration statistics</h2>
+                    </caption>
+                    <thead class="w-h__thead">
+                    <tr class="w-h__row w-h__row-head">
+                        <th class="w-h__head w-h__head-1">1</th>
+                        <th class="w-h__head w-h__head-2">2</th>
+                        <th class="w-h__head w-h__head-3">3</th>
+                        <th class="w-h__head w-h__head-4">4</th>
+                        <th class="w-h__head w-h__head-5">5</th>
+                        <th class="w-h__head w-h__head-6">6</th>
+                        <th class="w-h__head w-h__head-7">7</th>
+                    </tr>
+                    </thead>
+                    <tbody class="w-h__tbody">
+                    <tr class="w-h__row w-h__row-data">
+                        <td class="w-h__data w-h__data-1">1</td>
+                        <td class="w-h__data w-h__data-2">2</td>
+                        <td class="w-h__data w-h__data-3">3</td>
+                        <td class="w-h__data w-h__data-4">4</td>
+                        <td class="w-h__data w-h__data-5">5</td>
+                        <td class="w-h__data w-h__data-6">6</td>
+                        <td class="w-h__data w-h__data-7">7</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
+            <!--<article class="account__week-hydr week-hydr collapsed">
+                <table class="week-hydr__table">
+                    <caption class="week-hydr__caption">
+                        <h2 class="week-hydr__title">weekly hydration statistics</h2>
+                    </caption>
+                    <thead class="week-hydr__thead">
+                    <tr class="week-hydr__row week-hydr__row-head">
+                        <th class="week-hydr__head week-hydr__person">1</th>
+                        <th class="week-hydr__head week-hydr__person">2</th>
+                        <th class="week-hydr__head week-hydr__person">3</th>
+                        <th class="week-hydr__head week-hydr__person">4</th>
+                        <th class="week-hydr__head week-hydr__person">5</th>
+                        <th class="week-hydr__head week-hydr__person">6</th>
+                        <th class="week-hydr__head week-hydr__person">7</th>
+                    </tr>
+                    </thead>
+                    <tbody class="week-hydr__tbody">
+                    <tr class="week-hydr__row week-hydr__row-data">
+                        <td class="week-hydr__data">1</td>
+                        <td class="week-hydr__data">2</td>
+                        <td class="week-hydr__data">3</td>
+                        <td class="week-hydr__data">4</td>
+                        <td class="week-hydr__data">5</td>
+                        <td class="week-hydr__data">6</td>
+                        <td class="week-hydr__data">7</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>-->
+
         </section>
     </main>
     <aside class="sidebar" aria-labelledby="sidebar-label">

@@ -13,6 +13,10 @@ class Utils {
   static getDate(strDate) {
     return new Date(strDate);
   }
+
+  static getRandomDate(repo) {
+    return repo[Utils.getRandomIndex(repo)].date;
+  }
 }
 
 export default Utils;

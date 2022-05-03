@@ -3,6 +3,10 @@ class User {
     this.userData = userData;
   }
 
+  getId() {
+    return this.userData.id;
+  }
+
   getName() {
     return this.userData.name.split(' ')[0];
   }
