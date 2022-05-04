@@ -1,10 +1,11 @@
 .compare {
   margin: auto;
-  //white-space: nowrap;
-@import "table";
+  @import "table";
+
   &__person {
 
   }
+
   &__average {
 
   }

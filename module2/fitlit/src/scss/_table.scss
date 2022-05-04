@@ -10,7 +10,9 @@
 
 }
 &__title {
-  //margin: auto;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 &__thead {
 }
