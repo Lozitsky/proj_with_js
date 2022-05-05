@@ -27,15 +27,13 @@
             <li class="sidenav__item">
                 <a href="#" class="sidenav__link sidenav__link-user">user's info</a></li>
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link sidenav__link-all">compare goal</a></li>
+                <a href="#" class="sidenav__link sidenav__link-step-goal">step goal</a></li>
 <!--            li.sidenav__item>a[#].sidenav__link.sidenav__link-water-crnt{current water consumption}-->
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link sidenav__link-cur-hydr">current water
-                consumption</a></li>
+                <a href="#" class="sidenav__link sidenav__link-cur-hydr">current hydration</a></li>
 <!--            li.sidenav__item>a[#].sidenav__link.sidenav__link-water-week{weekly water consumption}-->
             <li class="sidenav__item">
-                <a href="#" class="sidenav__link sidenav__link-w-h">weekly water
-                consumption</a></li>
+                <a href="#" class="sidenav__link sidenav__link-w-h">weekly hydration</a></li>
         </ul>
     </nav>
     <!--    </aside>-->
@@ -82,21 +80,21 @@
                 </table>
             </article>
             <!--        article.compare>h2.compare__title{Comparison step goal}+table.compare__table>(thead.compare__thead>th.compare__person{person info}+th.compare__average{average info}>)+(tbody.compare__tbody>td.compare__data{$}*2)-->
-            <article class="account__compare compare collapsed">
-                <table class="compare__table">
-                    <caption class="compare__caption">
-                        <h2 class="compare__title">Comparison step goal</h2>
+            <article class="account__step-goal step-goal collapsed">
+                <table class="step-goal__table">
+                    <caption class="step-goal__caption">
+                        <h2 class="step-goal__title">Comparison step goal</h2>
                     </caption>
-                    <thead class="compare__thead">
-                    <tr class="compare__row compare__row-head">
-                        <th class="compare__head compare__person">person info</th>
-                        <th class="compare__head compare__average">average info</th>
+                    <thead class="step-goal__thead">
+                    <tr class="step-goal__row step-goal__row-head">
+                        <th class="step-goal__head step-goal__person">person info</th>
+                        <th class="step-goal__head step-goal__average">average info</th>
                     </tr>
                     </thead>
-                    <tbody class="compare__tbody">
-                    <tr class="compare__row compare__row-data">
-                        <td class="compare__data compare__data-user">1</td>
-                        <td class="compare__data compare__data-all">5</td>
+                    <tbody class="step-goal__tbody">
+                    <tr class="step-goal__row step-goal__row-data">
+                        <td class="step-goal__data step-goal__data-user">1</td>
+                        <td class="step-goal__data step-goal__data-all">5</td>
                     </tr>
                     </tbody>
                 </table>
@@ -109,8 +107,8 @@
                     </caption>
                     <thead class="hydration__thead">
                     <tr class="hydration__row hydration__row-head">
-                        <th class="hydration__head hydration__person">current consumption</th>
-                        <th class="hydration__head hydration__average">average consumption</th>
+                        <th class="hydration__head hydration__person">current</th>
+                        <th class="hydration__head hydration__average">average</th>
                     </tr>
                     </thead>
                     <tbody class="hydration__tbody">

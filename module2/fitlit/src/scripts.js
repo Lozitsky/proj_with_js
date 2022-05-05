@@ -16,17 +16,17 @@ import Hydration from "./class/hydration/Hydration";
 const headerName = document.querySelector('.header__name');
 const headerDate = document.querySelector('.header__date');
 const rowData = document.querySelector('.bio__row-data');
-const rowCompare = document.querySelector('.compare__row-data');
+const rowStepGoal = document.querySelector('.step-goal__row-data');
 const rowCurHydr = document.querySelector('.hydration__row-data');
 const tableWeekHydr = document.querySelector('.w-h__table');
 // const rowWeekHydr = tableWeekHydr.querySelector('.w-h__row-data');
 const navList = document.querySelector('.sidenav__list');
 const account = document.querySelector('.account__bio');
-const goal = document.querySelector('.account__compare');
+const goal = document.querySelector('.account__step-goal');
 const hydration = document.querySelector('.account__hydration');
 const weekHydr = document.querySelector('.account__w-h');
 const userInfBtn = navList.querySelector('.sidenav__link-user');
-const allInfBtn = navList.querySelector('.sidenav__link-all');
+const stepGoalInfBtn = navList.querySelector('.sidenav__link-step-goal');
 const curHydrBtn = navList.querySelector('.sidenav__link-cur-hydr');
 const weekHydrBtn = navList.querySelector('.sidenav__link-w-h');
 let user;
@@ -34,7 +34,7 @@ let currentDate = '2021/12/21';
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', setupApp);
 userInfBtn.addEventListener('click', showUserInfo);
-allInfBtn.addEventListener('click', showGoals);
+stepGoalInfBtn.addEventListener('click', showGoals);
 curHydrBtn.addEventListener('click', showCurHydration);
 weekHydrBtn.addEventListener('click', showWeeklyHydration);
 
@@ -88,9 +88,9 @@ function populateUserInfo(user) {
       user.getStrideLength(), user.getDailyStepGoal(), user.getFriends()]);
 }
 
-function populateCompare(user, repo) {
-  queries(rowCompare,
-    ['compare__data-user', 'compare__data-all'],
+function populateStepGoal(user, repo) {
+  queries(rowStepGoal,
+    ['step-goal__data-user', 'step-goal__data-all'],
     [user.getDailyStepGoal(), repo.getAverageStepGoal()]);
 }
 
@@ -120,7 +120,7 @@ function populateData(userRepo, hydrationRepo) {
   setDate(hydrationRepo);
   setGreet(user);
   populateUserInfo(user);
-  populateCompare(user, userRepo);
+  populateStepGoal(user, userRepo);
   populateCurrentHydration(hydrationRepo);
   populateWeeklyHydration(hydrationRepo);
 }

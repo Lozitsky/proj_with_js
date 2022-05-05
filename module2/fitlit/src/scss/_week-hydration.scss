@@ -1,6 +1,6 @@
 .w-h {
+  overflow: auto;
   @import "table";
-
   &__table {
     display: flex;
     justify-content: center;
@@ -44,7 +44,7 @@
     }
   }
   &__tbody {
-    overflow: hidden;
+    //overflow: hidden;
   }
   &__data {
     &-1 {

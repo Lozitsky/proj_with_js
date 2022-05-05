@@ -4,6 +4,17 @@
   &__bio {
 
   }
-}
+  @import "bio";
+  &__step-goal {
 
-@import "bio";
+  }
+  @import "step-goal";
+  &__hydration {
+
+  }
+  @import "current-hydration";
+  &__w-h {
+
+  }
+  @import "week-hydration";
+}

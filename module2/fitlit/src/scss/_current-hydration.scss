@@ -4,57 +4,43 @@
   &__table {
 
   }
-
   &__caption {
 
   }
-
   &__title {
 
   }
-
   &__thead {
 
   }
-
   &__row {
+    &-head {
 
+    }
+    &-data {
+
+    }
   }
-
-  &__row-head {
-
-  }
-
   &__head {
 
   }
-
   &__person {
 
   }
-
   &__average {
 
   }
-
   &__tbody {
 
   }
-
-  &__row-data {
-
-  }
-
   &__data {
+    &-cur {
 
-  }
+    }
 
-  &__data-cur {
+    &-aver {
 
-  }
-
-  &__data-aver {
-
+    }
   }
 }
 
