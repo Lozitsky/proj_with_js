@@ -4,8 +4,16 @@
   &__table {
     display: flex;
     justify-content: space-between;
-    text-overflow: unset;
     border-radius: 1em;
+    flex-wrap: wrap;
+  }
+  &__caption {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  &__thead {
+    flex-shrink: 1;
+    flex-grow: 0;
   }
   &__title {
     align-self: center;
@@ -20,9 +28,10 @@
   }
   &__tbody {
     overflow: hidden;
-    flex-basis: 100%;
+    flex-basis: 50%;
+    flex-shrink: 1;
+    flex-grow: 1;
   }
-
   &__name {
 
   }
@@ -36,6 +45,7 @@
 
   }
   &__goal {
+
   }
   &__friends {
 

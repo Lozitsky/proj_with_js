@@ -3,6 +3,10 @@
   background: hsla(300, 96%, 90%, .2);
   //height: max-content;
   height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
   &__logo {
     height: calc(1.5 * var(--size));
     width: calc(2 * var(--size));
@@ -21,6 +25,9 @@
     background: hsla(300, 96%, 90%, .5);
 
     overflow: hidden;
+  }
+  &__date {
+
   }
   &__caption {
   }

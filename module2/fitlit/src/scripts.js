@@ -10,15 +10,16 @@ import User from "./class/user/User";
 import FitlitAPI from './class/FitlitAPI';
 import HydrationRepository from "./class/hydration/HydrationRepository";
 import Hydration from "./class/hydration/Hydration";
-let user;
 
 // Create variables targetting the relevant DOM elements here 👇
 // let variables = JSON.parse(localStorage.getItem("variable") || '[]');
 const headerName = document.querySelector('.header__name');
+const headerDate = document.querySelector('.header__date');
 const rowData = document.querySelector('.bio__row-data');
 const rowCompare = document.querySelector('.compare__row-data');
 const rowCurHydr = document.querySelector('.hydration__row-data');
-const rowWeekHydr = document.querySelector('.w-h__row-data');
+const tableWeekHydr = document.querySelector('.w-h__table');
+// const rowWeekHydr = tableWeekHydr.querySelector('.w-h__row-data');
 const navList = document.querySelector('.sidenav__list');
 const account = document.querySelector('.account__bio');
 const goal = document.querySelector('.account__compare');
@@ -28,7 +29,8 @@ const userInfBtn = navList.querySelector('.sidenav__link-user');
 const allInfBtn = navList.querySelector('.sidenav__link-all');
 const curHydrBtn = navList.querySelector('.sidenav__link-cur-hydr');
 const weekHydrBtn = navList.querySelector('.sidenav__link-w-h');
-
+let user;
+let currentDate = '2021/12/21';
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', setupApp);
 userInfBtn.addEventListener('click', showUserInfo);
@@ -71,8 +73,11 @@ function setGreet(user) {
 }
 
 function queries(target, selectors = [], data = []) {
-  selectors.forEach((selector, i) =>
-    target.querySelector('.' + selector).innerText = data[i]);
+  // console.log(data);
+  selectors.forEach((selector, i) => {
+    // console.log(selector);
+    return target.querySelector('.' + selector).innerText = data[i];
+  });
 }
 
 function populateUserInfo(user) {
@@ -91,18 +96,28 @@ function populateCompare(user, repo) {
 
 function populateCurrentHydration(repo) {
   queries(rowCurHydr, ['hydration__data-cur', 'hydration__data-aver'],
-    [new Hydration(repo.getByDate(Utils.getRandomDate(repo.getAll()))).getNumOunces(), 
+    [new Hydration(repo.getByDate(currentDate)).getNumOunces(),
       repo.getAverageHydration()]);
 }
 
 function populateWeeklyHydration(repo) {
-  queries(rowWeekHydr, ['w-h__data-1', 'w-h__data-2', 'w-h__data-3', 'w-h__data-4', 
-    'w-h__data-5', 'w-h__data-6', 'w-h__data-7'], 
-  [...repo.getByLastWeek(Utils.getRandomDate(repo.getAll()))
-    .map(hydration => new Hydration(hydration).getNumOunces())]);
+  queries(tableWeekHydr, ['w-h__head-1', 'w-h__data-1', 'w-h__head-2', 'w-h__data-2', 'w-h__head-3', 'w-h__data-3', 'w-h__head-4', 'w-h__data-4',
+    'w-h__head-5', 'w-h__data-5', 'w-h__head-6', 'w-h__data-6', 'w-h__head-7', 'w-h__data-7'],
+  [...repo.getByLastWeek(currentDate)
+    // .map(hydration => new Hydration(hydration).getNumOunces())]);
+    .flatMap(hydration => {
+      let hydr = new Hydration(hydration);
+      return [hydr.getDate(), hydr.getNumOunces()];
+    })]);
+}
+
+function setDate(hydrationRepo) {
+  currentDate = Utils.getRandomDate(hydrationRepo.getAll());
+  headerDate.innerText = currentDate;
 }
 
 function populateData(userRepo, hydrationRepo) {
+  setDate(hydrationRepo);
   setGreet(user);
   populateUserInfo(user);
   populateCompare(user, userRepo);
