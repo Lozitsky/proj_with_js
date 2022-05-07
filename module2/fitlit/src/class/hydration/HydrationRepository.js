@@ -19,13 +19,9 @@ class HydrationRepository {
   }
 
   getByLastWeek(date) {
-    const date2 = Utils.getDate(date);
-    return this.data.filter(hydr => {
-      let date1 = Utils.getDate(hydr.date);
-      return hydr.userID === this.id
-        && date1 <= date2
-        && Utils.getDifferenceInDays(date1, date2) < 7;
-    });
+    return this.data.filter(
+      hydr => hydr.userID === this.id
+        && Utils.isSameWeek(hydr.date, date));
   }
 
   getAverageHydration() {
