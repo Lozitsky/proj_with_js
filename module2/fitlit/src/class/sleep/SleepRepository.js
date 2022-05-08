@@ -3,17 +3,17 @@ import Utils from "../Utils";
 
 class SleepRepository {
   constructor(sleepData, id) {
-    this.sleeps = sleepData.map(data => new Sleep(data));
+    this.sleeps = sleepData ? sleepData.map(data => new Sleep(data)) : [];
     this.id = id;
   }
 
   getAll(id) {
     let ident = id ? id : this.id;
-    return this.sleeps.filter(sleep => sleep.getId() === ident);
+    return this.sleeps.filter(sleep => sleep.getUserId() === ident);
   }
 
   getAverageHoursSleptPerDay() {
-    return this.getAverageDataByMethodName('getHoursSlept');
+    return this.getAverageDataByMethodName('getSleptHours');
   }
 
   getAverageSleepQualityPerDay() {
@@ -38,7 +38,7 @@ class SleepRepository {
 
   getSleepDataByWeek(data, date) {
     return this.sleeps.reduce((arr, sleep) =>
-      sleep.getId() === this.id && Utils.isSameWeek(sleep.date, date) ? arr.push(sleep[data]()) : arr
+      sleep.getUserId() === this.id && Utils.isSameWeek(sleep.date, date) ? arr.push(sleep[data]()) : arr
     , []);
   }
 
@@ -55,8 +55,7 @@ class SleepRepository {
   getAverageDataByMethodName(method) {
     let num = 0;
     return this.sleeps.reduce((sum, sleep) => {
-      num++;
-      return sleep.getId() === this.id ? sleep[method]() + sum : sum;
+      return sleep.getUserId() === this.id && ++num ? sleep[method]() + sum : sum;
     }, 0) / num;
   }
 

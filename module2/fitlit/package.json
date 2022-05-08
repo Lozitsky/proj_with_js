@@ -10,8 +10,10 @@
     "test": "mochapack 'test/**/*.js'",
     "testUser": "mochapack 'test/**/User-test.js'",
     "testHydration": "mochapack 'test/**/Hydration-test.js'",
+    "testSleep": "mochapack 'test/**/Sleep-test.js'",
     "testUserRepo": "mochapack 'test/**/UserRepository-test.js'",
     "testHydrationRepo": "mochapack 'test/**/HydrationRepository-test.js'",
+    "testSleepRepo": "mochapack 'test/**/SleepRepository-test.js'",
     "watch": "webpack --watch",
     "lint": "./node_modules/.bin/eslint 'src*//**.js' 'test*//**.js'"
   },

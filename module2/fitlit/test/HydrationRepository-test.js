@@ -104,7 +104,7 @@ describe('HydrationRepository', function () {
     it('should hold all Hydration data', function () {
       expect(repo).to.have.deep.property('data', hydrationData);
     });
-    it('should hold all user Hydration data', function () {
+    it('should return all Hydration data for the current user', function () {
       expect(repo.getAll()).to.deep.eq([
         {"userID": 4, "date": "2019/06/15", "numOunces": 85},
         {"userID": 4, "date": "2019/06/16", "numOunces": 95},
