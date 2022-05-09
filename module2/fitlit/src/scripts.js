@@ -10,6 +10,7 @@ import User from "./class/user/User";
 import FitlitAPI from './class/FitlitAPI';
 import HydrationRepository from "./class/hydration/HydrationRepository";
 import Hydration from "./class/hydration/Hydration";
+import SleepRepository from "./class/sleep/SleepRepository";
 
 // Create variables targetting the relevant DOM elements here 👇
 // let variables = JSON.parse(localStorage.getItem("variable") || '[]');
@@ -18,7 +19,9 @@ const headerDate = document.querySelector('.header__date');
 const rowData = document.querySelector('.bio__row-data');
 const rowStepGoal = document.querySelector('.step-goal__row-data');
 const rowCurHydr = document.querySelector('.hydration__row-data');
+const rowCurSleep = document.querySelector('.sleep__row-data');
 const tableWeekHydr = document.querySelector('.w-h__table');
+const tableWeekSleep = document.querySelector('.w-s__tbody');
 // const rowWeekHydr = tableWeekHydr.querySelector('.w-h__row-data');
 const navList = document.querySelector('.sidenav__list');
 const account = document.querySelector('.account__bio');
@@ -53,40 +56,32 @@ function makeVisible(target) {
   target.classList.remove('collapsed');
 }
 
-// function changeVisibility(mustVisible, ...mustHidden) {
 function changeVisibility(mustVisible) {
   const mustHidden = [hydration, account, goal, weekHydr, sleep, weekSleep];
   mustHidden.forEach(item => item !== mustVisible ? makeCollapsed(item) : makeVisible(item));
-  // makeVisible(mustVisible);
 }
 
 function showCurHydration() {
-  // changeVisibility(hydration, account, goal, weekHydr, sleep, weekSleep);
   changeVisibility(hydration);
 }
 
 function showWeeklyHydration() {
-  // changeVisibility(weekHydr, account, goal, hydration);
   changeVisibility(weekHydr);
 }
 
 function showCurSleep() {
-  // changeVisibility(sleep, hydration, account, goal, weekHydr);
   changeVisibility(sleep);
 }
 
 function showWeeklySleep() {
-  // changeVisibility(weekSleep, weekHydr, account, goal, hydration);
   changeVisibility(weekSleep);
 }
 
 function showUserInfo() {
-  // changeVisibility(account, goal, hydration, weekHydr);
   changeVisibility(account);
 }
 
 function showGoals() {
-  // changeVisibility(goal, account, hydration, weekHydr);
   changeVisibility(goal);
 }
 
@@ -95,9 +90,7 @@ function setGreet(user) {
 }
 
 function queries(target, selectors = [], data = []) {
-  // console.log(data);
   selectors.forEach((selector, i) => {
-    // console.log(selector);
     return target.querySelector('.' + selector).innerText = data[i];
   });
 }
@@ -122,15 +115,27 @@ function populateCurrentHydration(repo) {
       repo.getAverageHydration()]);
 }
 
+function populateCurrentSleep(repo) {
+  queries(rowCurSleep, ['sleep__data-hours', 'sleep__data-quality'],
+    [repo.getSleptHoursByDate(currentDate),
+      repo.getSleepQualityByDate(currentDate)]);
+}
+
 function populateWeeklyHydration(repo) {
   queries(tableWeekHydr, ['w-h__head-1', 'w-h__data-1', 'w-h__head-2', 'w-h__data-2', 'w-h__head-3', 'w-h__data-3', 'w-h__head-4', 'w-h__data-4',
     'w-h__head-5', 'w-h__data-5', 'w-h__head-6', 'w-h__data-6', 'w-h__head-7', 'w-h__data-7'],
   [...repo.getByLastWeek(currentDate)
-    // .map(hydration => new Hydration(hydration).getNumOunces())]);
     .flatMap(hydration => {
       let hydr = new Hydration(hydration);
       return [hydr.getDate(), hydr.getNumOunces()];
     })]);
+}
+
+function populateWeeklySleep(repo) {
+  repo.getByLastWeek(currentDate).forEach((sleep, i) => queries(
+    tableWeekSleep.querySelector(`.w-s__row-data-${i + 1}`),
+    ['w-s__data-date', 'w-s__data-hours', 'w-s__data-quality'],
+    [sleep.getDate(), sleep.getSleptHours(), sleep.getSleepQuality()]));
 }
 
 function setDate(hydrationRepo) {
@@ -145,15 +150,15 @@ function populateData(userRepo, hydrationRepo, sleepRepo) {
   populateStepGoal(user, userRepo);
   populateCurrentHydration(hydrationRepo);
   populateWeeklyHydration(hydrationRepo);
-  // populateCurrentSleep(sleepRepo);
-  // populateWeeklySleep(sleepRepo);
+  populateCurrentSleep(sleepRepo);
+  populateWeeklySleep(sleepRepo);
 }
 
 function setupApp() {
   let userRepo;
-  let hydrationRepo;
-  Promise.all([FitlitAPI.getUserData(), FitlitAPI.getHydrationData()])
-    .then(([uData, hData]) => {
+  let hydrationRepo, sleepRepo;
+  Promise.all([FitlitAPI.getUserData(), FitlitAPI.getHydrationData(), FitlitAPI.getSleepData()])
+    .then(([uData, hData, sData]) => {
       if (uData) {
         userRepo = new UserRepository(uData.userData);
         user = new User(userRepo.getUserData(Utils.getRandomIndex(userRepo.getAllUsers())));
@@ -161,7 +166,10 @@ function setupApp() {
       if (user && hData) {
         hydrationRepo = new HydrationRepository(hData.hydrationData, user.getId());
       }
-      populateData(userRepo, hydrationRepo);
+      if (user && sData) {
+        sleepRepo = new SleepRepository(sData.sleepData, user.getId());
+      }
+      populateData(userRepo, hydrationRepo, sleepRepo);
     })
     .catch(console.log);
 }
