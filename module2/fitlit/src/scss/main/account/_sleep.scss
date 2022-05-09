@@ -1,5 +1,5 @@
-.hydration {
-  @import "table";
+.sleep {
+  @import "src/scss/table";
 
   &__table {
 
@@ -22,25 +22,21 @@
     }
   }
   &__head {
+    &-hours {
 
-  }
-  &__person {
+    }
+    &-quality {
 
-  }
-  &__average {
-
+    }
   }
   &__tbody {
 
   }
   &__data {
-    &-cur {
+    &-hours {
 
     }
-
-    &-aver {
-
+    &-quality {
     }
   }
 }
-

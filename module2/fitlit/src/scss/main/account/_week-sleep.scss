@@ -1,0 +1,42 @@
+.w-s {
+  @import "src/scss/table";
+
+  &__table {
+
+  }
+  &__caption {
+
+  }
+  &__title {
+
+  }
+  &__thead {
+
+  }
+  &__row {
+    &-head {
+
+    }
+    &-data {
+
+    }
+  }
+  &__head {
+    &-hours {
+
+    }
+    &-quality {
+
+    }
+  }
+  &__tbody {
+
+  }
+  &__data {
+    &-hours {
+
+    }
+    &-quality {
+    }
+  }
+}

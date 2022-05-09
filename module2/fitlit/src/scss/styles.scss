@@ -31,11 +31,11 @@ body, html {
   overflow-x: auto;
   overflow-y: auto;
 
-  @import "header";
-  @import "sidenav";
-  @import "main";
-  @import "sidebar";
-  @import "footer";
+  @import "header/header";
+  @import "nav/sidenav";
+  @import "main/main";
+  @import "aside/sidebar";
+  @import "footer/footer";
 }
 
 .collapsed {

@@ -25,10 +25,14 @@ const account = document.querySelector('.account__bio');
 const goal = document.querySelector('.account__step-goal');
 const hydration = document.querySelector('.account__hydration');
 const weekHydr = document.querySelector('.account__w-h');
+const sleep = document.querySelector('.account__sleep');
+const weekSleep = document.querySelector('.account__w-s');
 const userInfBtn = navList.querySelector('.sidenav__link-user');
 const stepGoalInfBtn = navList.querySelector('.sidenav__link-step-goal');
 const curHydrBtn = navList.querySelector('.sidenav__link-cur-hydr');
+const curSleepBtn = navList.querySelector('.sidenav__link-cur-sleep');
 const weekHydrBtn = navList.querySelector('.sidenav__link-w-h');
+const weekSleepBtn = navList.querySelector('.sidenav__link-w-s');
 let user;
 let currentDate = '2021/12/21';
 // Add your event listeners here 👇
@@ -37,6 +41,8 @@ userInfBtn.addEventListener('click', showUserInfo);
 stepGoalInfBtn.addEventListener('click', showGoals);
 curHydrBtn.addEventListener('click', showCurHydration);
 weekHydrBtn.addEventListener('click', showWeeklyHydration);
+curSleepBtn.addEventListener('click', showCurSleep);
+weekSleepBtn.addEventListener('click', showWeeklySleep);
 
 // Create your event handlers and other functions here 👇
 function makeCollapsed(target) {
@@ -47,25 +53,41 @@ function makeVisible(target) {
   target.classList.remove('collapsed');
 }
 
-function changeVisibility(mustVisible, ...mustHidden) {
-  mustHidden.forEach(item => makeCollapsed(item));
-  makeVisible(mustVisible);
+// function changeVisibility(mustVisible, ...mustHidden) {
+function changeVisibility(mustVisible) {
+  const mustHidden = [hydration, account, goal, weekHydr, sleep, weekSleep];
+  mustHidden.forEach(item => item !== mustVisible ? makeCollapsed(item) : makeVisible(item));
+  // makeVisible(mustVisible);
 }
 
 function showCurHydration() {
-  changeVisibility(hydration, account, goal, weekHydr);
+  // changeVisibility(hydration, account, goal, weekHydr, sleep, weekSleep);
+  changeVisibility(hydration);
 }
 
 function showWeeklyHydration() {
-  changeVisibility(weekHydr, account, goal, hydration);
+  // changeVisibility(weekHydr, account, goal, hydration);
+  changeVisibility(weekHydr);
+}
+
+function showCurSleep() {
+  // changeVisibility(sleep, hydration, account, goal, weekHydr);
+  changeVisibility(sleep);
+}
+
+function showWeeklySleep() {
+  // changeVisibility(weekSleep, weekHydr, account, goal, hydration);
+  changeVisibility(weekSleep);
 }
 
 function showUserInfo() {
-  changeVisibility(account, goal, hydration, weekHydr);
+  // changeVisibility(account, goal, hydration, weekHydr);
+  changeVisibility(account);
 }
 
 function showGoals() {
-  changeVisibility(goal, account, hydration, weekHydr);
+  // changeVisibility(goal, account, hydration, weekHydr);
+  changeVisibility(goal);
 }
 
 function setGreet(user) {
@@ -116,13 +138,15 @@ function setDate(hydrationRepo) {
   headerDate.innerText = currentDate;
 }
 
-function populateData(userRepo, hydrationRepo) {
+function populateData(userRepo, hydrationRepo, sleepRepo) {
   setDate(hydrationRepo);
   setGreet(user);
   populateUserInfo(user);
   populateStepGoal(user, userRepo);
   populateCurrentHydration(hydrationRepo);
   populateWeeklyHydration(hydrationRepo);
+  // populateCurrentSleep(sleepRepo);
+  // populateWeeklySleep(sleepRepo);
 }
 
 function setupApp() {

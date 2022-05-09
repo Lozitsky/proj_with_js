@@ -1,6 +1,6 @@
 .w-h {
   overflow: auto;
-  @import "table";
+  @import "src/scss/table";
   &__table {
     display: flex;
     justify-content: center;
