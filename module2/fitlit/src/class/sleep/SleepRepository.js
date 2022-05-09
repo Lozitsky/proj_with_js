@@ -37,19 +37,21 @@ class SleepRepository {
   }
 
   getSleepDataByWeek(data, date) {
-    return this.sleeps.reduce((arr, sleep) =>
-      sleep.getUserId() === this.id && Utils.isSameWeek(sleep.date, date) ? arr.push(sleep[data]()) : arr
+    return this.sleeps.reduce((arr, sleep) => 
+      sleep.getUserId() === this.id
+      && Utils.isSameWeek(sleep.getDate(), date)
+      && arr.push(sleep[data]()) ? arr : arr
     , []);
   }
 
   getByLastWeek(date) {
     return this.sleeps.filter(
-      sleep => sleep.userID === this.id
-          && Utils.isSameWeek(sleep.date, date));
+      sleep => sleep.getUserId() === this.id
+          && Utils.isSameWeek(sleep.getDate(), date));
   }
 
   getByDate(date) {
-    return this.sleeps.find(sleep => sleep.getDate() === date);
+    return this.sleeps.find(sleep => sleep.getUserId() === this.id && sleep.getDate() === date);
   }
 
   getAverageDataByMethodName(method) {
