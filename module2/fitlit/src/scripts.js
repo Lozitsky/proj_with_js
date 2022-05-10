@@ -20,6 +20,7 @@ const rowData = document.querySelector('.bio__row-data');
 const rowStepGoal = document.querySelector('.step-goal__row-data');
 const rowCurHydr = document.querySelector('.hydration__row-data');
 const rowCurSleep = document.querySelector('.sleep__row-data');
+const rowAverageSleep = document.querySelector('.a-s__row-data');
 const tableWeekHydr = document.querySelector('.w-h__table');
 const tableWeekSleep = document.querySelector('.w-s__tbody');
 // const rowWeekHydr = tableWeekHydr.querySelector('.w-h__row-data');
@@ -30,10 +31,12 @@ const hydration = document.querySelector('.account__hydration');
 const weekHydr = document.querySelector('.account__w-h');
 const sleep = document.querySelector('.account__sleep');
 const weekSleep = document.querySelector('.account__w-s');
+const averSleep = document.querySelector('.account__a-s');
 const userInfBtn = navList.querySelector('.sidenav__link-user');
 const stepGoalInfBtn = navList.querySelector('.sidenav__link-step-goal');
 const curHydrBtn = navList.querySelector('.sidenav__link-cur-hydr');
 const curSleepBtn = navList.querySelector('.sidenav__link-cur-sleep');
+const averSleepBtn = navList.querySelector('.sidenav__link-aver-sleep');
 const weekHydrBtn = navList.querySelector('.sidenav__link-w-h');
 const weekSleepBtn = navList.querySelector('.sidenav__link-w-s');
 let user;
@@ -45,6 +48,7 @@ stepGoalInfBtn.addEventListener('click', showGoals);
 curHydrBtn.addEventListener('click', showCurHydration);
 weekHydrBtn.addEventListener('click', showWeeklyHydration);
 curSleepBtn.addEventListener('click', showCurSleep);
+averSleepBtn.addEventListener('click', showAverSleep);
 weekSleepBtn.addEventListener('click', showWeeklySleep);
 
 // Create your event handlers and other functions here 👇
@@ -57,7 +61,7 @@ function makeVisible(target) {
 }
 
 function changeVisibility(mustVisible) {
-  const mustHidden = [hydration, account, goal, weekHydr, sleep, weekSleep];
+  const mustHidden = [hydration, account, goal, weekHydr, sleep, weekSleep, averSleep];
   mustHidden.forEach(item => item !== mustVisible ? makeCollapsed(item) : makeVisible(item));
 }
 
@@ -71,6 +75,10 @@ function showWeeklyHydration() {
 
 function showCurSleep() {
   changeVisibility(sleep);
+}
+
+function showAverSleep() {
+  changeVisibility(averSleep);
 }
 
 function showWeeklySleep() {
@@ -121,6 +129,12 @@ function populateCurrentSleep(repo) {
       repo.getSleepQualityByDate(currentDate)]);
 }
 
+function populateAverageSleep(repo) {
+  queries(rowAverageSleep, ['a-s__data-hours', 'a-s__data-quality'],
+    [repo.getAverageHoursSleptPerDay(),
+      repo.getAverageSleepQualityPerDay()]);
+}
+
 function populateWeeklyHydration(repo) {
   queries(tableWeekHydr, ['w-h__head-1', 'w-h__data-1', 'w-h__head-2', 'w-h__data-2', 'w-h__head-3', 'w-h__data-3', 'w-h__head-4', 'w-h__data-4',
     'w-h__head-5', 'w-h__data-5', 'w-h__head-6', 'w-h__data-6', 'w-h__head-7', 'w-h__data-7'],
@@ -152,11 +166,11 @@ function populateData(userRepo, hydrationRepo, sleepRepo) {
   populateWeeklyHydration(hydrationRepo);
   populateCurrentSleep(sleepRepo);
   populateWeeklySleep(sleepRepo);
+  populateAverageSleep(sleepRepo);
 }
 
 function setupApp() {
-  let userRepo;
-  let hydrationRepo, sleepRepo;
+  let userRepo, hydrationRepo, sleepRepo;
   Promise.all([FitlitAPI.getUserData(), FitlitAPI.getHydrationData(), FitlitAPI.getSleepData()])
     .then(([uData, hData, sData]) => {
       if (uData) {

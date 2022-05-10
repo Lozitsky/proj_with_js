@@ -37,7 +37,7 @@
 <!--            li.sidenav__item>a[#].sidenav__link.sidenav__link-sleep{current sleep}-->
             <li class="sidenav__item"><a href="#" class="sidenav__link sidenav__link-cur-sleep">current sleep</a></li>
             <li class="sidenav__item"><a href="#" class="sidenav__link sidenav__link-w-s">weekly sleep</a></li>
-
+            <li class="sidenav__item"><a href="#" class="sidenav__link sidenav__link-aver-sleep">average sleep</a></li>
         </ul>
     </nav>
     <!--    </aside>-->
@@ -225,69 +225,26 @@
                     </tbody>
                 </table>
             </article>
-      <!--      <article class="account__w-s w-s collapsed">
-                <table class="w-s__table">
-                    <caption class="w-s__caption">
-                        <h2 class="w-s__title">weekly sleep statistics</h2>
+            <!--            article.account__a-s.a-s.collapsed>table.a-s__table>(caption.a-s__caption>h2.a-s__title{average sleep statistics})+(thead.a-s__thead>tr.a-s__row.a-s__row-head>th.a-s__head.a-s__head-hours{average hours slept}+th.a-s__head.a-s__head-quality{average quality of sleep})+(tbody.a-s__tbody>tr.a-s__row.a-s__row-data>td.a-s__data.a-s__data-hours+td.a-s__data.a-s__data-quality)-->
+            <article class="account__a-s a-s collapsed">
+                <table class="a-s__table">
+                    <caption class="a-s__caption">
+                        <h2 class="a-s__title">average sleep statistics</h2>
                     </caption>
-                    <thead class="w-s__thead">
-                    <tr class="w-s__row w-s__row-head">
-                        <th class="w-s__head w-s__head-date">date</th>
-                        <th class="w-s__head w-s__head-hours">hours slept</th>
-                        <th class="w-s__head w-s__head-quality">quality of sleep</th>
+                    <thead class="a-s__thead">
+                    <tr class="a-s__row a-s__row-head">
+                        <th class="a-s__head a-s__head-hours">average hours slept</th>
+                        <th class="a-s__head a-s__head-quality">average quality of sleep</th>
                     </tr>
                     </thead>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-1">
-                        <td class="w-s__data w-s__data-date">1</td>
-                        <td class="w-s__data w-s__data-hours">1</td>
-                        <td class="w-s__data w-s__data-quality">1</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-2">
-                        <td class="w-s__data w-s__data-date">2</td>
-                        <td class="w-s__data w-s__data-hours">2</td>
-                        <td class="w-s__data w-s__data-quality">2</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-3">
-                        <td class="w-s__data w-s__data-date">3</td>
-                        <td class="w-s__data w-s__data-hours">3</td>
-                        <td class="w-s__data w-s__data-quality">3</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-4">
-                        <td class="w-s__data w-s__data-date">4</td>
-                        <td class="w-s__data w-s__data-hours">4</td>
-                        <td class="w-s__data w-s__data-quality">4</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-5">
-                        <td class="w-s__data w-s__data-date">5</td>
-                        <td class="w-s__data w-s__data-hours">5</td>
-                        <td class="w-s__data w-s__data-quality">5</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-6">
-                        <td class="w-s__data w-s__data-date">6</td>
-                        <td class="w-s__data w-s__data-hours">6</td>
-                        <td class="w-s__data w-s__data-quality">6</td>
-                    </tr>
-                    </tbody>
-                    <tbody class="w-s__tbody">
-                    <tr class="w-s__row w-s__row-data-7">
-                        <td class="w-s__data w-s__data-date">7</td>
-                        <td class="w-s__data w-s__data-hours">7</td>
-                        <td class="w-s__data w-s__data-quality">7</td>
+                    <tbody class="a-s__tbody">
+                    <tr class="a-s__row a-s__row-data">
+                        <td class="a-s__data a-s__data-hours"></td>
+                        <td class="a-s__data a-s__data-quality"></td>
                     </tr>
                     </tbody>
                 </table>
-            </article>-->
+            </article>
         </section>
     </main>
     <aside class="sidebar" aria-labelledby="sidebar-label">
