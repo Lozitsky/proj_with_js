@@ -1,0 +1,38 @@
+{
+  "name": "info-table",
+  "version": "1.0.0",
+  "description": "Display data in the table",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack",
+    "start": "webpack serve --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lozitsky/proj_with_js.git"
+  },
+  "author": "Lozitsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lozitsky/proj_with_js/tree/master/module2/TableWidget/issues"
+  },
+  "homepage": "https://github.com/Lozitsky/proj_with_js/tree/master/module2/TableWidget#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "cssnano": "^5.1.7",
+    "html-webpack-plugin": "^5.5.0",
+    "node-sass": "^7.0.1",
+    "postcss-loader": "^6.2.1",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
