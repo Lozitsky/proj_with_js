@@ -1,0 +1,13 @@
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  //height: 100%;
+  width: 100%;
+  //width: auto;
+  overflow: auto;
+  height: 100%;
+}
+
+@import "src/scss/main/account/account";

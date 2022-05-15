@@ -1,0 +1,47 @@
+@import "reset";
+
+:root {
+  --size: 4em;
+}
+
+body, html {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.wrapper {
+  background-image: linear-gradient(to top,
+          hsla(358, 100%, 80%, 1) 0%,
+          hsla(319, 96%, 90%, 1) 99%,
+          hsla(319, 96%, 90%, 1) 100%);
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template:
+          "header            header  header" minmax(100px, auto)
+          "sidenav           main    sidebar" minmax(200px, 10fr)
+          "footer            footer  footer" minmax(50px, auto) /
+          minmax(250px, 1fr) 5fr     minmax(200px, 1fr);
+  grid-gap: 1em 2em;
+  align-items: start;
+
+  //height: 100vh;
+  height: 100%;
+
+  width: inherit;
+  overflow-x: auto;
+  overflow-y: auto;
+
+  @import "header/header";
+  @import "nav/sidenav";
+  @import "main/main";
+  @import "aside/sidebar";
+  @import "footer/footer";
+}
+
+.collapsed {
+  //position: absolute;
+  //opacity: 0;
+  //top: 0;
+  //right: 0;
+  display: none;
+}

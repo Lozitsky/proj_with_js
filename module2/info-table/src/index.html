@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <link rel="stylesheet" href="css/styles.css">-->
+    <meta charset="UTF-8">
+    <title>Table Widget</title>
+</head>
+<div class="wrapper">
+    <header class="header">
+    </header>
+    <nav class="sidenav" aria-labelledby="secondary-nav-label">
+        <div id="secondary-nav-label" hidden>Secondary</div>
+        <sidenav-list>
+            <list-item for="bio">user's info</list-item>
+            <list-item for="goal">step goal</list-item>
+            <list-item for="c-hydration">current hydration</list-item>
+            <list-item for="w-hydration">weekly hydration</list-item>
+            <list-item for="c-sleep">current sleep</list-item>
+            <list-item for="w-sleep">weekly sleep</list-item>
+            <list-item for="a-sleep">average sleep</list-item>
+        </sidenav-list>
+    </nav>
+    <main class="main">
+        <section class="account">
+            <info-table class="bio">
+                <table-caption>User's info</table-caption>
+                <table-item name="full name">DATA</table-item>
+                <table-item name="address">DATA</table-item>
+                <table-item name="email">DATA</table-item>
+                <table-item name="stride length">DATA</table-item>
+                <table-item name="daily step goal">DATA</table-item>
+                <table-item name="friends">DATA</table-item>
+            </info-table>
+
+            <info-table class="goal">
+                <table-caption>Comparison of step goal</table-caption>
+                <table-item name="person">DATA</table-item>
+                <table-item name="average">DATA</table-item>
+            </info-table>
+
+            <info-table class="c-hydration">
+                <table-caption>comparison of hydration</table-caption>
+                <table-item name="consumed today">DATA</table-item>
+                <table-item name="average consume">DATA</table-item>
+            </info-table>
+
+            <info-table class="w-hydration">
+                <table-caption>weekly sleep statistics</table-caption>
+                <table-item name="date">
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                </table-item>
+                <table-item name="ounces of water">
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                </table-item>
+            </info-table>
+
+            <info-table class="c-sleep">
+                <table-caption>current sleep statistics</table-caption>
+                <table-item name="hours slept">DATA</table-item>
+                <table-item name="quality of sleep">DATA</table-item>
+            </info-table>
+
+            <info-table class="w-sleep">
+                <table-caption>weekly sleep statistics</table-caption>
+                <table-item name="date">
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                </table-item>
+                <table-item name="hours slept">
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                </table-item>
+                <table-item name="quality of sleep">
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                    <table-data>DATA</table-data>
+                </table-item>
+            </info-table>
+
+            <info-table class="a-sleep">
+                <table-caption>average sleep statistics</table-caption>
+                <table-item name="average hours slept">DATA</table-item>
+                <table-item name="average quality of sleep">DATA</table-item>
+            </info-table>
+        </section>
+    </main>
+    <aside class="sidebar" aria-labelledby="sidebar-label">
+        <div id="sidebar-label" hidden>Sidebar</div>
+    </aside>
+    <footer class="footer"></footer>
+</div>
+</html>

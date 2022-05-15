@@ -1,4 +1,3 @@
-
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
@@ -11,14 +10,27 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
-  entry: './src/index.js',
+  // entry: './src/index.js',
+  entry: {
+    src: [
+      // './src/scripts.js',
+      './src/scss/styles.scss',
+      './src/index.js',
+    ]
+  },
   output: {
+    clean: true,
+    publicPath: '/',
     library: libraryName,
     libraryTarget: 'umd',
     libraryExport: 'default',
     path: path.resolve(__dirname, 'dist'),
     filename: outputFile,
+    sourceMapFilename: '[name].[hash:8].map',
+    chunkFilename: '[id].[hash:8].js'
   },
+  devtool: 'inline-source-map',
+  // devtool: "source-map",
   module: {
     rules: [
       {
@@ -34,11 +46,18 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.(s[ac]ss)$/i,
         use: [
+          "style-loader",
           'css-loader',
           'postcss-loader',
-          'sass-loader',
+          // 'sass-loader',
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
       {
@@ -54,11 +73,14 @@ module.exports = {
     ],
   },
   plugins: [
-
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
+      // template: path.resolve(__dirname, '/index.html'),
+      template: './src/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
-
   ],
   devServer: {
     // contentBase: "./dist",
