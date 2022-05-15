@@ -1,0 +1,13 @@
+.sidenav {
+  grid-area: sidenav;
+  height: 100%;
+//min-height: min-content;
+  border: .1em none hsla(0, 96%, 96%, .2);
+  border-right-style: solid;
+  background: hsla(300, 96%, 90%, .2);
+  text-overflow: unset;
+  flex-grow: 1;
+  padding: .3em;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

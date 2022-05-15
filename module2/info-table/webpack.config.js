@@ -29,8 +29,8 @@ module.exports = {
     sourceMapFilename: '[name].[hash:8].map',
     chunkFilename: '[id].[hash:8].js'
   },
-  devtool: 'inline-source-map',
-  // devtool: "source-map",
+  // devtool: 'inline-source-map',
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -45,19 +45,35 @@ module.exports = {
           },
         ],
       },
+      /*      {
+              test: /\.(s[ac]ss)$/,
+              use: [
+      /!*          {
+                  loader: "style-loader",
+                },*!/
+                {
+                  loader: "css-loader",
+                  options: {
+                    importLoaders: 1,
+                    modules: true,
+                  },
+                },
+                {
+                  loader: "postcss-loader",
+                },
+                {
+                  loader: "sass-loader"
+                },
+              ],
+              include: [
+                path.resolve(__dirname, 'src/css/table')
+              ],
+            },*/
       {
-        test: /\.(s[ac]ss)$/i,
-        use: [
-          "style-loader",
-          'css-loader',
-          'postcss-loader',
-          // 'sass-loader',
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
+        test: /\.(s[ac]ss)$/,
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        exclude: [
+          path.resolve(__dirname, 'src/css/table')
         ],
       },
       {
