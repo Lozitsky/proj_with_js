@@ -1,14 +1,16 @@
 import "../../css/nav/sidenav-list.scss";
 
 const template = document.createElement('template');
-template.innerHTML = `
-   <ul class="sidenav__list">  
-   </ul>
-`;
 
 class SidenavList extends HTMLElement {
   constructor() {
     super();
+
+    let _class = this.getAttribute('name');
+    template.innerHTML = `
+     <ul class="${_class}__list">  
+     </ul>
+`;
 
     // Render the template
     this.style.display = 'none';
@@ -25,7 +27,7 @@ class SidenavList extends HTMLElement {
   }
 
   disconnectedCallback() {
-    console.log('disconnected!');
+    // console.log('disconnected!');
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

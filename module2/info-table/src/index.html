@@ -10,7 +10,7 @@
     </header>
     <nav class="sidenav" aria-labelledby="secondary-nav-label">
         <div id="secondary-nav-label" hidden>Secondary</div>
-        <sidenav-list>
+        <sidenav-list name="sidenav">
             <list-item for="bio">user's info</list-item>
             <list-item for="goal">step goal</list-item>
             <list-item for="c-hydration">current hydration</list-item>
@@ -22,7 +22,7 @@
     </nav>
     <main class="main">
         <section class="account">
-            <info-table class="bio">
+            <info-table name="bio">
                 <table-caption>User's info</table-caption>
                 <table-item name="full name">DATA</table-item>
                 <table-item name="address">DATA</table-item>
@@ -32,19 +32,19 @@
                 <table-item name="friends">DATA</table-item>
             </info-table>
 
-            <info-table class="goal">
+            <info-table name="goal">
                 <table-caption>Comparison of step goal</table-caption>
                 <table-item name="person">DATA</table-item>
                 <table-item name="average">DATA</table-item>
             </info-table>
 
-            <info-table class="c-hydration">
+            <info-table name="c-hydration">
                 <table-caption>comparison of hydration</table-caption>
                 <table-item name="consumed today">DATA</table-item>
                 <table-item name="average consume">DATA</table-item>
             </info-table>
 
-            <info-table class="w-hydration">
+            <info-table name="w-hydration">
                 <table-caption>weekly sleep statistics</table-caption>
                 <table-item name="date">
                     <table-data>DATA</table-data>
@@ -66,13 +66,13 @@
                 </table-item>
             </info-table>
 
-            <info-table class="c-sleep">
+            <info-table name="c-sleep">
                 <table-caption>current sleep statistics</table-caption>
                 <table-item name="hours slept">DATA</table-item>
                 <table-item name="quality of sleep">DATA</table-item>
             </info-table>
 
-            <info-table class="w-sleep">
+            <info-table name="w-sleep">
                 <table-caption>weekly sleep statistics</table-caption>
                 <table-item name="date">
                     <table-data>DATA</table-data>
@@ -103,7 +103,7 @@
                 </table-item>
             </info-table>
 
-            <info-table class="a-sleep">
+            <info-table name="a-sleep">
                 <table-caption>average sleep statistics</table-caption>
                 <table-item name="average hours slept">DATA</table-item>
                 <table-item name="average quality of sleep">DATA</table-item>
