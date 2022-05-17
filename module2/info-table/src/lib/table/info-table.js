@@ -27,14 +27,27 @@ class InfoTable extends HTMLElement {
     this.addChild(_class);
   }
 
+  getColumnSize() {
+    // Array.prototype.slice.call(this.childNodes)
+    // Array.from(this.childNodes)
+    return [...this.children].reduce((max, el) =>
+      el.childElementCount > max ? el.childElementCount : max, 0);
+  }
+
   addChild(_class) {
     this.parentElement.appendChild(template.content.cloneNode(true));
-    if (!this.lastElementChild.childElementCount) {
-      document.querySelector(`.${_class}__tbody`)
-        .innerHTML = `      
-          <tr class="${_class}__row ${_class}__row-body">
-          </tr>
-        `;
+
+    let tr;
+    if (!this.getColumnSize()) {
+      tr = document.createElement('tr');
+      tr.className = `class="${_class}__row ${_class}__row-body`;
+      document.querySelector(`.${_class}__tbody`).appendChild(tr);
+    } else {
+      for (let i = 1; i <= this.getColumnSize(); i++) {
+        tr = document.createElement('tr');
+        tr.className = `${_class}__row ${_class}__row-body-${i}`;
+        document.querySelector(`.${_class}__tbody`).appendChild(tr);
+      }
     }
   }
 

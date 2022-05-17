@@ -6,7 +6,12 @@ class TableItem extends HTMLElement {
     let header = this.getAttribute('name');
     let suffix = header.split(' ').join('-');
 
+    this.markChildren();
     this.addChild(_class, this.getHeadTemplate(_class, suffix, header), this.getBodyTemplate(_class, suffix));
+  }
+
+  markChildren() {
+    [...this.children].forEach((el, i) => el.setAttribute('i', i + 1))
   }
 
   addChild(_class, headTemplate, bodyTemplate) {
@@ -33,7 +38,7 @@ class TableItem extends HTMLElement {
   getBodyTemplate(_class, suffix) {
     const template = document.createElement('template');
     template.innerHTML = `
-            <th class="${_class}__data ${_class}__data-${suffix}">${this.textContent}</th>
+            <td class="${_class}__data ${_class}__data-${suffix}">${this.textContent}</td>
     `;
     return template;
   }
