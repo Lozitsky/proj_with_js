@@ -26,8 +26,8 @@ module.exports = {
     libraryExport: 'default',
     path: path.resolve(__dirname, 'dist'),
     filename: outputFile,
-    sourceMapFilename: '[name].[hash:8].map',
-    chunkFilename: '[id].[hash:8].js'
+    // sourceMapFilename: '[name].[hash:8].map',
+    // chunkFilename: '[id].[hash:8].js'
   },
   // devtool: 'inline-source-map',
   devtool: "source-map",

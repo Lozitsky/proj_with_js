@@ -40,7 +40,7 @@ class InfoTable extends HTMLElement {
     let tr;
     if (!this.getColumnSize()) {
       tr = document.createElement('tr');
-      tr.className = `class="${_class}__row ${_class}__row-body`;
+      tr.className = `${_class}__row ${_class}__row-body`;
       document.querySelector(`.${_class}__tbody`).appendChild(tr);
     } else {
       for (let i = 1; i <= this.getColumnSize(); i++) {
@@ -60,7 +60,7 @@ class InfoTable extends HTMLElement {
   }
 
   disconnectedCallback() {
-    console.log('disconnected!');
+    // console.log('disconnected!');
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -2,11 +2,7 @@ class TableData extends HTMLElement {
   constructor() {
     super();
 
-    let shadowRoot = this.attachShadow({mode: 'open'});
-    console.log('data: ', shadowRoot);
-
     let _class = this.parentElement.getAttribute('name');
-    // console.log(this.parentElement.parentElement);
     let prefix = this.parentElement.parentElement.getAttribute('name');
     this.addChild(prefix, this.getTemplate(prefix, _class));
   }
@@ -26,7 +22,6 @@ class TableData extends HTMLElement {
 
   addChild(prefix, template) {
     let selectors = `.${prefix}__row-body-${this.getAttribute('i')}`;
-    console.log(selectors);
 
     if (!this.childElementCount) {
       document.querySelector(selectors)
@@ -37,16 +32,12 @@ class TableData extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-
-  }
-
   disconnectedCallback() {
-    console.log('disconnected!');
+    // console.log('disconnected!');
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(name, oldValue, newValue);
+    // console.log(name, oldValue, newValue);
   }
 }
 
