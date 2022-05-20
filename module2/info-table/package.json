@@ -1,4 +1,9 @@
 {
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "name": "info-table",
   "version": "1.0.0",
   "description": "Display data in the table",
@@ -28,10 +33,9 @@
     "cssnano": "^5.1.7",
     "eslint": "^8.15.0",
     "html-webpack-plugin": "^5.5.0",
-    "node-sass": "^7.0.1",
     "postcss-loader": "^6.2.1",
-    "sass": "^1.51.0",
-    "sass-loader": "^12.6.0",
+    "sass": "^1.49.11",
+    "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",

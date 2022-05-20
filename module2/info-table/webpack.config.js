@@ -7,6 +7,8 @@ const libraryName = 'info-table';
 const outputFile = `${libraryName}.min.js`;
 
 const isProduction = process.env.NODE_ENV === 'production';
+const globals = require("./globals.js");
+const jsToScss = require("./utils/jsToScss.js");
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -45,35 +47,50 @@ module.exports = {
           },
         ],
       },
-      /*      {
-              test: /\.(s[ac]ss)$/,
-              use: [
-      /!*          {
-                  loader: "style-loader",
-                },*!/
-                {
-                  loader: "css-loader",
-                  options: {
-                    importLoaders: 1,
-                    modules: true,
-                  },
-                },
-                {
-                  loader: "postcss-loader",
-                },
-                {
-                  loader: "sass-loader"
-                },
-              ],
-              include: [
-                path.resolve(__dirname, 'src/css/table')
-              ],
-            },*/
       {
-        test: /\.(s[ac]ss)$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        test: /\.(s[ac]ss)$/i,
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              injectType: "lazyStyleTag"
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              // importLoaders: 1,
+              // modules: true,
+            },
+          },
+          {
+            loader: "postcss-loader",
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              // Prefer `dart-sass`
+              implementation: require("sass"),
+              // prependData: jsToScss(globals._styles)
+              additionalData: jsToScss(globals._styles)
+            }
+          },
+        ],
+        include: [
+          path.resolve(__dirname, 'src/css/tables')
+        ],
+      },
+      {
+        test: /\.(s[ac]ss)$/i,
+        use: ["style-loader", "css-loader", "postcss-loader", {
+          loader: "sass-loader",
+          options: {
+            // Prefer `dart-sass`
+            implementation: require("sass"),
+          },
+        }],
         exclude: [
-          path.resolve(__dirname, 'src/css/table')
+          path.resolve(__dirname, 'src/css/tables')
         ],
       },
       {
@@ -92,6 +109,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       // template: path.resolve(__dirname, '/index.html'),
       template: './src/index.html',
+      templateParameters: globals,
       minify: {
         collapseWhitespace: true,
         removeComments: true

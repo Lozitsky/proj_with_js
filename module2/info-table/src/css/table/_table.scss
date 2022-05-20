@@ -1,0 +1,46 @@
+  table {
+    overflow: auto;
+    white-space: nowrap;
+    margin: auto;
+    width: 33%;
+    min-width: 450px;
+    background: hsla(0, 16%, 78%, .3);
+    color: hsla(0, 75%, 3%, 1);
+  }
+
+  caption {
+
+  }
+
+  h2 {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  th {
+    margin: .5em;
+    padding: 1em;
+    background: hsla(229, 96%, 90%, .2);
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  tr {
+
+  }
+
+  tbody {
+
+  }
+
+  td {
+    margin: .5em;
+    padding: 1em .5em;
+    background: hsla(129, 96%, 90%, .2) 0 100% repeat;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 12%;
+  }
