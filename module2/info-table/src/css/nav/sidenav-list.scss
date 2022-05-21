@@ -1,7 +1,7 @@
 .sidenav {
   &__list {
     display: grid;
-    grid-template-columns: 250px;
+    grid-template-columns: minmax(150px, 1fr);
     grid-gap: .5em;
   }
   &__item {

@@ -1,25 +1,47 @@
-import "../../css/nav/sidenav-list.scss";
+// import "../../css/nav/sidenav-list.scss";
+// import _styles from "../../css/nav/sidenav-list.scss";
 
 class SidenavList extends HTMLElement {
   constructor() {
     super();
 
     this._class = this.getAttribute('name');
-
+    console.log(this._class);
+    this._toggle = this.hasAttribute('toggle');
     // Render the template
     this.style.display = 'none';
-    this.addChild(this.getTemplate(this.getClassName()));
+    // this.addChild(this.getTemplate(this.getClassName()));
+    this.addChild(this.getTemplate(this._class));
     this.targets = [];
   }
 
-  getClassName() {
+/*  getClassName() {
     return `${this.getAttribute('name')}__list`;
-  }
+  }*/
 
   getTemplate(_class) {
     const template = document.createElement('template');
     template.innerHTML = `
-       <ul class="${_class}">  
+       <style>
+          .${_class}__list {
+            display: grid;
+            grid-template-columns: minmax(150px, 1fr);
+            grid-gap: .5em;
+          }
+          .${_class}__item {
+            display: flex;
+            background: hsla(150, 96%, 90%, .2);
+          }
+          .${_class}__link {
+            white-space: nowrap;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1em 0;
+          }
+       </style>
+       <ul class="${_class}__list">  
        </ul>
     `;
     return template;
@@ -62,7 +84,9 @@ class SidenavList extends HTMLElement {
 
   addListener(c) {
     document.querySelector(`.${this._class}__item-${c}`)
-      .addEventListener('click', () => this.changeTargets(c));
+      .addEventListener('click', () =>
+        this._toggle ? this.toggleVisibility(c) : this.changeTargets(c)
+      );
     return true;
   }
 
@@ -72,12 +96,20 @@ class SidenavList extends HTMLElement {
     });
   }
 
+  toggleVisibility(className) {
+    this.makeToggle(this.targets.find(item => item.className.includes(className)));
+  }
+
   makeCollapsed(target) {
     target.classList.add('collapsed');
   }
 
   makeVisible(target) {
     target.classList.remove('collapsed');
+  }
+
+  makeToggle(target) {
+    target.classList.contains('collapsed') ? this.makeVisible(target) : this.makeCollapsed(target);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

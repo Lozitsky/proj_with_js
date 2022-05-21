@@ -7,8 +7,8 @@ const libraryName = 'info-table';
 const outputFile = `${libraryName}.min.js`;
 
 const isProduction = process.env.NODE_ENV === 'production';
-const globals = require("./globals.js");
-const jsToScss = require("./utils/jsToScss.js");
+// const globals = require("./globals.js");
+// const jsToScss = require("./utils/jsToScss.js");
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -47,7 +47,7 @@ module.exports = {
           },
         ],
       },
-      {
+/*      {
         test: /\.(s[ac]ss)$/i,
         use: [
           {
@@ -72,14 +72,14 @@ module.exports = {
               // Prefer `dart-sass`
               implementation: require("sass"),
               // prependData: jsToScss(globals._styles)
-              additionalData: jsToScss(globals._styles)
+              // additionalData: jsToScss(globals._styles)
             }
           },
         ],
         include: [
-          path.resolve(__dirname, 'src/css/tables')
+          path.resolve(__dirname, 'src/css/nav')
         ],
-      },
+      },*/
       {
         test: /\.(s[ac]ss)$/i,
         use: ["style-loader", "css-loader", "postcss-loader", {
@@ -90,7 +90,7 @@ module.exports = {
           },
         }],
         exclude: [
-          path.resolve(__dirname, 'src/css/tables')
+          // path.resolve(__dirname, 'src/css/nav')
         ],
       },
       {
@@ -109,7 +109,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       // template: path.resolve(__dirname, '/index.html'),
       template: './src/index.html',
-      templateParameters: globals,
+      // templateParameters: globals,
       minify: {
         collapseWhitespace: true,
         removeComments: true

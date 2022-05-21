@@ -1,59 +1,15 @@
 // import _styles from "../../css/table/_table.scss";
 import "../../css/table/_table.scss";
-import globals from '../../../globals.js'
-
-const template = document.createElement('template');
-
-// console.log(_styles);
-console.log(globals._styles.prefix);
+// import globals from '../../../globals.js'
 
 class InfoTable extends HTMLElement {
   constructor() {
     super();
-    // this.blobDownload();
-    console.log('Yay!');
-    // this.getFile().then(console.log);
+
     let _class = this.getAttribute('name');
+    // globals.Globals.editClass(_class);
 
-    globals.Globals.editClass(_class);
-
-/*    <style>
-      .${_class}__table {
-      overflow: auto;
-      white-space: nowrap;
-      margin: auto;
-      width: 33%;
-      min-width: 450px;
-      background: hsla(0, 16%, 78%, .3);
-      color: hsla(0, 75%, 3%, 1);
-    }
-      .${_class}__caption {
-    }
-      .${_class}__title::first-letter {
-      text-transform: uppercase;
-    }
-      .${_class}__head {
-      margin: .5em;
-      padding: 1em;
-      background: hsla(229, 96%, 90%, .2);
-    }
-      .${_class}__head::first-letter {
-      text-transform: uppercase;
-    }
-      .${_class}__row {
-    }
-      .${_class}__tbody {
-    }
-      .${_class}__data {
-      margin: .5em;
-      padding: 1em .5em;
-      background: hsla(129, 96%, 90%, .2) 0 100% repeat;
-      overflow-x: auto;
-      overflow-y: hidden;
-      max-height: 12%;
-    }
-    </style>*/
-
+    const template = document.createElement('template');
     template.innerHTML = `
       <article class="${_class} collapsed">
         <table class="${_class}__table">
@@ -71,8 +27,7 @@ class InfoTable extends HTMLElement {
 
     // Render the template
     this.style.display = 'none';
-    let element = this.addChild(_class);
-    // _styles.use({target: element});
+    this.addChild(_class, template);
   }
 
   getColumnSize() {
@@ -82,11 +37,11 @@ class InfoTable extends HTMLElement {
       el.childElementCount > max ? el.childElementCount : max, 0);
   }
 
-  addChild(_class) {
+  addChild(_class, template) {
     let parent = this.parentElement.appendChild(template.content.cloneNode(true));
-
     let tr;
     let element = document.querySelector(`.${_class}__tbody`);
+
     if (!this.getColumnSize()) {
       tr = document.createElement('tr');
       tr.className = `${_class}__row ${_class}__row-body`;
@@ -100,7 +55,6 @@ class InfoTable extends HTMLElement {
     }
     return parent;
   }
-
 
   static get observedAttributes() {
     return ['i'];
