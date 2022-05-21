@@ -7,15 +7,11 @@ const libraryName = 'info-table';
 const outputFile = `${libraryName}.min.js`;
 
 const isProduction = process.env.NODE_ENV === 'production';
-// const globals = require("./globals.js");
-// const jsToScss = require("./utils/jsToScss.js");
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
-  // entry: './src/index.js',
   entry: {
     src: [
-      // './src/scripts.js',
       './src/scss/styles.scss',
       './src/index.js',
     ]
@@ -31,7 +27,6 @@ module.exports = {
     // sourceMapFilename: '[name].[hash:8].map',
     // chunkFilename: '[id].[hash:8].js'
   },
-  // devtool: 'inline-source-map',
   devtool: "source-map",
   module: {
     rules: [
@@ -47,39 +42,6 @@ module.exports = {
           },
         ],
       },
-/*      {
-        test: /\.(s[ac]ss)$/i,
-        use: [
-          {
-            loader: "style-loader",
-            options: {
-              injectType: "lazyStyleTag"
-            },
-          },
-          {
-            loader: "css-loader",
-            options: {
-              // importLoaders: 1,
-              // modules: true,
-            },
-          },
-          {
-            loader: "postcss-loader",
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              // Prefer `dart-sass`
-              implementation: require("sass"),
-              // prependData: jsToScss(globals._styles)
-              // additionalData: jsToScss(globals._styles)
-            }
-          },
-        ],
-        include: [
-          path.resolve(__dirname, 'src/css/nav')
-        ],
-      },*/
       {
         test: /\.(s[ac]ss)$/i,
         use: ["style-loader", "css-loader", "postcss-loader", {
@@ -107,8 +69,8 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      // template: path.resolve(__dirname, '/index.html'),
-      template: './src/index.html',
+      template: path.resolve(__dirname, '/src/index.html'),
+      // template: './src/index.html',
       // templateParameters: globals,
       minify: {
         collapseWhitespace: true,

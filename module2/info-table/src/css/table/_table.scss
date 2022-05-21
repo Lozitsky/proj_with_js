@@ -1,15 +1,19 @@
-  table {
+table {
     overflow: auto;
     white-space: nowrap;
     margin: auto;
-    width: 33%;
-    min-width: 450px;
+    min-width: 33vw;
     background: hsla(0, 16%, 78%, .3);
     color: hsla(0, 75%, 3%, 1);
   }
 
-  caption {
+  thead {
+  }
 
+  caption {
+  }
+
+  tbody {
   }
 
   h2 {
@@ -29,18 +33,19 @@
   }
 
   tr {
-
-  }
-
-  tbody {
-
   }
 
   td {
+    overflow: hidden;
+    max-width: 200px;
     margin: .5em;
     padding: 1em .5em;
     background: hsla(129, 96%, 90%, .2) 0 100% repeat;
-    overflow-x: auto;
-    overflow-y: hidden;
     max-height: 12%;
+  }
+
+  td > span {
+    width: 100%;
+    display: inline-block;
+    overflow-x: auto;
   }

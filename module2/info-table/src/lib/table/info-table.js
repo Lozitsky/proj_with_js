@@ -1,14 +1,10 @@
-// import _styles from "../../css/table/_table.scss";
 import "../../css/table/_table.scss";
-// import globals from '../../../globals.js'
 
 class InfoTable extends HTMLElement {
   constructor() {
     super();
 
     let _class = this.getAttribute('name');
-    // globals.Globals.editClass(_class);
-
     const template = document.createElement('template');
     template.innerHTML = `
       <article class="${_class} collapsed">
@@ -31,8 +27,6 @@ class InfoTable extends HTMLElement {
   }
 
   getColumnSize() {
-    // Array.prototype.slice.call(this.childNodes)
-    // Array.from(this.childNodes)
     return [...this.children].reduce((max, el) =>
       el.childElementCount > max ? el.childElementCount : max, 0);
   }

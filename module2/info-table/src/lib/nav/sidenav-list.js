@@ -1,23 +1,14 @@
-// import "../../css/nav/sidenav-list.scss";
-// import _styles from "../../css/nav/sidenav-list.scss";
-
 class SidenavList extends HTMLElement {
   constructor() {
     super();
 
     this._class = this.getAttribute('name');
-    console.log(this._class);
     this._toggle = this.hasAttribute('toggle');
     // Render the template
     this.style.display = 'none';
-    // this.addChild(this.getTemplate(this.getClassName()));
     this.addChild(this.getTemplate(this._class));
     this.targets = [];
   }
-
-/*  getClassName() {
-    return `${this.getAttribute('name')}__list`;
-  }*/
 
   getTemplate(_class) {
     const template = document.createElement('template');

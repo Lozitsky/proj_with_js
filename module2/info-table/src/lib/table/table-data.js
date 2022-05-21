@@ -15,7 +15,9 @@ class TableData extends HTMLElement {
     let suffix = _class.split(' ').join('-');
     const template = document.createElement('template');
     template.innerHTML = `
-        <td class="${prefix}__data ${prefix}__data-${suffix}">${this.textContent}</td>
+    <td class="${prefix}__data ${prefix}__data-${suffix}">
+        <span class="${prefix}__span">${this.textContent}</span>
+    </td>
     `;
     return template;
   }
