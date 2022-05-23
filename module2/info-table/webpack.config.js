@@ -7,14 +7,18 @@ const libraryName = 'info-table';
 const outputFile = `${libraryName}.min.js`;
 
 const isProduction = process.env.NODE_ENV === 'production';
+console.log("Status: ", process.env.NODE_ENV);
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     src: [
-      './src/scss/styles.scss',
+      isProduction ? '/' : './src/scss/styles.scss',
       './src/index.js',
     ]
+  },
+  optimization: {
+    minimize: true,
   },
   output: {
     clean: true,
@@ -51,8 +55,14 @@ module.exports = {
             implementation: require("sass"),
           },
         }],
+        include: [
+          // path.resolve(__dirname, 'src/css/nav')
+          path.resolve(__dirname, 'src/css'),
+          isProduction ? path.resolve(__dirname, '/css') : path.resolve(__dirname, 'src/scss')
+        ],
         exclude: [
           // path.resolve(__dirname, 'src/css/nav')
+          isProduction ? path.resolve(__dirname, 'src/scss') : path.resolve(__dirname, 'css')
         ],
       },
       {
@@ -65,11 +75,25 @@ module.exports = {
           },
         }],
       },
+/*      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          // Disables attributes processing
+          // sources: isProduction,
+        },
+        include: [
+          // !isProduction ? path.resolve(__dirname, 'src/index.html') : path.resolve(__dirname, 'src/index.html')
+        ],
+        exclude: [
+          isProduction ? path.resolve(__dirname, 'src/index.html') : path.resolve(__dirname, 'src/index.html')
+        ]
+      },*/
     ],
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, '/src/index.html'),
+      template: path.resolve(__dirname, isProduction ? '/' : '/src/index.html'),
       // template: './src/index.html',
       // templateParameters: globals,
       minify: {

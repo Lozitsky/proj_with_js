@@ -1,7 +1,0 @@
-$prefix: 'bio';
-@use 'table';
-
-.#{$prefix} {
-  //@import "table";
-  @include table;
-}

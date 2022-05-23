@@ -9,9 +9,8 @@
   "description": "Display data in the table",
   "main": "src/index.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack",
-    "start": "webpack serve --open",
+    "start": "webpack serve --open --config webpack.dev.js --mode=development",
+    "build": "webpack --config webpack.prod.js --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,6 +38,7 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.0"
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
   }
 }

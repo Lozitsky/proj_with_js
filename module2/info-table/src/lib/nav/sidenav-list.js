@@ -31,6 +31,13 @@ class SidenavList extends HTMLElement {
             justify-content: center;
             padding: 1em 0;
           }
+          .collapsed {
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: 0;
+          /*display: none;*/
+          }
        </style>
        <ul class="${_class}__list">  
        </ul>
@@ -55,16 +62,20 @@ class SidenavList extends HTMLElement {
     const children = this.children;
     const classNames = [...children].map(el => el.getAttribute('for'));
 
-    let observer = new MutationObserver(mutations => mutations
-      .forEach(record => {
-        let find = [...record.addedNodes]
-          .find(node => node && node instanceof HTMLElement && node.className.split(' ')
-            .some(c => classNames.includes(c) ? this.addListener(c) : false));
-        if (find) {
-          this.targets.push(find);
-        }
-        return find;
-      }));
+    const observer = new MutationObserver(mutations => {
+      mutations
+        .forEach(record => {
+          let find = [...record.addedNodes]
+            .find(node => node && node instanceof HTMLElement && node.className.split(' ')
+              .some(c => classNames.includes(c) ? this.addListener(c) : false));
+          if (find) {
+            this.targets.push(find);
+          }
+          return find;
+        });
+      observer.disconnect();
+    }
+    );
 
     observer.observe(document.querySelector(`info-table[name*=${this.children[0].getAttribute('for')}]`).parentElement, {
       childList: true, // observe direct children
