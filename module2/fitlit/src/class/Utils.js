@@ -22,7 +22,7 @@ class Utils {
   }
 
   static getRandomDate(repo) {
-    return repo[Utils.getRandomIndex(repo)].date;
+    return repo[Utils.getRandomIndex(repo)].getDate();
   }
 }
 

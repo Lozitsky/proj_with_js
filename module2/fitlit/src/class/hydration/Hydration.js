@@ -3,6 +3,10 @@ class Hydration {
     this.hydrationData = hydrationData;
   }
 
+  getUserId() {
+    return this.hydrationData.userID;
+  }
+
   getDate() {
     return this.hydrationData.date;
   }

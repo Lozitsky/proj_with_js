@@ -40,59 +40,79 @@ function queries(target, selectors = [], data = []) {
   });
 }
 
+function getCName(prefix) {
+  return function (cName) {
+    return `${prefix}__data-${cName} > .${prefix}__span`;
+  }
+}
+
 function populateUserInfo(user) {
-  queries(rowData, 
-    ['bio__data-full-name', 'bio__data-address',    'bio__data-email',
-      'bio__data-stride-length',     'bio__data-daily-step-goal',       'bio__data-friends'],
-    [user.getFullname(), user.getAddress(),       user.getEmail(),
+  let cName = getCName('bio');
+  console.log(cName('full-name'));
+  queries(rowData,
+    [cName('full-name'), cName('address'), cName('email')
+      , cName('stride-length'), cName('daily-step-goal'), cName('friends')],
+    [user.getFullname(), user.getAddress(), user.getEmail(),
       user.getStrideLength(), user.getDailyStepGoal(), user.getFriends()]);
 }
 
 function populateStepGoal(user, repo) {
+  let cName = getCName('step-goal');
+
   queries(rowStepGoal,
-    ['step-goal__data-person', 'step-goal__data-average'],
+    [cName('person'), cName('average')],
     [user.getDailyStepGoal(), repo.getAverageStepGoal()]);
 }
 
 function populateCurrentHydration(repo) {
-  queries(rowCurHydr, ['hydration__data-consumed-today', 'hydration__data-average-consume'],
-    [new Hydration(repo.getByDate(currentDate)).getNumOunces(),
+  let cName = getCName('hydration');
+  queries(rowCurHydr,
+    [cName('consumed-today'), cName('average-consume')],
+    [repo.getByDate(currentDate).getNumOunces(),
       repo.getAverageHydration()]);
 }
 
 function populateCurrentSleep(repo) {
-  queries(rowCurSleep, ['sleep__data-hours-slept', 'sleep__data-quality-of-sleep'],
+  let cName = getCName('sleep');
+  queries(rowCurSleep,
+    [cName('hours-slept'), cName('quality-of-sleep')],
     [repo.getSleptHoursByDate(currentDate),
       repo.getSleepQualityByDate(currentDate)]);
 }
 
 function populateAverageSleep(repo) {
-  queries(rowAverageSleep, ['a-s__data-average-hours-slept', 'a-s__data-average-quality-of-sleep'],
+  let cName = getCName('a-s');
+  queries(rowAverageSleep,
+    // ['a-s__data-average-hours-slept', 'a-s__data-average-quality-of-sleep'],
+    [cName('average-hours-slept'), cName('average-quality-of-sleep')],
     [repo.getAverageHoursSleptPerDay(),
       repo.getAverageSleepQualityPerDay()]);
 }
 
-function populateWeeklyHydration(repo) {
-  function getDateSel(id) {
-    return `w-h__row-body-${id} > .w-h__data-date > .w-h__span`;
+function getTarget(prefix) {
+  return function (cName) {
+    let id = 1;
+    return function () {
+      return `${prefix}__row-body-${id++} > .${prefix}__data-${cName} > .${prefix}__span`;
+    };
   }
-  function getOunSel(id) {
-    return `w-h__row-body-${id} > .w-h__data-ounces-of-water > .w-h__span`;
-  }
+}
 
+function populateWeeklyHydration(repo) {
+  let w_h = getTarget('w-h');
+  let date = w_h('date');
+  let ounces = w_h('ounces-of-water');
   queries(tableWeekHydr,
-    [getDateSel(1), getOunSel(1), getDateSel(2), getOunSel(2), getDateSel(3), getOunSel(3), getDateSel(4), getOunSel(4), getDateSel(5), getOunSel(5), getDateSel(6), getOunSel(6), getDateSel(7), getOunSel(7), ],
+    Array(7).fill(0).flatMap(() => [date(), ounces()]),
     [...repo.getByLastWeek(currentDate)
-      .flatMap(hydration => {
-        let hydr = new Hydration(hydration);
-        return [hydr.getDate(), hydr.getNumOunces()];
-      })]);
+      .flatMap(hydration => [hydration.getDate(), hydration.getNumOunces()])]);
 }
 
 function populateWeeklySleep(repo) {
+  let cName = getCName('w-s');
   repo.getByLastWeek(currentDate).forEach((sleep, i) => queries(
     tableWeekSleep.querySelector(`.w-s__row-body-${i + 1}`),
-    ['w-s__data-date > .w-s__span', 'w-s__data-hours-slept > .w-s__span', 'w-s__data-quality-of-sleep > .w-s__span'],
+    [cName('date'), cName('hours-slept'), cName('quality-of-sleep')],
     [sleep.getDate(), sleep.getSleptHours(), sleep.getSleepQuality()]));
 }
 

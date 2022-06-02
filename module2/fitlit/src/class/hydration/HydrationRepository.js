@@ -1,17 +1,19 @@
 import Utils from "../Utils";
+import Hydration from "./Hydration";
 
 class HydrationRepository {
   constructor(data, id) {
-    this.data = data;
+    // this.hydrations = data;
+    this.hydrations = data ? data.map(data => new Hydration(data)) : [];
     this.id = id;
   }
 
   getAll() {
-    return this.data.filter(hydr => hydr.userID && hydr.userID === this.id);
+    return this.hydrations.filter(hydr => hydr.getUserId() && hydr.getUserId() === this.id);
   }
 
   getByDate(date) {
-    return this.data.find(hydr => hydr.userID && hydr.userID === this.id && hydr.date && hydr.date === date);
+    return this.hydrations.find(hydr => hydr.getUserId() && hydr.getUserId() === this.id && hydr.getDate() && hydr.getDate() === date);
   }
 
   getQuantity() {
@@ -19,13 +21,13 @@ class HydrationRepository {
   }
 
   getByLastWeek(date) {
-    return this.data.filter(
-      hydr => hydr.userID === this.id
-        && Utils.isSameWeek(hydr.date, date));
+    return this.hydrations.filter(
+      hydr => hydr.getUserId() === this.id
+        && Utils.isSameWeek(hydr.getDate(), date));
   }
 
   getAverageHydration() {
-    return this.data.reduce((sum, hydr) => hydr.userID === this.id ? sum + hydr.numOunces : sum, 0) / this.getQuantity();
+    return this.hydrations.reduce((sum, hydr) => hydr.getUserId() === this.id ? sum + hydr.getNumOunces() : sum, 0) / this.getQuantity();
   }
 }
 

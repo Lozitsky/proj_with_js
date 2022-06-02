@@ -18,6 +18,9 @@ describe('Hydration', function () {
     it('should have a hydrationData property', function () {
       expect(hydration).to.have.property('hydrationData');
     });
+    it('should have a method named `getUserId`', function () {
+      expect(hydration).itself.to.respondsTo('getUserId');
+    });
     it('should have a method named `getDate`', function () {
       expect(hydration).itself.to.respondsTo('getDate');
     });
@@ -31,6 +34,9 @@ describe('Hydration', function () {
     });
     it('should hold a hydrationData object', function () {
       expect(hydration).to.have.deep.property('hydrationData', hydrationData);
+    });
+    it('should return userId', function () {
+      expect(hydration.getUserId()).to.be.a('number').eq(1);
     });
     it('should return Date', function () {
       expect(hydration.getDate()).to.be.a('string').eq('2019/06/20');
