@@ -6,10 +6,10 @@ import './scss/styles.scss';
 import './images/turing-logo.png'
 import Utils from './class/Utils';
 import UserRepository from "./class/user/UserRepository";
-import User from "./class/user/User";
+// import User from "./class/user/User";
 import FitlitAPI from './class/FitlitAPI';
 import HydrationRepository from "./class/hydration/HydrationRepository";
-import Hydration from "./class/hydration/Hydration";
+// import Hydration from "./class/hydration/Hydration";
 import SleepRepository from "./class/sleep/SleepRepository";
 
 // Create variables targetting the relevant DOM elements here 👇
@@ -140,7 +140,8 @@ function setupApp() {
     .then(([uData, hData, sData]) => {
       if (uData) {
         userRepo = new UserRepository(uData.userData);
-        user = new User(userRepo.getUserData(Utils.getRandomIndex(userRepo.getAllUsers())));
+        // user = new User(userRepo.getUserData(Utils.getRandomIndex(userRepo.getAllUsers())));
+        user = userRepo.getById(Utils.getRandomIndex(userRepo.getAllUsers()));
       }
       if (user && hData) {
         hydrationRepo = new HydrationRepository(hData.hydrationData, user.getId());

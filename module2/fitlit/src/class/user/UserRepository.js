@@ -1,22 +1,25 @@
+import User from "./User";
+
 class UserRepository {
-  constructor(data) {
-    this.data = data;
+  constructor(userData = []) {
+    // this.userData = userData;
+    this.users = userData.map(data => new User(data)) || [];
   }
 
   getAllUsers() {
-    return this.data;
+    return this.users;
   }
 
   getQuantity() {
-    return this.data.length;
+    return this.users.length;
   }
 
-  getUserData(id) {
-    return this.data.find(user => user.id === id);
+  getById(id) {
+    return this.users.find(user => user.getId() === id);
   }
 
   getAverageStepGoal() {
-    return this.data.reduce((sum, user) => user.dailyStepGoal + sum, 0) / this.getQuantity();
+    return this.users.reduce((sum, user) => user.getDailyStepGoal() + sum, 0) / this.getQuantity();
   }
 }
 
