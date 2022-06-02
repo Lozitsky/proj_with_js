@@ -13,85 +13,22 @@ import Hydration from "./class/hydration/Hydration";
 import SleepRepository from "./class/sleep/SleepRepository";
 
 // Create variables targetting the relevant DOM elements here 👇
-// let variables = JSON.parse(localStorage.getItem("variable") || '[]');
 const headerName = document.querySelector('.header__name');
 const headerDate = document.querySelector('.header__date');
-const rowData = document.querySelector('.bio__row-data');
-const rowStepGoal = document.querySelector('.step-goal__row-data');
-const rowCurHydr = document.querySelector('.hydration__row-data');
-const rowCurSleep = document.querySelector('.sleep__row-data');
-const rowAverageSleep = document.querySelector('.a-s__row-data');
+const rowData = document.querySelector('.bio__row-body');
+const rowStepGoal = document.querySelector('.step-goal__row-body');
+const rowCurHydr = document.querySelector('.hydration__row-body');
 const tableWeekHydr = document.querySelector('.w-h__table');
+const rowCurSleep = document.querySelector('.sleep__row-body');
 const tableWeekSleep = document.querySelector('.w-s__tbody');
-// const rowWeekHydr = tableWeekHydr.querySelector('.w-h__row-data');
-const navList = document.querySelector('.sidenav__list');
-const account = document.querySelector('.account__bio');
-const goal = document.querySelector('.account__step-goal');
-const hydration = document.querySelector('.account__hydration');
-const weekHydr = document.querySelector('.account__w-h');
-const sleep = document.querySelector('.account__sleep');
-const weekSleep = document.querySelector('.account__w-s');
-const averSleep = document.querySelector('.account__a-s');
-const userInfBtn = navList.querySelector('.sidenav__link-user');
-const stepGoalInfBtn = navList.querySelector('.sidenav__link-step-goal');
-const curHydrBtn = navList.querySelector('.sidenav__link-cur-hydr');
-const curSleepBtn = navList.querySelector('.sidenav__link-cur-sleep');
-const averSleepBtn = navList.querySelector('.sidenav__link-aver-sleep');
-const weekHydrBtn = navList.querySelector('.sidenav__link-w-h');
-const weekSleepBtn = navList.querySelector('.sidenav__link-w-s');
+const rowAverageSleep = document.querySelector('.a-s__row-body');
+
 let user;
 let currentDate = '2021/12/21';
 // Add your event listeners here 👇
 document.addEventListener('DOMContentLoaded', setupApp);
-userInfBtn.addEventListener('click', showUserInfo);
-stepGoalInfBtn.addEventListener('click', showGoals);
-curHydrBtn.addEventListener('click', showCurHydration);
-weekHydrBtn.addEventListener('click', showWeeklyHydration);
-curSleepBtn.addEventListener('click', showCurSleep);
-averSleepBtn.addEventListener('click', showAverSleep);
-weekSleepBtn.addEventListener('click', showWeeklySleep);
 
 // Create your event handlers and other functions here 👇
-function makeCollapsed(target) {
-  target.classList.add('collapsed');
-}
-
-function makeVisible(target) {
-  target.classList.remove('collapsed');
-}
-
-function changeVisibility(mustVisible) {
-  const mustHidden = [hydration, account, goal, weekHydr, sleep, weekSleep, averSleep];
-  mustHidden.forEach(item => item !== mustVisible ? makeCollapsed(item) : makeVisible(item));
-}
-
-function showCurHydration() {
-  changeVisibility(hydration);
-}
-
-function showWeeklyHydration() {
-  changeVisibility(weekHydr);
-}
-
-function showCurSleep() {
-  changeVisibility(sleep);
-}
-
-function showAverSleep() {
-  changeVisibility(averSleep);
-}
-
-function showWeeklySleep() {
-  changeVisibility(weekSleep);
-}
-
-function showUserInfo() {
-  changeVisibility(account);
-}
-
-function showGoals() {
-  changeVisibility(goal);
-}
 
 function setGreet(user) {
   headerName.innerText = user.getName();
@@ -105,50 +42,57 @@ function queries(target, selectors = [], data = []) {
 
 function populateUserInfo(user) {
   queries(rowData, 
-    ['bio__data-name', 'bio__data-address',    'bio__data-email',
-      'bio__data-stride',     'bio__data-goal',       'bio__data-friends'],
+    ['bio__data-full-name', 'bio__data-address',    'bio__data-email',
+      'bio__data-stride-length',     'bio__data-daily-step-goal',       'bio__data-friends'],
     [user.getFullname(), user.getAddress(),       user.getEmail(),
       user.getStrideLength(), user.getDailyStepGoal(), user.getFriends()]);
 }
 
 function populateStepGoal(user, repo) {
   queries(rowStepGoal,
-    ['step-goal__data-user', 'step-goal__data-all'],
+    ['step-goal__data-person', 'step-goal__data-average'],
     [user.getDailyStepGoal(), repo.getAverageStepGoal()]);
 }
 
 function populateCurrentHydration(repo) {
-  queries(rowCurHydr, ['hydration__data-cur', 'hydration__data-aver'],
+  queries(rowCurHydr, ['hydration__data-consumed-today', 'hydration__data-average-consume'],
     [new Hydration(repo.getByDate(currentDate)).getNumOunces(),
       repo.getAverageHydration()]);
 }
 
 function populateCurrentSleep(repo) {
-  queries(rowCurSleep, ['sleep__data-hours', 'sleep__data-quality'],
+  queries(rowCurSleep, ['sleep__data-hours-slept', 'sleep__data-quality-of-sleep'],
     [repo.getSleptHoursByDate(currentDate),
       repo.getSleepQualityByDate(currentDate)]);
 }
 
 function populateAverageSleep(repo) {
-  queries(rowAverageSleep, ['a-s__data-hours', 'a-s__data-quality'],
+  queries(rowAverageSleep, ['a-s__data-average-hours-slept', 'a-s__data-average-quality-of-sleep'],
     [repo.getAverageHoursSleptPerDay(),
       repo.getAverageSleepQualityPerDay()]);
 }
 
 function populateWeeklyHydration(repo) {
-  queries(tableWeekHydr, ['w-h__head-1', 'w-h__data-1', 'w-h__head-2', 'w-h__data-2', 'w-h__head-3', 'w-h__data-3', 'w-h__head-4', 'w-h__data-4',
-    'w-h__head-5', 'w-h__data-5', 'w-h__head-6', 'w-h__data-6', 'w-h__head-7', 'w-h__data-7'],
-  [...repo.getByLastWeek(currentDate)
-    .flatMap(hydration => {
-      let hydr = new Hydration(hydration);
-      return [hydr.getDate(), hydr.getNumOunces()];
-    })]);
+  function getDateSel(id) {
+    return `w-h__row-body-${id} > .w-h__data-date > .w-h__span`;
+  }
+  function getOunSel(id) {
+    return `w-h__row-body-${id} > .w-h__data-ounces-of-water > .w-h__span`;
+  }
+
+  queries(tableWeekHydr,
+    [getDateSel(1), getOunSel(1), getDateSel(2), getOunSel(2), getDateSel(3), getOunSel(3), getDateSel(4), getOunSel(4), getDateSel(5), getOunSel(5), getDateSel(6), getOunSel(6), getDateSel(7), getOunSel(7), ],
+    [...repo.getByLastWeek(currentDate)
+      .flatMap(hydration => {
+        let hydr = new Hydration(hydration);
+        return [hydr.getDate(), hydr.getNumOunces()];
+      })]);
 }
 
 function populateWeeklySleep(repo) {
   repo.getByLastWeek(currentDate).forEach((sleep, i) => queries(
-    tableWeekSleep.querySelector(`.w-s__row-data-${i + 1}`),
-    ['w-s__data-date', 'w-s__data-hours', 'w-s__data-quality'],
+    tableWeekSleep.querySelector(`.w-s__row-body-${i + 1}`),
+    ['w-s__data-date > .w-s__span', 'w-s__data-hours-slept > .w-s__span', 'w-s__data-quality-of-sleep > .w-s__span'],
     [sleep.getDate(), sleep.getSleptHours(), sleep.getSleepQuality()]));
 }
 
@@ -160,6 +104,7 @@ function setDate(hydrationRepo) {
 function populateData(userRepo, hydrationRepo, sleepRepo) {
   setDate(hydrationRepo);
   setGreet(user);
+
   populateUserInfo(user);
   populateStepGoal(user, userRepo);
   populateCurrentHydration(hydrationRepo);
