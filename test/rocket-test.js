@@ -1,6 +1,10 @@
-const expect = require('chai').expect;
+// const expect = require('chai').expect;
+import {expect} from "chai";
 
-const Rocket = require('../src/Rocket.js');
+// const Rocket = require('../src/Rocket.js');
+
+
+import Rocket from "../src/Rocket.js";
 
 describe('Initial setup of rocket', function() {
   it('Does not have a name', function() {
