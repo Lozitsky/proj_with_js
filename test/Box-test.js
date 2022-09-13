@@ -30,10 +30,12 @@ describe('Box', () => {
 			expect(box.calculateArea()).to.equal(3000);
 		});
 		it('should be able increase the width by a provided value', function () {
-			box.increaseWidth(10);
+			// box.increaseWidth(10);
+			box.increase(10, 'width');
 		});
 		it('should be able increase the height by a provided value', function () {
-			box.increaseHeight(10);
+			// box.increaseHeight(10);
+			box.increase(10, 'height');
 		});
 	});
 });

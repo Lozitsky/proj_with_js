@@ -8,12 +8,8 @@ class Box {
         return this.height * this.width;
     }
 
-    increaseWidth(value) {
-        this.width += value;
-    }
-
-    increaseHeight(value) {
-        this.height += value;
+    increase(value, prop) {
+        this[prop] += value;
     }
 }
 
