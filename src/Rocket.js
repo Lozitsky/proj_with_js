@@ -15,6 +15,10 @@ class Rocket {
     lightThisCandle() {
         this.enginesIgnited = true;
     }
+
+    fillTanks() {
+        this.fuel = 'full';
+    }
 }
 
 export default Rocket;

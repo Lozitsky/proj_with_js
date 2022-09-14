@@ -57,5 +57,9 @@ describe('Functionality of rocket', function() {
     expect(rocket.enginesIgnited).to.equal(true);
   });
 
-  it('Should be able to fill the fuel tanks');
+  it('Should be able to fill the fuel tanks', () => {
+    const rocket = new Rocket();
+    rocket.fillTanks();
+    expect(rocket.fuel).to.equal('full');
+  });
 });
