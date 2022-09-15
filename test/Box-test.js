@@ -41,4 +41,31 @@ describe('Box', function() {
       expect(box.height).to.equal(130);
     });
   });
+
+  describe('saveDetails', function() {
+    it('should save details to localStorage', function() {
+      // setup
+      var box = new Box(100, 100);
+      global.localStorage = {
+        store: {},
+        setItem(keyName, value) {
+          this.store[keyName] = value;
+        },
+
+        getItem(keyName) {
+          return this.store[keyName]
+        }
+      }
+
+      // execution
+      box.saveDetails();
+
+      // expectation
+      expect(localStorage.getItem('box')).to.deep.equal({
+        width: 100,
+        height: 100
+      });
+    });
+  });
+
 });

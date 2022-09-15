@@ -11,6 +11,10 @@ class Box {
   incrementSize(amount, dimension) {
     this[dimension] += amount;
   }
+
+  saveDetails() {
+    localStorage.setItem('box', {width: this.width, height: this.height});
+  }
 }
 
 module.exports = Box;
