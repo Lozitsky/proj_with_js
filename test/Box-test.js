@@ -1,71 +1,69 @@
 const chai = require('chai');
+const spies = require('chai-spies');
+
 const expect = chai.expect;
-
 const Box = require('../src/Box');
+chai.use(spies);
 
-describe('Box', function() {
-  it('should return true', function() {
+describe('Box', function () {
+  it('should return true', function () {
     expect(true).to.equal(true);
   });
-
-  it('should have a default height and a width', function() {
+  
+  it('should have a default height and a width', function () {
     var box = new Box();
-
+    
     expect(box.height).to.equal(100);
     expect(box.width).to.equal(100);
   });
-
-  it('should have take a height and a width as arguments', function() {
+  
+  it('should have take a height and a width as arguments', function () {
     var box = new Box(50, 40);
-
+    
     expect(box.height).to.equal(50);
     expect(box.width).to.equal(40);
   });
-
-  it('should calculate its area', function() {
+  
+  it('should calculate its area', function () {
     var box = new Box(30, 30);
-
+    
     expect(box.area()).to.equal(900);
   });
-
-  describe('incrementSize', function() {
-    it('should increase the width when passed width as a parameter', function() {
+  
+  describe('incrementSize', function () {
+    it('should increase the width when passed width as a parameter', function () {
       var box = new Box(30, 30);
       box.incrementSize(100, 'width');
       expect(box.width).to.equal(130);
     });
-
-    it('should increase the height when passed height as a parameter', function() {
+    
+    it('should increase the height when passed height as a parameter', function () {
       var box = new Box(30, 30);
       box.incrementSize(100, 'height');
       expect(box.height).to.equal(130);
     });
   });
-
-  describe('saveDetails', function() {
-    it('should save details to localStorage', function() {
-      // setup
-      var box = new Box(100, 100);
-      global.localStorage = {
-        store: {},
-        setItem(keyName, value) {
-          this.store[keyName] = value;
-        },
-
-        getItem(keyName) {
-          return this.store[keyName]
-        }
-      }
-
-      // execution
-      box.saveDetails();
-
-      // expectation
-      expect(localStorage.getItem('box')).to.deep.equal({
-        width: 100,
-        height: 100
+  
+  describe('saveDetails', function () {
+    before(function () {
+      global.localStorage = {}
+      chai.spy.on(localStorage, ['setItem', 'getItem'], () => {
       });
     });
+    it('should save details to localStorage', function () {
+      // setup
+      var box = new Box(100, 100);
+      
+      // execution
+      box.saveDetails();
+      
+      // expectation
+      expect(localStorage.setItem).to.have.been.called(1);
+      expect(localStorage.setItem).to.have.been.called
+        .with('box', JSON.stringify({
+          width: 100, height: 100
+        }));
+    });
   });
-
+  
 });
